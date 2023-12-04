@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body class="mainBG">
+    <!-- navBar start -->
+
+    <ul class="nav justify-content-end" style="margin-right: 5%">
+      <li class="nav-item">
+        <button
+          type="button"
+          class="btn"
+          style="
+            background-color: #fff9c8;
+            height: 61px;
+            width: 74.86px;
+            border-color: black;
+            border-radius: 20px;
+          "
+        >
+          <img src="./assets/favoritedBtn.png" alt="" />
+        </button>
+      </li>
+      <li class="nav-item">
+        <div class="input-group flex-nowrap" style="width: 592px; height: 61px; margin-left: 19.14px;">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter a City"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            style="
+              border-color: black;
+              border-radius: 20px;
+              border-top-right-radius: 0px;
+              border-bottom-right-radius: 0px;
+            "
+          />
+          <span
+            class="input-group-text"
+            id="addon-wrapping"
+            style="
+              background-color: #fff9c8;
+              border-color: black;
+              border-radius: 20px;
+              border-top-left-radius: 0px;
+              border-bottom-left-radius: 0px;
+            "
+            ><img src="./assets/searchBtn.png" alt="Search button"
+          /></span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <button
+          type="button"
+          class="btn"
+          style="
+            background-color: #fff9c8;
+            width: 213px;
+            height: 61px;
+            border-color: black;
+            border-radius: 20px;
+            margin-left: 22.63px;
+          "
+        >
+          Favorites
+        </button>
+      </li>
+    </ul>
+
+    <!-- navBar end -->
+
+    <!-- current Location start -->
+
+<div class="locationHeader" style="margin-left: 10.5%;">Current Location</div>    
+
+    <!-- current Location end -->
+
+    <!-- weather forecast start -->
+
+    <div class="container-fluid d-inline-flex justify-content-center">
+      <div class="row currentLocationBox">
+        <div class="col-5">
+          <div class="row" style="font-size: 40px;">
+            TODAY
+          </div>
+          <div class="row" style="font-size: 35px;">
+            Monday, November 27th
+          </div>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="row" style="font-size:100px;">
+                    62°
+                </div>
+                <div class="row" style="font-size: 25px;">
+                    overcast clouds
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto vl" style="margin-top: 22px;">
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col-auto"><img src="" alt=""></div>
+            <div class="col d-flex flex-column align-items-center">
+              <div class="row" style="font-size: 30px;">Max. Temperature</div>
+              <div class="row" style="font-size: 40px;">69°</div>
+            </div>
+            <div class="col-auto"><img src="" alt=""></div>
+            <div class="col d-flex flex-column align-items-center">
+              <div class="row" style="font-size: 30px;">Min. Temperature</div>
+              <div class="row" style="font-size: 40px;">44°</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col d-flex flex-column align-items-center">
+              <div class="row" style="font-size: 30px;">Feels Like</div>
+              <div class="row" style="font-size: 40px;">60°</div>
+            </div>
+          <div class="col d-flex flex-column align-items-center">
+            <div class="row" style="font-size: 30px;">Humidity</div>
+              <div class="row" style="font-size: 40px;">54%</div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- weather forecast end -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./scripts/app.js"></script>
+  </body>
+</html>
