@@ -31,8 +31,12 @@ async function weatherAPI() {
     currentIcon.src = './assets/daycloud.png';
   }else if(data.weather[0].description === 'scattered clouds'){
     currentIcon.src = './assets/cloud.png';
-  }else if (data.weather[0].description === 'broken clouds' || 'overcast clouds'){
+  }else if(data.weather[0].description === 'broken clouds' || 'overcast clouds'){
     currentIcon.src = './assets/abouttorain.png';
+  }else if(data.weather[0].main === 'Thunderstorm'){
+    currentIcon.src = './assets/storm.png';
+  }else if(data.weather[0].main === 'Drizzle' || 'Rain'){
+    currentIcon.src = './assets/rain.png';
   }
 
   console.log('Current main temp: ' + data.main.temp);
