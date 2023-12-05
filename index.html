@@ -15,7 +15,10 @@
   <body class="mainBG">
     <!-- navBar start -->
 
-    <ul class="nav justify-content-end" style="margin-right: 5%">
+    <ul
+      class="nav justify-content-end"
+      style="margin-right: 5%; margin-top: 38px"
+    >
       <li class="nav-item">
         <button
           type="button"
@@ -26,16 +29,20 @@
             width: 74.86px;
             border-color: black;
             border-radius: 20px;
+            opacity: 95%;
           "
         >
           <img src="./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png" alt="" />
         </button>
       </li>
       <li class="nav-item">
-        <div class="input-group flex-nowrap" style="width: 592px; height: 61px; margin-left: 19.14px;">
+        <div
+          class="input-group flex-nowrap"
+          style="width: 592px; height: 61px; margin-left: 19.14px; opacity: 95%"
+        >
           <input
             type="text"
-            class="form-control"
+            class="form-control navFont"
             placeholder="Enter a City"
             aria-label="Username"
             aria-describedby="addon-wrapping"
@@ -44,6 +51,9 @@
               border-radius: 20px;
               border-top-right-radius: 0px;
               border-bottom-right-radius: 0px;
+              font-size: 25px;
+              color: black;
+              padding-left: 4%;
             "
           />
           <span
@@ -56,11 +66,13 @@
               border-top-left-radius: 0px;
               border-bottom-left-radius: 0px;
             "
-            ><img src="./assets/c515d535-16c2-49dd-b098-c900e5e66a06.png" alt="Search button"
+            ><img
+              src="./assets/c515d535-16c2-49dd-b098-c900e5e66a06.png"
+              alt="Search button"
           /></span>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item navFont">
         <button
           type="button"
           class="btn"
@@ -71,6 +83,8 @@
             border-color: black;
             border-radius: 20px;
             margin-left: 22.63px;
+            font-size: 25px;
+            opacity: 95%;
           "
         >
           Favorites
@@ -82,7 +96,9 @@
 
     <!-- current Location start -->
 
-<div class="locationHeader" style="margin-left: 10.5%;">Current Location</div>    
+    <div class="locationHeader" style="margin-left: 11.5%; height: 130px">
+      CURRENT LOCATION
+    </div>
 
     <!-- current Location end -->
 
@@ -91,54 +107,324 @@
     <div class="container-fluid d-inline-flex justify-content-center">
       <div class="row currentLocationBox">
         <div class="col-5">
-          <div class="row" style="font-size: 40px;">
+          <div
+            class="row font1"
+            style="font-size: 40px; margin-top: 34px; margin-left: 11%"
+          >
             TODAY
           </div>
-          <div class="row" style="font-size: 35px;">
+          <div
+            class="row font1 lh-1"
+            style="font-size: 35px; margin-left: 11%; height: 50"
+          >
             Monday, November 27th
           </div>
           <div class="row">
             <div class="col"></div>
             <div class="col">
-                <div class="row" style="font-size:100px;">
-                    62°
-                </div>
-                <div class="row" style="font-size: 25px;">
-                    overcast clouds
-                </div>
+              <div
+                class="row currentTempFont lh-1"
+                style="font-size: 100px; margin-top: 12%; margin-left: 0.5%"
+              >
+                62°
+              </div>
+              <div
+                class="row font1"
+                style="font-size: 25px; margin-top: 17px; margin-left: 0.5%"
+              >
+                overcast clouds
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-auto vl" style="margin-top: 22px;">
-        </div>
+        <div class="col-auto vl" style="margin-top: 22px"></div>
         <div class="col">
           <div class="row">
-            <div class="col-auto"><img src="" alt=""></div>
+            <div class="col-auto"><img src="" alt="" /></div>
             <div class="col d-flex flex-column align-items-center">
-              <div class="row" style="font-size: 30px;">Max. Temperature</div>
-              <div class="row" style="font-size: 40px;">69°</div>
+              <div
+                class="row font1"
+                style="font-size: 30px; margin-top: 14.75%"
+              >
+                Max. Temperature
+              </div>
+              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+                69°
+              </div>
             </div>
-            <div class="col-auto"><img src="" alt=""></div>
+            <div class="col-auto"><img src="" alt="" /></div>
             <div class="col d-flex flex-column align-items-center">
-              <div class="row" style="font-size: 30px;">Min. Temperature</div>
-              <div class="row" style="font-size: 40px;">44°</div>
+              <div
+                class="row font1"
+                style="font-size: 30px; margin-top: 14.75%"
+              >
+                Min. Temperature
+              </div>
+              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+                44°
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="col d-flex flex-column align-items-center">
-              <div class="row" style="font-size: 30px;">Feels Like</div>
-              <div class="row" style="font-size: 40px;">60°</div>
+            <div
+              class="col d-flex flex-column align-items-center"
+              style="margin-left: 1.5%"
+            >
+              <div class="row font1" style="font-size: 30px; margin-top: 63px">
+                Feels Like
+              </div>
+              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+                60°
+              </div>
             </div>
-          <div class="col d-flex flex-column align-items-center">
-            <div class="row" style="font-size: 30px;">Humidity</div>
-              <div class="row" style="font-size: 40px;">54%</div>
+            <div class="col d-flex flex-column align-items-center">
+              <div class="row font1" style="font-size: 30px; margin-top: 63px">
+                Humidity
+              </div>
+              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+                54%
+              </div>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
 
     <!-- weather forecast end -->
+
+    <!-- 5 day forecast start -->
+
+    <div class="container-fluid" style="margin-top: 60px">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card fiveDayBox"
+            style="width: 294px; height: 306px; padding-top: 5%"
+          >
+            <div class="card-body">
+              <div
+                class="row font1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                Tuesday
+              </div>
+              <div
+                class="row font1 lh-1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                November 28th
+              </div>
+              <div class="row"><img src="" alt="" /></div>
+              <div class="row">
+                <div class="col">
+                  <div class="row font1" style="font-size: 25px; margin-left: 25%;">LOW:</div>
+                  <div class="row font3" style="font-size: 30px; margin-left: 20%;">45°</div>
+                </div>
+                <div class="col">
+                  <div class="temperature" style="margin-top: 53%"></div>
+                </div>
+                <div class="col">
+                  <div
+                    class="row d-flex justify-content-end font1"
+                    style="font-size: 25px; margin-right: 1%;"
+                  >
+                    HIGH:
+                  </div>
+                  <div
+                    class="row d-flex justify-content-end font3"
+                    style="font-size: 30px; margin-right: 15%;"
+                  >
+                    68°
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card fiveDayBox"
+            style="width: 294px; height: 306px; padding-top: 5%"
+          >
+            <div class="card-body">
+              <div
+                class="row font1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                Wednesday
+              </div>
+              <div
+                class="row font1 lh-1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                November 29th
+              </div>
+              <div class="row"><img src="" alt="" /></div>
+              <div class="row">
+                <div class="col">
+                  <div class="row font1" style="font-size: 25px; margin-left: 25%;">LOW:</div>
+                  <div class="row font3" style="font-size: 30px; margin-left: 20%;">40°</div>
+                </div>
+                <div class="col">
+                  <div class="temperature" style="margin-top: 53%"></div>
+                </div>
+                <div class="col">
+                  <div
+                    class="row d-flex justify-content-end font1"
+                    style="font-size: 25px; margin-right: 1%;"
+                  >
+                    HIGH:
+                  </div>
+                  <div
+                    class="row d-flex justify-content-end font3"
+                    style="font-size: 30px; margin-right: 15%;"
+                  >
+                    65°
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card fiveDayBox"
+            style="width: 294px; height: 306px; padding-top: 5%"
+          >
+            <div class="card-body">
+              <div
+                class="row font1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                Thursday
+              </div>
+              <div
+                class="row font1 lh-1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                November 30th
+              </div>
+              <div class="row"><img src="" alt="" /></div>
+              <div class="row">
+                <div class="col">
+                  <div class="row font1" style="font-size: 25px; margin-left: 25%;">LOW:</div>
+                  <div class="row font3" style="font-size: 30px; margin-left: 20%;">39°</div>
+                </div>
+                <div class="col">
+                  <div class="temperature" style="margin-top: 53%"></div>
+                </div>
+                <div class="col">
+                  <div
+                    class="row d-flex justify-content-end font1"
+                    style="font-size: 25px; margin-right: 1%;"
+                  >
+                    HIGH:
+                  </div>
+                  <div
+                    class="row d-flex justify-content-end font3"
+                    style="font-size: 30px; margin-right: 15%;"
+                  >
+                    60°
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card fiveDayBox"
+            style="width: 294px; height: 306px; padding-top: 5%"
+          >
+            <div class="card-body">
+              <div
+                class="row font1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                Friday
+              </div>
+              <div
+                class="row font1 lh-1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                December 1st
+              </div>
+              <div class="row"><img src="" alt="" /></div>
+              <div class="row">
+                <div class="col">
+                  <div class="row font1" style="font-size: 25px; margin-left: 25%;">LOW:</div>
+                  <div class="row font3" style="font-size: 30px; margin-left: 20%;">37°</div>
+                </div>
+                <div class="col">
+                  <div class="temperature" style="margin-top: 53%"></div>
+                </div>
+                <div class="col">
+                  <div
+                    class="row d-flex justify-content-end font1"
+                    style="font-size: 25px; margin-right: 1%;"
+                  >
+                    HIGH:
+                  </div>
+                  <div
+                    class="row d-flex justify-content-end font3"
+                    style="font-size: 30px; margin-right: 15%;"
+                  >
+                    59°
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div
+            class="card fiveDayBox"
+            style="width: 294px; height: 306px; padding-top: 5%"
+          >
+            <div class="card-body">
+              <div
+                class="row font1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                Saturday
+              </div>
+              <div
+                class="row font1 lh-1 d-flex justify-content-center"
+                style="font-size: 25px"
+              >
+                December 2nd
+              </div>
+              <div class="row"><img src="" alt="" /></div>
+              <div class="row">
+                <div class="col">
+                  <div class="row font1" style="font-size: 25px; margin-left: 25%;">LOW:</div>
+                  <div class="row font3" style="font-size: 30px; margin-left: 20%;">41°</div>
+                </div>
+                <div class="col">
+                  <div class="temperature" style="margin-top: 53%"></div>
+                </div>
+                <div class="col">
+                  <div
+                    class="row d-flex justify-content-end font1"
+                    style="font-size: 25px; margin-right: 1%;"
+                  >
+                    HIGH:
+                  </div>
+                  <div
+                    class="row d-flex justify-content-end font3"
+                    style="font-size: 30px; margin-right: 15%;"
+                  >
+                    63°
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 day forecast end -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
