@@ -118,17 +118,17 @@
           </div>
           <div class="row">
             <div class="col d-flex justify-content-center">
-              <img src="./assets/daycloud.png" alt="" style="height: 130%" />
+              <img id="currentIcon" src="./assets/daycloud.png" alt="" style="height: 130%" />
             </div>
             <div class="col">
               <div
-                class="row currentTempFont lh-1"
+                id="currentTemperature" class="row currentTempFont lh-1"
                 style="font-size: 100px; margin-top: 12%; margin-left: 0.5%"
               >
                 62°
               </div>
               <div
-                class="row font1"
+                id="currentWeather" class="row font1"
                 style="font-size: 25px; margin-top: 17px; margin-left: 0.5%"
               >
                 overcast clouds
@@ -153,7 +153,7 @@
               >
                 Max. Temperature
               </div>
-              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div id="currentHigh" class="row font2" style="font-size: 40px; margin-top: 2.8%">
                 69°
               </div>
             </div>
@@ -171,7 +171,7 @@
               >
                 Min. Temperature
               </div>
-              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div id="currentLow" class="row font2" style="font-size: 40px; margin-top: 2.8%">
                 44°
               </div>
             </div>
@@ -184,7 +184,7 @@
               <div class="row font1" style="font-size: 30px; margin-top: 63px">
                 Feels Like
               </div>
-              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div id="currentFeel" class="row font2" style="font-size: 40px; margin-top: 2.8%">
                 60°
               </div>
             </div>
@@ -195,7 +195,7 @@
               <div class="row font1" style="font-size: 30px; margin-top: 63px">
                 Humidity
               </div>
-              <div class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div id="currentHumidity" class="row font2" style="font-size: 40px; margin-top: 2.8%">
                 54%
               </div>
             </div>

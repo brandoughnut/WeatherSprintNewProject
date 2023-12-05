@@ -78,9 +78,9 @@
     font-family: OrbitronBlack;
 }
 
-.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.form-control::placeholder { 
     color: black;
-    opacity: 1; /* Firefox */
+    opacity: 1;
 }
 
 .form-control:focus {
