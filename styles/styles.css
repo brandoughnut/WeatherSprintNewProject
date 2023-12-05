@@ -90,7 +90,7 @@
   }
 
 .temperature {
-    background-color: rgba(0, 129, 185, 0.85);
+    background-image: linear-gradient(to right, rgba(0, 129, 185, 0.85), rgba(255, 213, 65, 1));
     height: 15px;
     width: 100px;
     border-radius: 15px;
