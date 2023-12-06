@@ -69,52 +69,140 @@ const months = [
 const m = new Date();
 let month = months[m.getMonth()];
 
-// current day
+// current day start
 const d = new Date();
 d.getDate();
 
-currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate();
+if(d.getDate() === 1 || d.getDate() === 21 || d.getDate() === 31){
+  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'st';
+}else if(d.getDate() === 2 || d.getDate() === 22){
+  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'nd';
+}else if(d.getDate() === 3 || d.getDate() === 23){
+  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'rd';
+}else{
+  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'th';
+}
+// current day end
 
+// 5 day forecast days start
 if(w.getDay()+1 > 6) {
   day1.textContent = days[w.getDay()-7];
-  date1.textContent = month + ' '+(d.getDate()+1);
 }else{
   day1.textContent = days[w.getDay()+1];
-  date1.textContent = month + ' '+(d.getDate()+1);
 }
 
 if(w.getDay()+2 > 6){
   day2.textContent = days[w.getDay()-6];
-  date2.textContent = month + ' '+(d.getDate()+2);
 }else{
   day2.textContent = days[w.getDay()+2];
-  date2.textContent = month + ' '+(d.getDate()+2);
 }
 
 if(w.getDay()+3 > 6){
   day3.textContent = days[w.getDay()-4];
-  date3.textContent = month + ' '+(d.getDate()+3);
 }else{
   day3.textContent = days[w.getDay()+3];
-  date3.textContent = month + ' '+(d.getDate()+3);
 }
 
 if(w.getDay()+4 > 6){
   day4.textContent = days[w.getDay()-3];
-  date4.textContent = month + ' '+(d.getDate()+4);
 }else{
   day4.textContent = days[w.getDay()+4];
-  date4.textContent = month + ' '+(d.getDate()+4);
 }
 
 if(w.getDay()+5 > 6){
   day5.textContent = days[w.getDay()-2];
-  date5.textContent = month + ' '+(d.getDate()+5);
 
 }else{
   day5.textContent = days[w.getDay()+5];
-  date5.textContent = month + ' '+(d.getDate()+5);
 }
+// 5 day forecast days end
+
+// 5 day forecast date start
+if(d.getDate()+1 > 31) {
+  date1.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30)+'th';
+  if(m.getMonth()+1 > 12){
+    date1.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30)+'th';
+  }
+}else{
+  if(d.getDate()+1 === 1 || d.getDate()+1 === 21 || d.getDate()+1 === 31){
+    date1.textContent = month + ' '+(d.getDate()+1)+'st';
+  }else if(d.getDate()+1 === 2 || d.getDate()+1 === 22){
+    date1.textContent = month + ' '+(d.getDate()+1)+'nd';
+  }else if(d.getDate()+1 === 3 || d.getDate()+1 === 23){
+    date1.textContent = month + ' '+(d.getDate()+1)+'rd';
+  }else{
+    date1.textContent = month + ' '+(d.getDate()+1)+'th';
+  }
+}
+
+if(d.getDate()+2 > 31) {
+  date2.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
+  if(m.getMonth()+1 > 12){
+    date2.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
+  }
+}else{
+  if(d.getDate()+2 === 1 || d.getDate()+2 === 21 || d.getDate()+2 === 31){
+    date2.textContent = month + ' '+(d.getDate()+2)+'st';
+  }else if(d.getDate()+2 === 2 || d.getDate()+2 === 22){
+    date2.textContent = month + ' '+(d.getDate()+2)+'nd';
+  }else if(d.getDate()+2 === 3 || d.getDate()+2 === 23){
+    date2.textContent = month + ' '+(d.getDate()+2)+'rd';
+  }else{
+    date2.textContent = month + ' '+(d.getDate()+2)+'th';
+  }
+}
+
+if(d.getDate()+3 > 31) {
+  date3.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
+  if(m.getMonth()+1 > 12){
+    date3.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
+  }
+}else{
+  if(d.getDate()+3 === 1 || d.getDate()+3 === 21 || d.getDate()+3 === 31){
+    date3.textContent = month + ' '+(d.getDate()+3)+'st';
+  }else if(d.getDate()+3 === 2 || d.getDate()+3 === 22){
+    date3.textContent = month + ' '+(d.getDate()+3)+'nd';
+  }else if(d.getDate()+3 === 3 || d.getDate()+3 === 23){
+    date3.textContent = month + ' '+(d.getDate()+3)+'rd';
+  }else{
+    date3.textContent = month + ' '+(d.getDate()+3)+'th';
+  }
+}
+
+if(d.getDate()+4 > 31) {
+  date4.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
+  if(m.getMonth()+1 > 12){
+    date4.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
+  }
+}else{
+  if(d.getDate()+4 === 1 || d.getDate()+4 === 21 || d.getDate()+4 === 31){
+    date4.textContent = month + ' '+(d.getDate()+4)+'st';
+  }else if(d.getDate()+4 === 2 || d.getDate()+4 === 22){
+    date4.textContent = month + ' '+(d.getDate()+4)+'nd';
+  }else if(d.getDate()+4 === 3 || d.getDate()+4 === 23){
+    date4.textContent = month + ' '+(d.getDate()+4)+'rd';
+  }else{
+    date4.textContent = month + ' '+(d.getDate()+4)+'th';
+  }
+}
+
+if(d.getDate()+5 > 31) {
+  date5.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
+  if(m.getMonth()+1 > 12){
+    date5.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
+  }
+}else{
+  if(d.getDate()+5 === 1 || d.getDate()+5 === 21 || d.getDate()+5 === 31){
+    date5.textContent = month + ' '+(d.getDate()+5)+'st';
+  }else if(d.getDate()+5 === 2 || d.getDate()+5 === 22){
+    date5.textContent = month + ' '+(d.getDate()+5)+'nd';
+  }else if(d.getDate()+5 === 3 || d.getDate()+5 === 23){
+    date5.textContent = month + ' '+(d.getDate()+5)+'rd';
+  }else{
+    date5.textContent = month + ' '+(d.getDate()+5)+'th';
+  }
+}
+// 5 day forecast date end
 
 navigator.geolocation.getCurrentPosition(success, errorFunc);
 
@@ -127,7 +215,7 @@ function success(position) {
 }
 
 function errorFunc(error) {
-  console.log(error.message);
+  alert('Please turn on your location');
 }
 
 async function weatherAPI(latitude, longitude) {
