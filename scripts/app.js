@@ -17,6 +17,8 @@ let currentIcon = document.getElementById("currentIcon");
 
 searchBtn.addEventListener("click", function (e) {
   currentSearchAPI(userInput.value);
+  locationName(userInput.value);
+  console.log(userInput.value);
   userInput.value = "";
 });
 
@@ -166,7 +168,6 @@ async function currentSearchAPI(search) {
   );
   const data = await promise.json();
 
-  location.textContent = data.name.toUpperCase();
   currentTemperature.textContent = Math.round(data.main.temp) + "°";
   currentWeather.textContent = data.weather[0].description;
   currentHigh.textContent = Math.round(data.main.temp_max) + "°";
@@ -209,4 +210,117 @@ async function currentSearchAPI(search) {
   }
 }
 
+async function locationName(input) {
+  const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`);
+  
+  const data = await promise.json();
+
+  if(data[0].state === 'Alabama'){
+    location.textContent = data[0].name.toUpperCase() + ', AL'; 
+  }else if(data[0].state === 'Alaska'){
+    location.textContent = data[0].name.toUpperCase() + ', AK'; 
+  }else if(data[0].state === 'Arizona'){
+    location.textContent = data[0].name.toUpperCase() + ', AZ'; 
+  }else if(data[0].state === 'Arkansas'){
+    location.textContent = data[0].name.toUpperCase() + ', AR'; 
+  }else if(data[0].state === 'California'){
+    location.textContent = data[0].name.toUpperCase() + ', CA'; 
+  }else if(data[0].state === 'Colorado'){
+    location.textContent = data[0].name.toUpperCase() + ', CO'; 
+  }else if(data[0].state === 'Conneticut'){
+    location.textContent = data[0].name.toUpperCase() + ', CT'; 
+  }else if(data[0].state === 'District of Columbia'){
+    location.textContent = data[0].name.toUpperCase() + ', DC'; 
+  }else if(data[0].state === 'Delaware'){
+    location.textContent = data[0].name.toUpperCase() + ', DE'; 
+  }else if(data[0].state === 'Florida'){
+    location.textContent = data[0].name.toUpperCase() + ', FL'; 
+  }else if(data[0].state === 'Georgia'){
+    location.textContent = data[0].name.toUpperCase() + ', GA'; 
+  }else if(data[0].state === 'Hawaii'){
+    location.textContent = data[0].name.toUpperCase() + ', HI'; 
+  }else if(data[0].state === 'Idaho'){
+    location.textContent = data[0].name.toUpperCase() + ', ID'; 
+  }else if(data[0].state === 'Illinois'){
+    location.textContent = data[0].name.toUpperCase() + ', IL'; 
+  }else if(data[0].state === 'Indiana'){
+    location.textContent = data[0].name.toUpperCase() + ', IN'; 
+  }else if(data[0].state === 'Iowa'){
+    location.textContent = data[0].name.toUpperCase() + ', IA'; 
+  }else if(data[0].state === 'Kansas'){
+    location.textContent = data[0].name.toUpperCase() + ', KS'; 
+  }else if(data[0].state === 'Kentucky'){
+    location.textContent = data[0].name.toUpperCase() + ', KY'; 
+  }else if(data[0].state === 'Louisiana'){
+    location.textContent = data[0].name.toUpperCase() + ', LA'; 
+  }else if(data[0].state === 'Maine'){
+    location.textContent = data[0].name.toUpperCase() + ', ME'; 
+  }else if(data[0].state === 'Maryland'){
+    location.textContent = data[0].name.toUpperCase() + ', MD'; 
+  }else if(data[0].state === 'Massachusetts'){
+    location.textContent = data[0].name.toUpperCase() + ', MA'; 
+  }else if(data[0].state === 'Michigan'){
+    location.textContent = data[0].name.toUpperCase() + ', MI'; 
+  }else if(data[0].state === 'Minnesota'){
+    location.textContent = data[0].name.toUpperCase() + ', MN'; 
+  }else if(data[0].state === 'Mississippi'){
+    location.textContent = data[0].name.toUpperCase() + ', MS'; 
+  }else if(data[0].state === 'Missouri'){
+    location.textContent = data[0].name.toUpperCase() + ', MO'; 
+  }else if(data[0].state === 'Montana'){
+    location.textContent = data[0].name.toUpperCase() + ', MT'; 
+  }else if(data[0].state === 'Nebraska'){
+    location.textContent = data[0].name.toUpperCase() + ', NE'; 
+  }else if(data[0].state === 'Nevada'){
+    location.textContent = data[0].name.toUpperCase() + ', NV'; 
+  }else if(data[0].state === 'New Hampshire'){
+    location.textContent = data[0].name.toUpperCase() + ', NH'; 
+  }else if(data[0].state === 'New Jersey'){
+    location.textContent = data[0].name.toUpperCase() + ', NJ'; 
+  }else if(data[0].state === 'New Mexico'){
+    location.textContent = data[0].name.toUpperCase() + ', NM'; 
+  }else if(data[0].state === 'New York'){
+    location.textContent = data[0].name.toUpperCase() + ', NY'; 
+  }else if(data[0].state === 'North Carolina'){
+    location.textContent = data[0].name.toUpperCase() + ', NC'; 
+  }else if(data[0].state === 'North Dakota'){
+    location.textContent = data[0].name.toUpperCase() + ', ND'; 
+  }else if(data[0].state === 'Ohio'){
+    location.textContent = data[0].name.toUpperCase() + ', OH'; 
+  }else if(data[0].state === 'Oklahoma'){
+    location.textContent = data[0].name.toUpperCase() + ', OK'; 
+  }else if(data[0].state === 'Oregon'){
+    location.textContent = data[0].name.toUpperCase() + ', OR'; 
+  }else if(data[0].state === 'Pennsylvania'){
+    location.textContent = data[0].name.toUpperCase() + ', PA'; 
+  }else if(data[0].state === 'Rhode Island'){
+    location.textContent = data[0].name.toUpperCase() + ', RI'; 
+  }else if(data[0].state === 'South Carolina'){
+    location.textContent = data[0].name.toUpperCase() + ', SC'; 
+  }else if(data[0].state === 'South Dakota'){
+    location.textContent = data[0].name.toUpperCase() + ', SD'; 
+  }else if(data[0].state === 'Tennessee'){
+    location.textContent = data[0].name.toUpperCase() + ', TN'; 
+  }else if(data[0].state === 'Texas'){
+    location.textContent = data[0].name.toUpperCase() + ', TX'; 
+  }else if(data[0].state === 'Utah'){
+    location.textContent = data[0].name.toUpperCase() + ', UT'; 
+  }else if(data[0].state === 'Vermont'){
+    location.textContent = data[0].name.toUpperCase() + ', VT'; 
+  }else if(data[0].state === 'Virginia'){
+    location.textContent = data[0].name.toUpperCase() + ', VA'; 
+  }else if(data[0].state === 'Washington'){
+    location.textContent = data[0].name.toUpperCase() + ', WA'; 
+  }else if(data[0].state === 'West Virginia'){
+    location.textContent = data[0].name.toUpperCase() + ', WV'; 
+  }else if(data[0].state === 'Wisconsin'){
+    location.textContent = data[0].name.toUpperCase() + ', WI'; 
+  }else if(data[0].state === 'Wyoming'){
+    location.textContent = data[0].name.toUpperCase() + ', WY'; 
+  }else{
+    location.textContent = data[0].name.toUpperCase() + ', ' + data[0].country;
+  }
+}
+
 // end of search code
+
