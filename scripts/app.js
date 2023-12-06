@@ -25,6 +25,22 @@ let day5 = document.getElementById("day5");
 let date5 = document.getElementById("date5");
 
 // 5 day forecast
+let weather1 = document.getElementById("weather1");
+let weather2 = document.getElementById("weather2");
+let weather3 = document.getElementById("weather3");
+let weather4 = document.getElementById("weather4");
+let weather5 = document.getElementById("weather5");
+let day1Low = document.getElementById("day1Low");
+let day2Low = document.getElementById("day2Low");
+let day3Low = document.getElementById("day3Low");
+let day4Low = document.getElementById("day4Low");
+let day5Low = document.getElementById("day5Low");
+let day1High = document.getElementById("day1High");
+let day2High = document.getElementById("day2High");
+let day3High = document.getElementById("day3High");
+let day4High = document.getElementById("day4High");
+let day5High = document.getElementById("day5High");
+
 
 searchBtn.addEventListener("click", function (e) {
   currentSearchAPI(userInput.value);
@@ -37,6 +53,11 @@ searchBtn.addEventListener("click", function (e) {
 
 let lon = "";
 let lat = "";
+
+let high = 0;
+let highTemp = 0;
+let low = 0;
+let lowTemp = 0;
 
 // current weekday
 const days = [
@@ -212,6 +233,7 @@ function success(position) {
   console.log(lat);
   console.log(lon);
   weatherAPI(lat, lon);
+  weather5DayAPI(lat, lon);
 }
 
 function errorFunc(error) {
@@ -267,36 +289,222 @@ async function weatherAPI(latitude, longitude) {
     currentIcon.src = "./assets/windy.png";
   }
 
-  console.log("Current main temp: " + data.main.temp);
-  console.log("Current feels like temp: " + data.main.feels_like);
-  console.log("Current low temp: " + data.main.temp_min);
-  console.log("Current high temp: " + data.main.temp_max);
-  console.log("Current humidity: " + data.main.humidity + "%");
-  console.log("Current weather: " + data.weather[0].description);
-  console.log(data.weather[0].main);
+  // console.log("Current main temp: " + data.main.temp);
+  // console.log("Current feels like temp: " + data.main.feels_like);
+  // console.log("Current low temp: " + data.main.temp_min);
+  // console.log("Current high temp: " + data.main.temp_max);
+  // console.log("Current humidity: " + data.main.humidity + "%");
+  // console.log("Current weather: " + data.weather[0].description);
+  // console.log(data.weather[0].main);
 }
 
-async function weather5DayAPI() {
+async function weather5DayAPI(latitude, longitude) {
   const promise = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?q=stockton&appid=${apiKey}&units=imperial`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   );
 
   const data = await promise.json();
 
-  console.log(data.list[0].main.temp_min);
-  console.log(data.list[0].main.temp_max);
+  // weather start
+  if (data.list[0].weather[0].description === "clear sky") {
+    weather1.src = "./assets/dayclear.png";
+  } else if (data.list[0].weather[0].description === "few clouds") {
+    weather1.src = "./assets/daycloud.png";
+  } else if (data.list[0].weather[0].description === "scattered clouds") {
+    weather1.src = "./assets/cloud.png";
+  } else if (
+    data.list[0].weather[0].description === "broken clouds" ||
+    data.list[0].weather[0].description === "overcast clouds"
+  ) {
+    weather1.src = "./assets/abouttorain.png";
+  } else if (data.list[0].weather[0].main === "Thunderstorm") {
+    weather1.src = "./assets/storm.png";
+  } else if (
+    data.list[0].weather[0].main === "Drizzle" ||
+    data.list[0].weather[0].main === "Rain"
+  ) {
+    weather1.src = "./assets/rain.png";
+  } else if (data.list[0].weather[0].main === "Snow") {
+    weather1.src = "./assets/snow.png";
+  } else if (
+    data.list[0].weather[0].main === "Mist" ||
+    data.list[0].weather[0].main === "Smoke" ||
+    data.list[0].weather[0].main === "Haze" ||
+    data.list[0].weather[0].main === "Dust" ||
+    data.list[0].weather[0].main === "Fog" ||
+    data.list[0].weather[0].main === "Sand" ||
+    data.list[0].weather[0].main === "Ash" ||
+    data.list[0].weather[0].main === "Squall" ||
+    data.list[0].weather[0].main === "Tornado"
+  ) {
+    weather1.src = "./assets/windy.png";
+  }
 
-  console.log(data.list[1].main.temp_min);
-  console.log(data.list[1].main.temp_max);
+  if (data.list[8].weather[0].description === "clear sky") {
+    weather2.src = "./assets/dayclear.png";
+  } else if (data.list[8].weather[0].description === "few clouds") {
+    weather2.src = "./assets/daycloud.png";
+  } else if (data.list[8].weather[0].description === "scattered clouds") {
+    weather2.src = "./assets/cloud.png";
+  } else if (
+    data.list[8].weather[0].description === "broken clouds" ||
+    data.list[8].weather[0].description === "overcast clouds"
+  ) {
+    weather2.src = "./assets/abouttorain.png";
+  } else if (data.list[8].weather[0].main === "Thunderstorm") {
+    weather2.src = "./assets/storm.png";
+  } else if (
+    data.list[8].weather[0].main === "Drizzle" ||
+    data.list[8].weather[0].main === "Rain"
+  ) {
+    weather2.src = "./assets/rain.png";
+  } else if (data.list[8].weather[0].main === "Snow") {
+    weather2.src = "./assets/snow.png";
+  } else if (
+    data.list[8].weather[0].main === "Mist" ||
+    data.list[8].weather[0].main === "Smoke" ||
+    data.list[8].weather[0].main === "Haze" ||
+    data.list[8].weather[0].main === "Dust" ||
+    data.list[8].weather[0].main === "Fog" ||
+    data.list[8].weather[0].main === "Sand" ||
+    data.list[8].weather[0].main === "Ash" ||
+    data.list[8].weather[0].main === "Squall" ||
+    data.list[8].weather[0].main === "Tornado"
+  ) {
+    weather2.src = "./assets/windy.png";
+  }
 
-  console.log(data.list[2].main.temp_min);
-  console.log(data.list[2].main.temp_max);
+  if (data.list[16].weather[0].description === "clear sky") {
+    weather3.src = "./assets/dayclear.png";
+  } else if (data.list[16].weather[0].description === "few clouds") {
+    weather3.src = "./assets/daycloud.png";
+  } else if (data.list[16].weather[0].description === "scattered clouds") {
+    weather3.src = "./assets/cloud.png";
+  } else if (
+    data.list[16].weather[0].description === "broken clouds" ||
+    data.list[16].weather[0].description === "overcast clouds"
+  ) {
+    weather3.src = "./assets/abouttorain.png";
+  } else if (data.list[16].weather[0].main === "Thunderstorm") {
+    weather3.src = "./assets/storm.png";
+  } else if (
+    data.list[16].weather[0].main === "Drizzle" ||
+    data.list[16].weather[0].main === "Rain"
+  ) {
+    weather3.src = "./assets/rain.png";
+  } else if (data.list[16].weather[0].main === "Snow") {
+    weather3.src = "./assets/snow.png";
+  } else if (
+    data.list[16].weather[0].main === "Mist" ||
+    data.list[16].weather[0].main === "Smoke" ||
+    data.list[16].weather[0].main === "Haze" ||
+    data.list[16].weather[0].main === "Dust" ||
+    data.list[16].weather[0].main === "Fog" ||
+    data.list[16].weather[0].main === "Sand" ||
+    data.list[16].weather[0].main === "Ash" ||
+    data.list[16].weather[0].main === "Squall" ||
+    data.list[16].weather[0].main === "Tornado"
+  ) {
+    weather3.src = "./assets/windy.png";
+  }
 
-  console.log(data.list[3].main.temp_min);
-  console.log(data.list[3].main.temp_max);
+  if (data.list[24].weather[0].description === "clear sky") {
+    weather4.src = "./assets/dayclear.png";
+  } else if (data.list[24].weather[0].description === "few clouds") {
+    weather4.src = "./assets/daycloud.png";
+  } else if (data.list[24].weather[0].description === "scattered clouds") {
+    weather4.src = "./assets/cloud.png";
+  } else if (
+    data.list[24].weather[0].description === "broken clouds" ||
+    data.list[24].weather[0].description === "overcast clouds"
+  ) {
+    weather4.src = "./assets/abouttorain.png";
+  } else if (data.list[24].weather[0].main === "Thunderstorm") {
+    weather4.src = "./assets/storm.png";
+  } else if (
+    data.list[24].weather[0].main === "Drizzle" ||
+    data.list[24].weather[0].main === "Rain"
+  ) {
+    weather4.src = "./assets/rain.png";
+  } else if (data.list[24].weather[0].main === "Snow") {
+    weather4.src = "./assets/snow.png";
+  } else if (
+    data.list[24].weather[0].main === "Mist" ||
+    data.list[24].weather[0].main === "Smoke" ||
+    data.list[24].weather[0].main === "Haze" ||
+    data.list[24].weather[0].main === "Dust" ||
+    data.list[24].weather[0].main === "Fog" ||
+    data.list[24].weather[0].main === "Sand" ||
+    data.list[24].weather[0].main === "Ash" ||
+    data.list[24].weather[0].main === "Squall" ||
+    data.list[24].weather[0].main === "Tornado"
+  ) {
+    weather4.src = "./assets/windy.png";
+  }
+
+  if (data.list[32].weather[0].description === "clear sky") {
+    weather5.src = "./assets/dayclear.png";
+  } else if (data.list[32].weather[0].description === "few clouds") {
+    weather5.src = "./assets/daycloud.png";
+  } else if (data.list[32].weather[0].description === "scattered clouds") {
+    weather5.src = "./assets/cloud.png";
+  } else if (
+    data.list[32].weather[0].description === "broken clouds" ||
+    data.list[32].weather[0].description === "overcast clouds"
+  ) {
+    weather5.src = "./assets/abouttorain.png";
+  } else if (data.list[32].weather[0].main === "Thunderstorm") {
+    weather5.src = "./assets/storm.png";
+  } else if (
+    data.list[32].weather[0].main === "Drizzle" ||
+    data.list[32].weather[0].main === "Rain"
+  ) {
+    weather5.src = "./assets/rain.png";
+  } else if (data.list[32].weather[0].main === "Snow") {
+    weather5.src = "./assets/snow.png";
+  } else if (
+    data.list[32].weather[0].main === "Mist" ||
+    data.list[32].weather[0].main === "Smoke" ||
+    data.list[32].weather[0].main === "Haze" ||
+    data.list[32].weather[0].main === "Dust" ||
+    data.list[32].weather[0].main === "Fog" ||
+    data.list[32].weather[0].main === "Sand" ||
+    data.list[32].weather[0].main === "Ash" ||
+    data.list[32].weather[0].main === "Squall" ||
+    data.list[32].weather[0].main === "Tornado"
+  ) {
+    weather5.src = "./assets/windy.png";
+  }
+  // weather end
+
+
+  for(let i = 0; i<8; i++){
+    console.log(data.list[i].temp_max);
+    high = data.list[i].main.temp_max;
+    if(data.list[i].main.temp_max >= high){
+      highTemp = data.list[i].main.temp_max;
+    }
+  }
+  console.log(highTemp);
+
+  day1Low.textContent = Math.round(data.list[0].main.temp_min)+'°';
+  day1High.textContent = Math.round(data.list[0].main.temp_max)+'°';
+
+  day2Low.textContent = Math.round(data.list[8].main.temp_min)+'°';
+  day2High.textContent = Math.round(data.list[8].main.temp_max)+'°';
+
+  // console.log(data.list[0].main.temp_min);
+  // console.log(data.list[0].main.temp_max);
+
+  // console.log(data.list[1].main.temp_min);
+  // console.log(data.list[1].main.temp_max);
+
+  // console.log(data.list[2].main.temp_min);
+  // console.log(data.list[2].main.temp_max);
+
+  // console.log(data.list[3].main.temp_min);
+  // console.log(data.list[3].main.temp_max);
 }
-
-weather5DayAPI();
 
 // end of on load code
 
