@@ -12,6 +12,17 @@ let currentLow = document.getElementById("currentLow");
 let currentFeel = document.getElementById("currentFeel");
 let currentHumidity = document.getElementById("currentHumidity");
 let currentIcon = document.getElementById("currentIcon");
+let currentDate = document.getElementById("currentDate");
+let day1 = document.getElementById("day1");
+let date1 = document.getElementById("date1");
+let day2 = document.getElementById("day2");
+let date2 = document.getElementById("date2");
+let day3 = document.getElementById("day3");
+let date3 = document.getElementById("date3");
+let day4 = document.getElementById("day4");
+let date4 = document.getElementById("date4");
+let day5 = document.getElementById("day5");
+let date5 = document.getElementById("date5");
 
 // 5 day forecast
 
@@ -62,7 +73,48 @@ let month = months[m.getMonth()];
 const d = new Date();
 d.getDate();
 
-console.log(month);
+currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate();
+
+if(w.getDay()+1 > 6) {
+  day1.textContent = days[w.getDay()-7];
+  date1.textContent = month + ' '+(d.getDate()+1);
+}else{
+  day1.textContent = days[w.getDay()+1];
+  date1.textContent = month + ' '+(d.getDate()+1);
+}
+
+if(w.getDay()+2 > 6){
+  day2.textContent = days[w.getDay()-6];
+  date2.textContent = month + ' '+(d.getDate()+2);
+}else{
+  day2.textContent = days[w.getDay()+2];
+  date2.textContent = month + ' '+(d.getDate()+2);
+}
+
+if(w.getDay()+3 > 6){
+  day3.textContent = days[w.getDay()-4];
+  date3.textContent = month + ' '+(d.getDate()+3);
+}else{
+  day3.textContent = days[w.getDay()+3];
+  date3.textContent = month + ' '+(d.getDate()+3);
+}
+
+if(w.getDay()+4 > 6){
+  day4.textContent = days[w.getDay()-3];
+  date4.textContent = month + ' '+(d.getDate()+4);
+}else{
+  day4.textContent = days[w.getDay()+4];
+  date4.textContent = month + ' '+(d.getDate()+4);
+}
+
+if(w.getDay()+5 > 6){
+  day5.textContent = days[w.getDay()-2];
+  date5.textContent = month + ' '+(d.getDate()+5);
+
+}else{
+  day5.textContent = days[w.getDay()+5];
+  date5.textContent = month + ' '+(d.getDate()+5);
+}
 
 navigator.geolocation.getCurrentPosition(success, errorFunc);
 
