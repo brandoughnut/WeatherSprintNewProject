@@ -33,10 +33,24 @@
     background-size: cover;
 }
 
+.nightBG {
+    background: url(/assets/5beab6a6-0f16-40b5-ac5d-665cc8dad5cc.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
 .currentLocationBox{
     width: 100%;
     height: 394px;
     background-color: rgba(200, 255, 229, 0.9);
+    border-radius: 30px;
+    margin-left: 8.783%;
+    margin-right: 8.783%;
+}
+
+.currentLocationNightBox{
+    width: 100%;
+    height: 394px;
+    background-color: rgba(208, 200, 255, 0.9);
     border-radius: 30px;
     margin-left: 8.783%;
     margin-right: 8.783%;

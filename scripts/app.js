@@ -2,6 +2,8 @@ import { apiKey } from "./apikey.js";
 
 let userInput = document.getElementById("userInput");
 let searchBtn = document.getElementById("searchBtn");
+let switchBG = document.getElementById("switchBG");
+let switchBox = document.getElementById("switchBox");
 
 // current forecast
 let location = document.getElementById("location");
@@ -48,6 +50,16 @@ searchBtn.addEventListener("click", function (e) {
   forecastSearchAPI(userInput.value);
   console.log(userInput.value);
   userInput.value = "";
+  highTemp1 = 0;
+  lowTemp1;
+  highTemp2 = 0;
+  lowTemp2;
+  highTemp3 = 0;
+  lowTemp3;
+  highTemp4 = 0;
+  lowTemp4;
+  highTemp5 = 0;
+  lowTemp5;
 });
 
 // on load code
