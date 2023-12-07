@@ -78,6 +78,18 @@ let lowTemp4;
 let highTemp5 = 0;
 let lowTemp5;
 
+// current time
+const t = new Date();
+if(t.getHours() >= 7 && t.getHours() <= 18){
+  switchBG.className = "mainBG";
+  switchBox.className = "currentLocationBox row";
+  location.className = "locationHeader";
+}else{
+  switchBG.className = "nightBG";
+  switchBox.className = "currentLocationNightBox row"
+  location.className = "locationHeaderNight"
+}
+
 // current weekday
 const days = [
   "Sunday",
@@ -273,39 +285,75 @@ async function weatherAPI(latitude, longitude) {
   currentLow.textContent = Math.round(data.main.temp_min) + "°";
   currentFeel.textContent = Math.round(data.main.feels_like) + "°";
   currentHumidity.textContent = Math.round(data.main.humidity) + "%";
-
-  if (data.weather[0].description === "clear sky") {
-    currentIcon.src = "./assets/01d.png";
-  } else if (data.weather[0].description === "few clouds") {
-    currentIcon.src = "./assets/02d.png";
-  } else if (data.weather[0].description === "scattered clouds") {
-    currentIcon.src = "./assets/03d.png";
-  } else if (
-    data.weather[0].description === "broken clouds" ||
-    data.weather[0].description === "overcast clouds"
-  ) {
-    currentIcon.src = "./assets/04d.png";
-  } else if (data.weather[0].main === "Thunderstorm") {
-    currentIcon.src = "./assets/11d.png";
-  } else if (
-    data.weather[0].main === "Drizzle" ||
-    data.weather[0].main === "Rain"
-  ) {
-    currentIcon.src = "./assets/09d.png";
-  } else if (data.weather[0].main === "Snow") {
-    currentIcon.src = "./assets/13d.png";
-  } else if (
-    data.weather[0].main === "Mist" ||
-    data.weather[0].main === "Smoke" ||
-    data.weather[0].main === "Haze" ||
-    data.weather[0].main === "Dust" ||
-    data.weather[0].main === "Fog" ||
-    data.weather[0].main === "Sand" ||
-    data.weather[0].main === "Ash" ||
-    data.weather[0].main === "Squall" ||
-    data.weather[0].main === "Tornado"
-  ) {
-    currentIcon.src = "./assets/50d.png";
+  
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.weather[0].description === "clear sky") {
+      currentIcon.src = "./assets/01d.png";
+    } else if (data.weather[0].description === "few clouds") {
+      currentIcon.src = "./assets/02d.png";
+    } else if (data.weather[0].description === "scattered clouds") {
+      currentIcon.src = "./assets/03d.png";
+    } else if (
+      data.weather[0].description === "broken clouds" ||
+      data.weather[0].description === "overcast clouds"
+    ) {
+      currentIcon.src = "./assets/04d.png";
+    } else if (data.weather[0].main === "Thunderstorm") {
+      currentIcon.src = "./assets/11d.png";
+    } else if (
+      data.weather[0].main === "Drizzle" ||
+      data.weather[0].main === "Rain"
+    ) {
+      currentIcon.src = "./assets/09d.png";
+    } else if (data.weather[0].main === "Snow") {
+      currentIcon.src = "./assets/13d.png";
+    } else if (
+      data.weather[0].main === "Mist" ||
+      data.weather[0].main === "Smoke" ||
+      data.weather[0].main === "Haze" ||
+      data.weather[0].main === "Dust" ||
+      data.weather[0].main === "Fog" ||
+      data.weather[0].main === "Sand" ||
+      data.weather[0].main === "Ash" ||
+      data.weather[0].main === "Squall" ||
+      data.weather[0].main === "Tornado"
+    ) {
+      currentIcon.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.weather[0].description === "clear sky") {
+      currentIcon.src = "./assets/01n.png";
+    } else if (data.weather[0].description === "few clouds") {
+      currentIcon.src = "./assets/02n.png";
+    } else if (data.weather[0].description === "scattered clouds") {
+      currentIcon.src = "./assets/03d.png";
+    } else if (
+      data.weather[0].description === "broken clouds" ||
+      data.weather[0].description === "overcast clouds"
+    ) {
+      currentIcon.src = "./assets/04d.png";
+    } else if (data.weather[0].main === "Thunderstorm") {
+      currentIcon.src = "./assets/11d.png";
+    } else if (
+      data.weather[0].main === "Drizzle" ||
+      data.weather[0].main === "Rain"
+    ) {
+      currentIcon.src = "./assets/09d.png";
+    } else if (data.weather[0].main === "Snow") {
+      currentIcon.src = "./assets/13d.png";
+    } else if (
+      data.weather[0].main === "Mist" ||
+      data.weather[0].main === "Smoke" ||
+      data.weather[0].main === "Haze" ||
+      data.weather[0].main === "Dust" ||
+      data.weather[0].main === "Fog" ||
+      data.weather[0].main === "Sand" ||
+      data.weather[0].main === "Ash" ||
+      data.weather[0].main === "Squall" ||
+      data.weather[0].main === "Tornado"
+    ) {
+      currentIcon.src = "./assets/50d.png";
+    }
   }
 
   // console.log("Current main temp: " + data.main.temp);
@@ -325,174 +373,354 @@ async function weather5DayAPI(latitude, longitude) {
   const data = await promise.json();
 
   // weather start
-  if (data.list[0].weather[0].description === "clear sky") {
-    weather1.src = "./assets/01d.png";
-  } else if (data.list[0].weather[0].description === "few clouds") {
-    weather1.src = "./assets/02d.png";
-  } else if (data.list[0].weather[0].description === "scattered clouds") {
-    weather1.src = "./assets/03d.png";
-  } else if (
-    data.list[0].weather[0].description === "broken clouds" ||
-    data.list[0].weather[0].description === "overcast clouds"
-  ) {
-    weather1.src = "./assets/04d.png";
-  } else if (data.list[0].weather[0].main === "Thunderstorm") {
-    weather1.src = "./assets/11d.png";
-  } else if (
-    data.list[0].weather[0].main === "Drizzle" ||
-    data.list[0].weather[0].main === "Rain"
-  ) {
-    weather1.src = "./assets/09d.png";
-  } else if (data.list[0].weather[0].main === "Snow") {
-    weather1.src = "./assets/13d.png";
-  } else if (
-    data.list[0].weather[0].main === "Mist" ||
-    data.list[0].weather[0].main === "Smoke" ||
-    data.list[0].weather[0].main === "Haze" ||
-    data.list[0].weather[0].main === "Dust" ||
-    data.list[0].weather[0].main === "Fog" ||
-    data.list[0].weather[0].main === "Sand" ||
-    data.list[0].weather[0].main === "Ash" ||
-    data.list[0].weather[0].main === "Squall" ||
-    data.list[0].weather[0].main === "Tornado"
-  ) {
-    weather1.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[0].weather[0].description === "clear sky") {
+      weather1.src = "./assets/01d.png";
+    } else if (data.list[0].weather[0].description === "few clouds") {
+      weather1.src = "./assets/02d.png";
+    } else if (data.list[0].weather[0].description === "scattered clouds") {
+      weather1.src = "./assets/03d.png";
+    } else if (
+      data.list[0].weather[0].description === "broken clouds" ||
+      data.list[0].weather[0].description === "overcast clouds"
+    ) {
+      weather1.src = "./assets/04d.png";
+    } else if (data.list[0].weather[0].main === "Thunderstorm") {
+      weather1.src = "./assets/11d.png";
+    } else if (
+      data.list[0].weather[0].main === "Drizzle" ||
+      data.list[0].weather[0].main === "Rain"
+    ) {
+      weather1.src = "./assets/09d.png";
+    } else if (data.list[0].weather[0].main === "Snow") {
+      weather1.src = "./assets/13d.png";
+    } else if (
+      data.list[0].weather[0].main === "Mist" ||
+      data.list[0].weather[0].main === "Smoke" ||
+      data.list[0].weather[0].main === "Haze" ||
+      data.list[0].weather[0].main === "Dust" ||
+      data.list[0].weather[0].main === "Fog" ||
+      data.list[0].weather[0].main === "Sand" ||
+      data.list[0].weather[0].main === "Ash" ||
+      data.list[0].weather[0].main === "Squall" ||
+      data.list[0].weather[0].main === "Tornado"
+    ) {
+      weather1.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[0].weather[0].description === "clear sky") {
+      weather1.src = "./assets/01n.png";
+    } else if (data.list[0].weather[0].description === "few clouds") {
+      weather1.src = "./assets/02n.png";
+    } else if (data.list[0].weather[0].description === "scattered clouds") {
+      weather1.src = "./assets/03d.png";
+    } else if (
+      data.list[0].weather[0].description === "broken clouds" ||
+      data.list[0].weather[0].description === "overcast clouds"
+    ) {
+      weather1.src = "./assets/04d.png";
+    } else if (data.list[0].weather[0].main === "Thunderstorm") {
+      weather1.src = "./assets/11d.png";
+    } else if (
+      data.list[0].weather[0].main === "Drizzle" ||
+      data.list[0].weather[0].main === "Rain"
+    ) {
+      weather1.src = "./assets/09d.png";
+    } else if (data.list[0].weather[0].main === "Snow") {
+      weather1.src = "./assets/13d.png";
+    } else if (
+      data.list[0].weather[0].main === "Mist" ||
+      data.list[0].weather[0].main === "Smoke" ||
+      data.list[0].weather[0].main === "Haze" ||
+      data.list[0].weather[0].main === "Dust" ||
+      data.list[0].weather[0].main === "Fog" ||
+      data.list[0].weather[0].main === "Sand" ||
+      data.list[0].weather[0].main === "Ash" ||
+      data.list[0].weather[0].main === "Squall" ||
+      data.list[0].weather[0].main === "Tornado"
+    ) {
+      weather1.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[8].weather[0].description === "clear sky") {
-    weather2.src = "./assets/01d.png";
-  } else if (data.list[8].weather[0].description === "few clouds") {
-    weather2.src = "./assets/02d.png";
-  } else if (data.list[8].weather[0].description === "scattered clouds") {
-    weather2.src = "./assets/03d.png";
-  } else if (
-    data.list[8].weather[0].description === "broken clouds" ||
-    data.list[8].weather[0].description === "overcast clouds"
-  ) {
-    weather2.src = "./assets/04d.png";
-  } else if (data.list[8].weather[0].main === "Thunderstorm") {
-    weather2.src = "./assets/11d.png";
-  } else if (
-    data.list[8].weather[0].main === "Drizzle" ||
-    data.list[8].weather[0].main === "Rain"
-  ) {
-    weather2.src = "./assets/09d.png";
-  } else if (data.list[8].weather[0].main === "Snow") {
-    weather2.src = "./assets/13d.png";
-  } else if (
-    data.list[8].weather[0].main === "Mist" ||
-    data.list[8].weather[0].main === "Smoke" ||
-    data.list[8].weather[0].main === "Haze" ||
-    data.list[8].weather[0].main === "Dust" ||
-    data.list[8].weather[0].main === "Fog" ||
-    data.list[8].weather[0].main === "Sand" ||
-    data.list[8].weather[0].main === "Ash" ||
-    data.list[8].weather[0].main === "Squall" ||
-    data.list[8].weather[0].main === "Tornado"
-  ) {
-    weather2.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[8].weather[0].description === "clear sky") {
+      weather2.src = "./assets/01d.png";
+    } else if (data.list[8].weather[0].description === "few clouds") {
+      weather2.src = "./assets/02d.png";
+    } else if (data.list[8].weather[0].description === "scattered clouds") {
+      weather2.src = "./assets/03d.png";
+    } else if (
+      data.list[8].weather[0].description === "broken clouds" ||
+      data.list[8].weather[0].description === "overcast clouds"
+    ) {
+      weather2.src = "./assets/04d.png";
+    } else if (data.list[8].weather[0].main === "Thunderstorm") {
+      weather2.src = "./assets/11d.png";
+    } else if (
+      data.list[8].weather[0].main === "Drizzle" ||
+      data.list[8].weather[0].main === "Rain"
+    ) {
+      weather2.src = "./assets/09d.png";
+    } else if (data.list[8].weather[0].main === "Snow") {
+      weather2.src = "./assets/13d.png";
+    } else if (
+      data.list[8].weather[0].main === "Mist" ||
+      data.list[8].weather[0].main === "Smoke" ||
+      data.list[8].weather[0].main === "Haze" ||
+      data.list[8].weather[0].main === "Dust" ||
+      data.list[8].weather[0].main === "Fog" ||
+      data.list[8].weather[0].main === "Sand" ||
+      data.list[8].weather[0].main === "Ash" ||
+      data.list[8].weather[0].main === "Squall" ||
+      data.list[8].weather[0].main === "Tornado"
+    ) {
+      weather2.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[8].weather[0].description === "clear sky") {
+      weather2.src = "./assets/01n.png";
+    } else if (data.list[8].weather[0].description === "few clouds") {
+      weather2.src = "./assets/02n.png";
+    } else if (data.list[8].weather[0].description === "scattered clouds") {
+      weather2.src = "./assets/03d.png";
+    } else if (
+      data.list[8].weather[0].description === "broken clouds" ||
+      data.list[8].weather[0].description === "overcast clouds"
+    ) {
+      weather2.src = "./assets/04d.png";
+    } else if (data.list[8].weather[0].main === "Thunderstorm") {
+      weather2.src = "./assets/11d.png";
+    } else if (
+      data.list[8].weather[0].main === "Drizzle" ||
+      data.list[8].weather[0].main === "Rain"
+    ) {
+      weather2.src = "./assets/09d.png";
+    } else if (data.list[8].weather[0].main === "Snow") {
+      weather2.src = "./assets/13d.png";
+    } else if (
+      data.list[8].weather[0].main === "Mist" ||
+      data.list[8].weather[0].main === "Smoke" ||
+      data.list[8].weather[0].main === "Haze" ||
+      data.list[8].weather[0].main === "Dust" ||
+      data.list[8].weather[0].main === "Fog" ||
+      data.list[8].weather[0].main === "Sand" ||
+      data.list[8].weather[0].main === "Ash" ||
+      data.list[8].weather[0].main === "Squall" ||
+      data.list[8].weather[0].main === "Tornado"
+    ) {
+      weather2.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[16].weather[0].description === "clear sky") {
-    weather3.src = "./assets/01d.png";
-  } else if (data.list[16].weather[0].description === "few clouds") {
-    weather3.src = "./assets/02d.png";
-  } else if (data.list[16].weather[0].description === "scattered clouds") {
-    weather3.src = "./assets/03d.png";
-  } else if (
-    data.list[16].weather[0].description === "broken clouds" ||
-    data.list[16].weather[0].description === "overcast clouds"
-  ) {
-    weather3.src = "./assets/04d.png";
-  } else if (data.list[16].weather[0].main === "Thunderstorm") {
-    weather3.src = "./assets/11d.png";
-  } else if (
-    data.list[16].weather[0].main === "Drizzle" ||
-    data.list[16].weather[0].main === "Rain"
-  ) {
-    weather3.src = "./assets/09d.png";
-  } else if (data.list[16].weather[0].main === "Snow") {
-    weather3.src = "./assets/13d.png";
-  } else if (
-    data.list[16].weather[0].main === "Mist" ||
-    data.list[16].weather[0].main === "Smoke" ||
-    data.list[16].weather[0].main === "Haze" ||
-    data.list[16].weather[0].main === "Dust" ||
-    data.list[16].weather[0].main === "Fog" ||
-    data.list[16].weather[0].main === "Sand" ||
-    data.list[16].weather[0].main === "Ash" ||
-    data.list[16].weather[0].main === "Squall" ||
-    data.list[16].weather[0].main === "Tornado"
-  ) {
-    weather3.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[16].weather[0].description === "clear sky") {
+      weather3.src = "./assets/01d.png";
+    } else if (data.list[16].weather[0].description === "few clouds") {
+      weather3.src = "./assets/02d.png";
+    } else if (data.list[16].weather[0].description === "scattered clouds") {
+      weather3.src = "./assets/03d.png";
+    } else if (
+      data.list[16].weather[0].description === "broken clouds" ||
+      data.list[16].weather[0].description === "overcast clouds"
+    ) {
+      weather3.src = "./assets/04d.png";
+    } else if (data.list[16].weather[0].main === "Thunderstorm") {
+      weather3.src = "./assets/11d.png";
+    } else if (
+      data.list[16].weather[0].main === "Drizzle" ||
+      data.list[16].weather[0].main === "Rain"
+    ) {
+      weather3.src = "./assets/09d.png";
+    } else if (data.list[16].weather[0].main === "Snow") {
+      weather3.src = "./assets/13d.png";
+    } else if (
+      data.list[16].weather[0].main === "Mist" ||
+      data.list[16].weather[0].main === "Smoke" ||
+      data.list[16].weather[0].main === "Haze" ||
+      data.list[16].weather[0].main === "Dust" ||
+      data.list[16].weather[0].main === "Fog" ||
+      data.list[16].weather[0].main === "Sand" ||
+      data.list[16].weather[0].main === "Ash" ||
+      data.list[16].weather[0].main === "Squall" ||
+      data.list[16].weather[0].main === "Tornado"
+    ) {
+      weather3.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[16].weather[0].description === "clear sky") {
+      weather3.src = "./assets/01n.png";
+    } else if (data.list[16].weather[0].description === "few clouds") {
+      weather3.src = "./assets/02n.png";
+    } else if (data.list[16].weather[0].description === "scattered clouds") {
+      weather3.src = "./assets/03d.png";
+    } else if (
+      data.list[16].weather[0].description === "broken clouds" ||
+      data.list[16].weather[0].description === "overcast clouds"
+    ) {
+      weather3.src = "./assets/04d.png";
+    } else if (data.list[16].weather[0].main === "Thunderstorm") {
+      weather3.src = "./assets/11d.png";
+    } else if (
+      data.list[16].weather[0].main === "Drizzle" ||
+      data.list[16].weather[0].main === "Rain"
+    ) {
+      weather3.src = "./assets/09d.png";
+    } else if (data.list[16].weather[0].main === "Snow") {
+      weather3.src = "./assets/13d.png";
+    } else if (
+      data.list[16].weather[0].main === "Mist" ||
+      data.list[16].weather[0].main === "Smoke" ||
+      data.list[16].weather[0].main === "Haze" ||
+      data.list[16].weather[0].main === "Dust" ||
+      data.list[16].weather[0].main === "Fog" ||
+      data.list[16].weather[0].main === "Sand" ||
+      data.list[16].weather[0].main === "Ash" ||
+      data.list[16].weather[0].main === "Squall" ||
+      data.list[16].weather[0].main === "Tornado"
+    ) {
+      weather3.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[24].weather[0].description === "clear sky") {
-    weather4.src = "./assets/01d.png";
-  } else if (data.list[24].weather[0].description === "few clouds") {
-    weather4.src = "./assets/02d.png";
-  } else if (data.list[24].weather[0].description === "scattered clouds") {
-    weather4.src = "./assets/03d.png";
-  } else if (
-    data.list[24].weather[0].description === "broken clouds" ||
-    data.list[24].weather[0].description === "overcast clouds"
-  ) {
-    weather4.src = "./assets/04d.png";
-  } else if (data.list[24].weather[0].main === "Thunderstorm") {
-    weather4.src = "./assets/11d.png";
-  } else if (
-    data.list[24].weather[0].main === "Drizzle" ||
-    data.list[24].weather[0].main === "Rain"
-  ) {
-    weather4.src = "./assets/09d.png";
-  } else if (data.list[24].weather[0].main === "Snow") {
-    weather4.src = "./assets/13d.png";
-  } else if (
-    data.list[24].weather[0].main === "Mist" ||
-    data.list[24].weather[0].main === "Smoke" ||
-    data.list[24].weather[0].main === "Haze" ||
-    data.list[24].weather[0].main === "Dust" ||
-    data.list[24].weather[0].main === "Fog" ||
-    data.list[24].weather[0].main === "Sand" ||
-    data.list[24].weather[0].main === "Ash" ||
-    data.list[24].weather[0].main === "Squall" ||
-    data.list[24].weather[0].main === "Tornado"
-  ) {
-    weather4.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[24].weather[0].description === "clear sky") {
+      weather4.src = "./assets/01d.png";
+    } else if (data.list[24].weather[0].description === "few clouds") {
+      weather4.src = "./assets/02d.png";
+    } else if (data.list[24].weather[0].description === "scattered clouds") {
+      weather4.src = "./assets/03d.png";
+    } else if (
+      data.list[24].weather[0].description === "broken clouds" ||
+      data.list[24].weather[0].description === "overcast clouds"
+    ) {
+      weather4.src = "./assets/04d.png";
+    } else if (data.list[24].weather[0].main === "Thunderstorm") {
+      weather4.src = "./assets/11d.png";
+    } else if (
+      data.list[24].weather[0].main === "Drizzle" ||
+      data.list[24].weather[0].main === "Rain"
+    ) {
+      weather4.src = "./assets/09d.png";
+    } else if (data.list[24].weather[0].main === "Snow") {
+      weather4.src = "./assets/13d.png";
+    } else if (
+      data.list[24].weather[0].main === "Mist" ||
+      data.list[24].weather[0].main === "Smoke" ||
+      data.list[24].weather[0].main === "Haze" ||
+      data.list[24].weather[0].main === "Dust" ||
+      data.list[24].weather[0].main === "Fog" ||
+      data.list[24].weather[0].main === "Sand" ||
+      data.list[24].weather[0].main === "Ash" ||
+      data.list[24].weather[0].main === "Squall" ||
+      data.list[24].weather[0].main === "Tornado"
+    ) {
+      weather4.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[24].weather[0].description === "clear sky") {
+      weather4.src = "./assets/01n.png";
+    } else if (data.list[24].weather[0].description === "few clouds") {
+      weather4.src = "./assets/02n.png";
+    } else if (data.list[24].weather[0].description === "scattered clouds") {
+      weather4.src = "./assets/03d.png";
+    } else if (
+      data.list[24].weather[0].description === "broken clouds" ||
+      data.list[24].weather[0].description === "overcast clouds"
+    ) {
+      weather4.src = "./assets/04d.png";
+    } else if (data.list[24].weather[0].main === "Thunderstorm") {
+      weather4.src = "./assets/11d.png";
+    } else if (
+      data.list[24].weather[0].main === "Drizzle" ||
+      data.list[24].weather[0].main === "Rain"
+    ) {
+      weather4.src = "./assets/09d.png";
+    } else if (data.list[24].weather[0].main === "Snow") {
+      weather4.src = "./assets/13d.png";
+    } else if (
+      data.list[24].weather[0].main === "Mist" ||
+      data.list[24].weather[0].main === "Smoke" ||
+      data.list[24].weather[0].main === "Haze" ||
+      data.list[24].weather[0].main === "Dust" ||
+      data.list[24].weather[0].main === "Fog" ||
+      data.list[24].weather[0].main === "Sand" ||
+      data.list[24].weather[0].main === "Ash" ||
+      data.list[24].weather[0].main === "Squall" ||
+      data.list[24].weather[0].main === "Tornado"
+    ) {
+      weather4.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[32].weather[0].description === "clear sky") {
-    weather5.src = "./assets/01d.png";
-  } else if (data.list[32].weather[0].description === "few clouds") {
-    weather5.src = "./assets/02d.png";
-  } else if (data.list[32].weather[0].description === "scattered clouds") {
-    weather5.src = "./assets/03d.png";
-  } else if (
-    data.list[32].weather[0].description === "broken clouds" ||
-    data.list[32].weather[0].description === "overcast clouds"
-  ) {
-    weather5.src = "./assets/04d.png";
-  } else if (data.list[32].weather[0].main === "Thunderstorm") {
-    weather5.src = "./assets/11d.png";
-  } else if (
-    data.list[32].weather[0].main === "Drizzle" ||
-    data.list[32].weather[0].main === "Rain"
-  ) {
-    weather5.src = "./assets/09d.png";
-  } else if (data.list[32].weather[0].main === "Snow") {
-    weather5.src = "./assets/13d.png";
-  } else if (
-    data.list[32].weather[0].main === "Mist" ||
-    data.list[32].weather[0].main === "Smoke" ||
-    data.list[32].weather[0].main === "Haze" ||
-    data.list[32].weather[0].main === "Dust" ||
-    data.list[32].weather[0].main === "Fog" ||
-    data.list[32].weather[0].main === "Sand" ||
-    data.list[32].weather[0].main === "Ash" ||
-    data.list[32].weather[0].main === "Squall" ||
-    data.list[32].weather[0].main === "Tornado"
-  ) {
-    weather5.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[32].weather[0].description === "clear sky") {
+      weather5.src = "./assets/01d.png";
+    } else if (data.list[32].weather[0].description === "few clouds") {
+      weather5.src = "./assets/02d.png";
+    } else if (data.list[32].weather[0].description === "scattered clouds") {
+      weather5.src = "./assets/03d.png";
+    } else if (
+      data.list[32].weather[0].description === "broken clouds" ||
+      data.list[32].weather[0].description === "overcast clouds"
+    ) {
+      weather5.src = "./assets/04d.png";
+    } else if (data.list[32].weather[0].main === "Thunderstorm") {
+      weather5.src = "./assets/11d.png";
+    } else if (
+      data.list[32].weather[0].main === "Drizzle" ||
+      data.list[32].weather[0].main === "Rain"
+    ) {
+      weather5.src = "./assets/09d.png";
+    } else if (data.list[32].weather[0].main === "Snow") {
+      weather5.src = "./assets/13d.png";
+    } else if (
+      data.list[32].weather[0].main === "Mist" ||
+      data.list[32].weather[0].main === "Smoke" ||
+      data.list[32].weather[0].main === "Haze" ||
+      data.list[32].weather[0].main === "Dust" ||
+      data.list[32].weather[0].main === "Fog" ||
+      data.list[32].weather[0].main === "Sand" ||
+      data.list[32].weather[0].main === "Ash" ||
+      data.list[32].weather[0].main === "Squall" ||
+      data.list[32].weather[0].main === "Tornado"
+    ) {
+      weather5.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[32].weather[0].description === "clear sky") {
+      weather5.src = "./assets/01n.png";
+    } else if (data.list[32].weather[0].description === "few clouds") {
+      weather5.src = "./assets/02n.png";
+    } else if (data.list[32].weather[0].description === "scattered clouds") {
+      weather5.src = "./assets/03d.png";
+    } else if (
+      data.list[32].weather[0].description === "broken clouds" ||
+      data.list[32].weather[0].description === "overcast clouds"
+    ) {
+      weather5.src = "./assets/04d.png";
+    } else if (data.list[32].weather[0].main === "Thunderstorm") {
+      weather5.src = "./assets/11d.png";
+    } else if (
+      data.list[32].weather[0].main === "Drizzle" ||
+      data.list[32].weather[0].main === "Rain"
+    ) {
+      weather5.src = "./assets/09d.png";
+    } else if (data.list[32].weather[0].main === "Snow") {
+      weather5.src = "./assets/13d.png";
+    } else if (
+      data.list[32].weather[0].main === "Mist" ||
+      data.list[32].weather[0].main === "Smoke" ||
+      data.list[32].weather[0].main === "Haze" ||
+      data.list[32].weather[0].main === "Dust" ||
+      data.list[32].weather[0].main === "Fog" ||
+      data.list[32].weather[0].main === "Sand" ||
+      data.list[32].weather[0].main === "Ash" ||
+      data.list[32].weather[0].main === "Squall" ||
+      data.list[32].weather[0].main === "Tornado"
+    ) {
+      weather5.src = "./assets/50d.png";
+    }
   }
   // weather end
 
@@ -621,38 +849,74 @@ async function currentSearchAPI(search) {
   currentFeel.textContent = Math.round(data.main.feels_like) + "°";
   currentHumidity.textContent = Math.round(data.main.humidity) + "%";
 
-  if (data.weather[0].description === "clear sky") {
-    currentIcon.src = "./assets/01d.png";
-  } else if (data.weather[0].description === "few clouds") {
-    currentIcon.src = "./assets/02d.png";
-  } else if (data.weather[0].description === "scattered clouds") {
-    currentIcon.src = "./assets/03d.png";
-  } else if (
-    data.weather[0].description === "broken clouds" ||
-    data.weather[0].description === "overcast clouds"
-  ) {
-    currentIcon.src = "./assets/04d.png";
-  } else if (data.weather[0].main === "Thunderstorm") {
-    currentIcon.src = "./assets/11d.png";
-  } else if (
-    data.weather[0].main === "Drizzle" ||
-    data.weather[0].main === "Rain"
-  ) {
-    currentIcon.src = "./assets/09d.png";
-  } else if (data.weather[0].main === "Snow") {
-    currentIcon.src = "./assets/13d.png";
-  } else if (
-    data.weather[0].main === "Mist" ||
-    data.weather[0].main === "Smoke" ||
-    data.weather[0].main === "Haze" ||
-    data.weather[0].main === "Dust" ||
-    data.weather[0].main === "Fog" ||
-    data.weather[0].main === "Sand" ||
-    data.weather[0].main === "Ash" ||
-    data.weather[0].main === "Squall" ||
-    data.weather[0].main === "Tornado"
-  ) {
-    currentIcon.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.weather[0].description === "clear sky") {
+      currentIcon.src = "./assets/01d.png";
+    } else if (data.weather[0].description === "few clouds") {
+      currentIcon.src = "./assets/02d.png";
+    } else if (data.weather[0].description === "scattered clouds") {
+      currentIcon.src = "./assets/03d.png";
+    } else if (
+      data.weather[0].description === "broken clouds" ||
+      data.weather[0].description === "overcast clouds"
+    ) {
+      currentIcon.src = "./assets/04d.png";
+    } else if (data.weather[0].main === "Thunderstorm") {
+      currentIcon.src = "./assets/11d.png";
+    } else if (
+      data.weather[0].main === "Drizzle" ||
+      data.weather[0].main === "Rain"
+    ) {
+      currentIcon.src = "./assets/09d.png";
+    } else if (data.weather[0].main === "Snow") {
+      currentIcon.src = "./assets/13d.png";
+    } else if (
+      data.weather[0].main === "Mist" ||
+      data.weather[0].main === "Smoke" ||
+      data.weather[0].main === "Haze" ||
+      data.weather[0].main === "Dust" ||
+      data.weather[0].main === "Fog" ||
+      data.weather[0].main === "Sand" ||
+      data.weather[0].main === "Ash" ||
+      data.weather[0].main === "Squall" ||
+      data.weather[0].main === "Tornado"
+    ) {
+      currentIcon.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.weather[0].description === "clear sky") {
+      currentIcon.src = "./assets/01n.png";
+    } else if (data.weather[0].description === "few clouds") {
+      currentIcon.src = "./assets/02n.png";
+    } else if (data.weather[0].description === "scattered clouds") {
+      currentIcon.src = "./assets/03d.png";
+    } else if (
+      data.weather[0].description === "broken clouds" ||
+      data.weather[0].description === "overcast clouds"
+    ) {
+      currentIcon.src = "./assets/04d.png";
+    } else if (data.weather[0].main === "Thunderstorm") {
+      currentIcon.src = "./assets/11d.png";
+    } else if (
+      data.weather[0].main === "Drizzle" ||
+      data.weather[0].main === "Rain"
+    ) {
+      currentIcon.src = "./assets/09d.png";
+    } else if (data.weather[0].main === "Snow") {
+      currentIcon.src = "./assets/13d.png";
+    } else if (
+      data.weather[0].main === "Mist" ||
+      data.weather[0].main === "Smoke" ||
+      data.weather[0].main === "Haze" ||
+      data.weather[0].main === "Dust" ||
+      data.weather[0].main === "Fog" ||
+      data.weather[0].main === "Sand" ||
+      data.weather[0].main === "Ash" ||
+      data.weather[0].main === "Squall" ||
+      data.weather[0].main === "Tornado"
+    ) {
+      currentIcon.src = "./assets/50d.png";
+    }
   }
 }
 
@@ -662,174 +926,354 @@ async function forecastSearchAPI(search){
   const data = await promise.json();
 
   // weather start
-  if (data.list[0].weather[0].description === "clear sky") {
-    weather1.src = "./assets/01d.png";
-  } else if (data.list[0].weather[0].description === "few clouds") {
-    weather1.src = "./assets/02d.png";
-  } else if (data.list[0].weather[0].description === "scattered clouds") {
-    weather1.src = "./assets/03d.png";
-  } else if (
-    data.list[0].weather[0].description === "broken clouds" ||
-    data.list[0].weather[0].description === "overcast clouds"
-  ) {
-    weather1.src = "./assets/04d.png";
-  } else if (data.list[0].weather[0].main === "Thunderstorm") {
-    weather1.src = "./assets/11d.png";
-  } else if (
-    data.list[0].weather[0].main === "Drizzle" ||
-    data.list[0].weather[0].main === "Rain"
-  ) {
-    weather1.src = "./assets/09d.png";
-  } else if (data.list[0].weather[0].main === "Snow") {
-    weather1.src = "./assets/13d.png";
-  } else if (
-    data.list[0].weather[0].main === "Mist" ||
-    data.list[0].weather[0].main === "Smoke" ||
-    data.list[0].weather[0].main === "Haze" ||
-    data.list[0].weather[0].main === "Dust" ||
-    data.list[0].weather[0].main === "Fog" ||
-    data.list[0].weather[0].main === "Sand" ||
-    data.list[0].weather[0].main === "Ash" ||
-    data.list[0].weather[0].main === "Squall" ||
-    data.list[0].weather[0].main === "Tornado"
-  ) {
-    weather1.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[0].weather[0].description === "clear sky") {
+      weather1.src = "./assets/01d.png";
+    } else if (data.list[0].weather[0].description === "few clouds") {
+      weather1.src = "./assets/02d.png";
+    } else if (data.list[0].weather[0].description === "scattered clouds") {
+      weather1.src = "./assets/03d.png";
+    } else if (
+      data.list[0].weather[0].description === "broken clouds" ||
+      data.list[0].weather[0].description === "overcast clouds"
+    ) {
+      weather1.src = "./assets/04d.png";
+    } else if (data.list[0].weather[0].main === "Thunderstorm") {
+      weather1.src = "./assets/11d.png";
+    } else if (
+      data.list[0].weather[0].main === "Drizzle" ||
+      data.list[0].weather[0].main === "Rain"
+    ) {
+      weather1.src = "./assets/09d.png";
+    } else if (data.list[0].weather[0].main === "Snow") {
+      weather1.src = "./assets/13d.png";
+    } else if (
+      data.list[0].weather[0].main === "Mist" ||
+      data.list[0].weather[0].main === "Smoke" ||
+      data.list[0].weather[0].main === "Haze" ||
+      data.list[0].weather[0].main === "Dust" ||
+      data.list[0].weather[0].main === "Fog" ||
+      data.list[0].weather[0].main === "Sand" ||
+      data.list[0].weather[0].main === "Ash" ||
+      data.list[0].weather[0].main === "Squall" ||
+      data.list[0].weather[0].main === "Tornado"
+    ) {
+      weather1.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[0].weather[0].description === "clear sky") {
+      weather1.src = "./assets/01n.png";
+    } else if (data.list[0].weather[0].description === "few clouds") {
+      weather1.src = "./assets/02n.png";
+    } else if (data.list[0].weather[0].description === "scattered clouds") {
+      weather1.src = "./assets/03d.png";
+    } else if (
+      data.list[0].weather[0].description === "broken clouds" ||
+      data.list[0].weather[0].description === "overcast clouds"
+    ) {
+      weather1.src = "./assets/04d.png";
+    } else if (data.list[0].weather[0].main === "Thunderstorm") {
+      weather1.src = "./assets/11d.png";
+    } else if (
+      data.list[0].weather[0].main === "Drizzle" ||
+      data.list[0].weather[0].main === "Rain"
+    ) {
+      weather1.src = "./assets/09d.png";
+    } else if (data.list[0].weather[0].main === "Snow") {
+      weather1.src = "./assets/13d.png";
+    } else if (
+      data.list[0].weather[0].main === "Mist" ||
+      data.list[0].weather[0].main === "Smoke" ||
+      data.list[0].weather[0].main === "Haze" ||
+      data.list[0].weather[0].main === "Dust" ||
+      data.list[0].weather[0].main === "Fog" ||
+      data.list[0].weather[0].main === "Sand" ||
+      data.list[0].weather[0].main === "Ash" ||
+      data.list[0].weather[0].main === "Squall" ||
+      data.list[0].weather[0].main === "Tornado"
+    ) {
+      weather1.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[8].weather[0].description === "clear sky") {
-    weather2.src = "./assets/01d.png";
-  } else if (data.list[8].weather[0].description === "few clouds") {
-    weather2.src = "./assets/02d.png";
-  } else if (data.list[8].weather[0].description === "scattered clouds") {
-    weather2.src = "./assets/03d.png";
-  } else if (
-    data.list[8].weather[0].description === "broken clouds" ||
-    data.list[8].weather[0].description === "overcast clouds"
-  ) {
-    weather2.src = "./assets/04d.png";
-  } else if (data.list[8].weather[0].main === "Thunderstorm") {
-    weather2.src = "./assets/11d.png";
-  } else if (
-    data.list[8].weather[0].main === "Drizzle" ||
-    data.list[8].weather[0].main === "Rain"
-  ) {
-    weather2.src = "./assets/09d.png";
-  } else if (data.list[8].weather[0].main === "Snow") {
-    weather2.src = "./assets/13d.png";
-  } else if (
-    data.list[8].weather[0].main === "Mist" ||
-    data.list[8].weather[0].main === "Smoke" ||
-    data.list[8].weather[0].main === "Haze" ||
-    data.list[8].weather[0].main === "Dust" ||
-    data.list[8].weather[0].main === "Fog" ||
-    data.list[8].weather[0].main === "Sand" ||
-    data.list[8].weather[0].main === "Ash" ||
-    data.list[8].weather[0].main === "Squall" ||
-    data.list[8].weather[0].main === "Tornado"
-  ) {
-    weather2.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[8].weather[0].description === "clear sky") {
+      weather2.src = "./assets/01d.png";
+    } else if (data.list[8].weather[0].description === "few clouds") {
+      weather2.src = "./assets/02d.png";
+    } else if (data.list[8].weather[0].description === "scattered clouds") {
+      weather2.src = "./assets/03d.png";
+    } else if (
+      data.list[8].weather[0].description === "broken clouds" ||
+      data.list[8].weather[0].description === "overcast clouds"
+    ) {
+      weather2.src = "./assets/04d.png";
+    } else if (data.list[8].weather[0].main === "Thunderstorm") {
+      weather2.src = "./assets/11d.png";
+    } else if (
+      data.list[8].weather[0].main === "Drizzle" ||
+      data.list[8].weather[0].main === "Rain"
+    ) {
+      weather2.src = "./assets/09d.png";
+    } else if (data.list[8].weather[0].main === "Snow") {
+      weather2.src = "./assets/13d.png";
+    } else if (
+      data.list[8].weather[0].main === "Mist" ||
+      data.list[8].weather[0].main === "Smoke" ||
+      data.list[8].weather[0].main === "Haze" ||
+      data.list[8].weather[0].main === "Dust" ||
+      data.list[8].weather[0].main === "Fog" ||
+      data.list[8].weather[0].main === "Sand" ||
+      data.list[8].weather[0].main === "Ash" ||
+      data.list[8].weather[0].main === "Squall" ||
+      data.list[8].weather[0].main === "Tornado"
+    ) {
+      weather2.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[8].weather[0].description === "clear sky") {
+      weather2.src = "./assets/01n.png";
+    } else if (data.list[8].weather[0].description === "few clouds") {
+      weather2.src = "./assets/02n.png";
+    } else if (data.list[8].weather[0].description === "scattered clouds") {
+      weather2.src = "./assets/03d.png";
+    } else if (
+      data.list[8].weather[0].description === "broken clouds" ||
+      data.list[8].weather[0].description === "overcast clouds"
+    ) {
+      weather2.src = "./assets/04d.png";
+    } else if (data.list[8].weather[0].main === "Thunderstorm") {
+      weather2.src = "./assets/11d.png";
+    } else if (
+      data.list[8].weather[0].main === "Drizzle" ||
+      data.list[8].weather[0].main === "Rain"
+    ) {
+      weather2.src = "./assets/09d.png";
+    } else if (data.list[8].weather[0].main === "Snow") {
+      weather2.src = "./assets/13d.png";
+    } else if (
+      data.list[8].weather[0].main === "Mist" ||
+      data.list[8].weather[0].main === "Smoke" ||
+      data.list[8].weather[0].main === "Haze" ||
+      data.list[8].weather[0].main === "Dust" ||
+      data.list[8].weather[0].main === "Fog" ||
+      data.list[8].weather[0].main === "Sand" ||
+      data.list[8].weather[0].main === "Ash" ||
+      data.list[8].weather[0].main === "Squall" ||
+      data.list[8].weather[0].main === "Tornado"
+    ) {
+      weather2.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[16].weather[0].description === "clear sky") {
-    weather3.src = "./assets/01d.png";
-  } else if (data.list[16].weather[0].description === "few clouds") {
-    weather3.src = "./assets/02d.png";
-  } else if (data.list[16].weather[0].description === "scattered clouds") {
-    weather3.src = "./assets/03d.png";
-  } else if (
-    data.list[16].weather[0].description === "broken clouds" ||
-    data.list[16].weather[0].description === "overcast clouds"
-  ) {
-    weather3.src = "./assets/04d.png";
-  } else if (data.list[16].weather[0].main === "Thunderstorm") {
-    weather3.src = "./assets/11d.png";
-  } else if (
-    data.list[16].weather[0].main === "Drizzle" ||
-    data.list[16].weather[0].main === "Rain"
-  ) {
-    weather3.src = "./assets/09d.png";
-  } else if (data.list[16].weather[0].main === "Snow") {
-    weather3.src = "./assets/13d.png";
-  } else if (
-    data.list[16].weather[0].main === "Mist" ||
-    data.list[16].weather[0].main === "Smoke" ||
-    data.list[16].weather[0].main === "Haze" ||
-    data.list[16].weather[0].main === "Dust" ||
-    data.list[16].weather[0].main === "Fog" ||
-    data.list[16].weather[0].main === "Sand" ||
-    data.list[16].weather[0].main === "Ash" ||
-    data.list[16].weather[0].main === "Squall" ||
-    data.list[16].weather[0].main === "Tornado"
-  ) {
-    weather3.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[16].weather[0].description === "clear sky") {
+      weather3.src = "./assets/01d.png";
+    } else if (data.list[16].weather[0].description === "few clouds") {
+      weather3.src = "./assets/02d.png";
+    } else if (data.list[16].weather[0].description === "scattered clouds") {
+      weather3.src = "./assets/03d.png";
+    } else if (
+      data.list[16].weather[0].description === "broken clouds" ||
+      data.list[16].weather[0].description === "overcast clouds"
+    ) {
+      weather3.src = "./assets/04d.png";
+    } else if (data.list[16].weather[0].main === "Thunderstorm") {
+      weather3.src = "./assets/11d.png";
+    } else if (
+      data.list[16].weather[0].main === "Drizzle" ||
+      data.list[16].weather[0].main === "Rain"
+    ) {
+      weather3.src = "./assets/09d.png";
+    } else if (data.list[16].weather[0].main === "Snow") {
+      weather3.src = "./assets/13d.png";
+    } else if (
+      data.list[16].weather[0].main === "Mist" ||
+      data.list[16].weather[0].main === "Smoke" ||
+      data.list[16].weather[0].main === "Haze" ||
+      data.list[16].weather[0].main === "Dust" ||
+      data.list[16].weather[0].main === "Fog" ||
+      data.list[16].weather[0].main === "Sand" ||
+      data.list[16].weather[0].main === "Ash" ||
+      data.list[16].weather[0].main === "Squall" ||
+      data.list[16].weather[0].main === "Tornado"
+    ) {
+      weather3.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[16].weather[0].description === "clear sky") {
+      weather3.src = "./assets/01n.png";
+    } else if (data.list[16].weather[0].description === "few clouds") {
+      weather3.src = "./assets/02n.png";
+    } else if (data.list[16].weather[0].description === "scattered clouds") {
+      weather3.src = "./assets/03d.png";
+    } else if (
+      data.list[16].weather[0].description === "broken clouds" ||
+      data.list[16].weather[0].description === "overcast clouds"
+    ) {
+      weather3.src = "./assets/04d.png";
+    } else if (data.list[16].weather[0].main === "Thunderstorm") {
+      weather3.src = "./assets/11d.png";
+    } else if (
+      data.list[16].weather[0].main === "Drizzle" ||
+      data.list[16].weather[0].main === "Rain"
+    ) {
+      weather3.src = "./assets/09d.png";
+    } else if (data.list[16].weather[0].main === "Snow") {
+      weather3.src = "./assets/13d.png";
+    } else if (
+      data.list[16].weather[0].main === "Mist" ||
+      data.list[16].weather[0].main === "Smoke" ||
+      data.list[16].weather[0].main === "Haze" ||
+      data.list[16].weather[0].main === "Dust" ||
+      data.list[16].weather[0].main === "Fog" ||
+      data.list[16].weather[0].main === "Sand" ||
+      data.list[16].weather[0].main === "Ash" ||
+      data.list[16].weather[0].main === "Squall" ||
+      data.list[16].weather[0].main === "Tornado"
+    ) {
+      weather3.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[24].weather[0].description === "clear sky") {
-    weather4.src = "./assets/01d.png";
-  } else if (data.list[24].weather[0].description === "few clouds") {
-    weather4.src = "./assets/02d.png";
-  } else if (data.list[24].weather[0].description === "scattered clouds") {
-    weather4.src = "./assets/03d.png";
-  } else if (
-    data.list[24].weather[0].description === "broken clouds" ||
-    data.list[24].weather[0].description === "overcast clouds"
-  ) {
-    weather4.src = "./assets/04d.png";
-  } else if (data.list[24].weather[0].main === "Thunderstorm") {
-    weather4.src = "./assets/11d.png";
-  } else if (
-    data.list[24].weather[0].main === "Drizzle" ||
-    data.list[24].weather[0].main === "Rain"
-  ) {
-    weather4.src = "./assets/09d.png";
-  } else if (data.list[24].weather[0].main === "Snow") {
-    weather4.src = "./assets/13d.png";
-  } else if (
-    data.list[24].weather[0].main === "Mist" ||
-    data.list[24].weather[0].main === "Smoke" ||
-    data.list[24].weather[0].main === "Haze" ||
-    data.list[24].weather[0].main === "Dust" ||
-    data.list[24].weather[0].main === "Fog" ||
-    data.list[24].weather[0].main === "Sand" ||
-    data.list[24].weather[0].main === "Ash" ||
-    data.list[24].weather[0].main === "Squall" ||
-    data.list[24].weather[0].main === "Tornado"
-  ) {
-    weather4.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[24].weather[0].description === "clear sky") {
+      weather4.src = "./assets/01d.png";
+    } else if (data.list[24].weather[0].description === "few clouds") {
+      weather4.src = "./assets/02d.png";
+    } else if (data.list[24].weather[0].description === "scattered clouds") {
+      weather4.src = "./assets/03d.png";
+    } else if (
+      data.list[24].weather[0].description === "broken clouds" ||
+      data.list[24].weather[0].description === "overcast clouds"
+    ) {
+      weather4.src = "./assets/04d.png";
+    } else if (data.list[24].weather[0].main === "Thunderstorm") {
+      weather4.src = "./assets/11d.png";
+    } else if (
+      data.list[24].weather[0].main === "Drizzle" ||
+      data.list[24].weather[0].main === "Rain"
+    ) {
+      weather4.src = "./assets/09d.png";
+    } else if (data.list[24].weather[0].main === "Snow") {
+      weather4.src = "./assets/13d.png";
+    } else if (
+      data.list[24].weather[0].main === "Mist" ||
+      data.list[24].weather[0].main === "Smoke" ||
+      data.list[24].weather[0].main === "Haze" ||
+      data.list[24].weather[0].main === "Dust" ||
+      data.list[24].weather[0].main === "Fog" ||
+      data.list[24].weather[0].main === "Sand" ||
+      data.list[24].weather[0].main === "Ash" ||
+      data.list[24].weather[0].main === "Squall" ||
+      data.list[24].weather[0].main === "Tornado"
+    ) {
+      weather4.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[24].weather[0].description === "clear sky") {
+      weather4.src = "./assets/01n.png";
+    } else if (data.list[24].weather[0].description === "few clouds") {
+      weather4.src = "./assets/02n.png";
+    } else if (data.list[24].weather[0].description === "scattered clouds") {
+      weather4.src = "./assets/03d.png";
+    } else if (
+      data.list[24].weather[0].description === "broken clouds" ||
+      data.list[24].weather[0].description === "overcast clouds"
+    ) {
+      weather4.src = "./assets/04d.png";
+    } else if (data.list[24].weather[0].main === "Thunderstorm") {
+      weather4.src = "./assets/11d.png";
+    } else if (
+      data.list[24].weather[0].main === "Drizzle" ||
+      data.list[24].weather[0].main === "Rain"
+    ) {
+      weather4.src = "./assets/09d.png";
+    } else if (data.list[24].weather[0].main === "Snow") {
+      weather4.src = "./assets/13d.png";
+    } else if (
+      data.list[24].weather[0].main === "Mist" ||
+      data.list[24].weather[0].main === "Smoke" ||
+      data.list[24].weather[0].main === "Haze" ||
+      data.list[24].weather[0].main === "Dust" ||
+      data.list[24].weather[0].main === "Fog" ||
+      data.list[24].weather[0].main === "Sand" ||
+      data.list[24].weather[0].main === "Ash" ||
+      data.list[24].weather[0].main === "Squall" ||
+      data.list[24].weather[0].main === "Tornado"
+    ) {
+      weather4.src = "./assets/50d.png";
+    }
   }
 
-  if (data.list[32].weather[0].description === "clear sky") {
-    weather5.src = "./assets/01d.png";
-  } else if (data.list[32].weather[0].description === "few clouds") {
-    weather5.src = "./assets/02d.png";
-  } else if (data.list[32].weather[0].description === "scattered clouds") {
-    weather5.src = "./assets/03d.png";
-  } else if (
-    data.list[32].weather[0].description === "broken clouds" ||
-    data.list[32].weather[0].description === "overcast clouds"
-  ) {
-    weather5.src = "./assets/04d.png";
-  } else if (data.list[32].weather[0].main === "Thunderstorm") {
-    weather5.src = "./assets/11d.png";
-  } else if (
-    data.list[32].weather[0].main === "Drizzle" ||
-    data.list[32].weather[0].main === "Rain"
-  ) {
-    weather5.src = "./assets/09d.png";
-  } else if (data.list[32].weather[0].main === "Snow") {
-    weather5.src = "./assets/13d.png";
-  } else if (
-    data.list[32].weather[0].main === "Mist" ||
-    data.list[32].weather[0].main === "Smoke" ||
-    data.list[32].weather[0].main === "Haze" ||
-    data.list[32].weather[0].main === "Dust" ||
-    data.list[32].weather[0].main === "Fog" ||
-    data.list[32].weather[0].main === "Sand" ||
-    data.list[32].weather[0].main === "Ash" ||
-    data.list[32].weather[0].main === "Squall" ||
-    data.list[32].weather[0].main === "Tornado"
-  ) {
-    weather5.src = "./assets/50d.png";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    if (data.list[32].weather[0].description === "clear sky") {
+      weather5.src = "./assets/01d.png";
+    } else if (data.list[32].weather[0].description === "few clouds") {
+      weather5.src = "./assets/02d.png";
+    } else if (data.list[32].weather[0].description === "scattered clouds") {
+      weather5.src = "./assets/03d.png";
+    } else if (
+      data.list[32].weather[0].description === "broken clouds" ||
+      data.list[32].weather[0].description === "overcast clouds"
+    ) {
+      weather5.src = "./assets/04d.png";
+    } else if (data.list[32].weather[0].main === "Thunderstorm") {
+      weather5.src = "./assets/11d.png";
+    } else if (
+      data.list[32].weather[0].main === "Drizzle" ||
+      data.list[32].weather[0].main === "Rain"
+    ) {
+      weather5.src = "./assets/09d.png";
+    } else if (data.list[32].weather[0].main === "Snow") {
+      weather5.src = "./assets/13d.png";
+    } else if (
+      data.list[32].weather[0].main === "Mist" ||
+      data.list[32].weather[0].main === "Smoke" ||
+      data.list[32].weather[0].main === "Haze" ||
+      data.list[32].weather[0].main === "Dust" ||
+      data.list[32].weather[0].main === "Fog" ||
+      data.list[32].weather[0].main === "Sand" ||
+      data.list[32].weather[0].main === "Ash" ||
+      data.list[32].weather[0].main === "Squall" ||
+      data.list[32].weather[0].main === "Tornado"
+    ) {
+      weather5.src = "./assets/50d.png";
+    }
+  }else{
+    if (data.list[32].weather[0].description === "clear sky") {
+      weather5.src = "./assets/01n.png";
+    } else if (data.list[32].weather[0].description === "few clouds") {
+      weather5.src = "./assets/02n.png";
+    } else if (data.list[32].weather[0].description === "scattered clouds") {
+      weather5.src = "./assets/03d.png";
+    } else if (
+      data.list[32].weather[0].description === "broken clouds" ||
+      data.list[32].weather[0].description === "overcast clouds"
+    ) {
+      weather5.src = "./assets/04d.png";
+    } else if (data.list[32].weather[0].main === "Thunderstorm") {
+      weather5.src = "./assets/11d.png";
+    } else if (
+      data.list[32].weather[0].main === "Drizzle" ||
+      data.list[32].weather[0].main === "Rain"
+    ) {
+      weather5.src = "./assets/09d.png";
+    } else if (data.list[32].weather[0].main === "Snow") {
+      weather5.src = "./assets/13d.png";
+    } else if (
+      data.list[32].weather[0].main === "Mist" ||
+      data.list[32].weather[0].main === "Smoke" ||
+      data.list[32].weather[0].main === "Haze" ||
+      data.list[32].weather[0].main === "Dust" ||
+      data.list[32].weather[0].main === "Fog" ||
+      data.list[32].weather[0].main === "Sand" ||
+      data.list[32].weather[0].main === "Ash" ||
+      data.list[32].weather[0].main === "Squall" ||
+      data.list[32].weather[0].main === "Tornado"
+    ) {
+      weather5.src = "./assets/50d.png";
+    }
   }
   // weather end
 
