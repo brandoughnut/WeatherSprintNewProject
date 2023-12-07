@@ -287,23 +287,23 @@ async function weatherAPI(latitude, longitude) {
   
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.weather[0].description === "clear sky") {
-      currentIcon.src = "./assets/01d.png";
+      currentIcon.src = "./assets/01dd.png";
     } else if (data.weather[0].description === "few clouds") {
-      currentIcon.src = "./assets/02d.png";
+      currentIcon.src = "./assets/02dd.png";
     } else if (data.weather[0].description === "scattered clouds") {
-      currentIcon.src = "./assets/03d.png";
+      currentIcon.src = "./assets/03dd.png";
     } else if (
       data.weather[0].description === "broken clouds" ||
       data.weather[0].description === "overcast clouds"
     ) {
-      currentIcon.src = "./assets/04d.png";
+      currentIcon.src = "./assets/04dd.png";
     } else if (data.weather[0].main === "Thunderstorm") {
-      currentIcon.src = "./assets/11d.png";
+      currentIcon.src = "./assets/11dd.png";
     } else if (
       data.weather[0].main === "Drizzle" ||
       data.weather[0].main === "Rain"
     ) {
-      currentIcon.src = "./assets/09d.png";
+      currentIcon.src = "./assets/09dd.png";
     } else if (data.weather[0].main === "Snow") {
       currentIcon.src = "./assets/13d.png";
     } else if (
@@ -321,23 +321,23 @@ async function weatherAPI(latitude, longitude) {
     }
   }else{
     if (data.weather[0].description === "clear sky") {
-      currentIcon.src = "./assets/01n.png";
+      currentIcon.src = "./assets/01nn.png";
     } else if (data.weather[0].description === "few clouds") {
-      currentIcon.src = "./assets/02n.png";
+      currentIcon.src = "./assets/02nn.png";
     } else if (data.weather[0].description === "scattered clouds") {
-      currentIcon.src = "./assets/03d.png";
+      currentIcon.src = "./assets/03dd.png";
     } else if (
       data.weather[0].description === "broken clouds" ||
       data.weather[0].description === "overcast clouds"
     ) {
-      currentIcon.src = "./assets/04d.png";
+      currentIcon.src = "./assets/04dd.png";
     } else if (data.weather[0].main === "Thunderstorm") {
-      currentIcon.src = "./assets/11d.png";
+      currentIcon.src = "./assets/11dd.png";
     } else if (
       data.weather[0].main === "Drizzle" ||
       data.weather[0].main === "Rain"
     ) {
-      currentIcon.src = "./assets/09d.png";
+      currentIcon.src = "./assets/09dd.png";
     } else if (data.weather[0].main === "Snow") {
       currentIcon.src = "./assets/13d.png";
     } else if (
@@ -374,23 +374,23 @@ async function weather5DayAPI(latitude, longitude) {
   // weather start
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[0].weather[0].description === "clear sky") {
-      weather1.src = "./assets/01d.png";
+      weather1.src = "./assets/01dd.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
-      weather1.src = "./assets/02d.png";
+      weather1.src = "./assets/02dd.png";
     } else if (data.list[0].weather[0].description === "scattered clouds") {
-      weather1.src = "./assets/03d.png";
+      weather1.src = "./assets/03dd.png";
     } else if (
       data.list[0].weather[0].description === "broken clouds" ||
       data.list[0].weather[0].description === "overcast clouds"
     ) {
-      weather1.src = "./assets/04d.png";
+      weather1.src = "./assets/04dd.png";
     } else if (data.list[0].weather[0].main === "Thunderstorm") {
-      weather1.src = "./assets/11d.png";
+      weather1.src = "./assets/11dd.png";
     } else if (
       data.list[0].weather[0].main === "Drizzle" ||
       data.list[0].weather[0].main === "Rain"
     ) {
-      weather1.src = "./assets/09d.png";
+      weather1.src = "./assets/09dd.png";
     } else if (data.list[0].weather[0].main === "Snow") {
       weather1.src = "./assets/13d.png";
     } else if (
@@ -408,23 +408,23 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }else{
     if (data.list[0].weather[0].description === "clear sky") {
-      weather1.src = "./assets/01n.png";
+      weather1.src = "./assets/01nn.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
-      weather1.src = "./assets/02n.png";
+      weather1.src = "./assets/02nn.png";
     } else if (data.list[0].weather[0].description === "scattered clouds") {
-      weather1.src = "./assets/03d.png";
+      weather1.src = "./assets/03dd.png";
     } else if (
       data.list[0].weather[0].description === "broken clouds" ||
       data.list[0].weather[0].description === "overcast clouds"
     ) {
-      weather1.src = "./assets/04d.png";
+      weather1.src = "./assets/04dd.png";
     } else if (data.list[0].weather[0].main === "Thunderstorm") {
-      weather1.src = "./assets/11d.png";
+      weather1.src = "./assets/11dd.png";
     } else if (
       data.list[0].weather[0].main === "Drizzle" ||
       data.list[0].weather[0].main === "Rain"
     ) {
-      weather1.src = "./assets/09d.png";
+      weather1.src = "./assets/09dd.png";
     } else if (data.list[0].weather[0].main === "Snow") {
       weather1.src = "./assets/13d.png";
     } else if (
@@ -444,23 +444,23 @@ async function weather5DayAPI(latitude, longitude) {
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[8].weather[0].description === "clear sky") {
-      weather2.src = "./assets/01d.png";
+      weather2.src = "./assets/01dd.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
-      weather2.src = "./assets/02d.png";
+      weather2.src = "./assets/02dd.png";
     } else if (data.list[8].weather[0].description === "scattered clouds") {
-      weather2.src = "./assets/03d.png";
+      weather2.src = "./assets/03dd.png";
     } else if (
       data.list[8].weather[0].description === "broken clouds" ||
       data.list[8].weather[0].description === "overcast clouds"
     ) {
-      weather2.src = "./assets/04d.png";
+      weather2.src = "./assets/04dd.png";
     } else if (data.list[8].weather[0].main === "Thunderstorm") {
-      weather2.src = "./assets/11d.png";
+      weather2.src = "./assets/11dd.png";
     } else if (
       data.list[8].weather[0].main === "Drizzle" ||
       data.list[8].weather[0].main === "Rain"
     ) {
-      weather2.src = "./assets/09d.png";
+      weather2.src = "./assets/09dd.png";
     } else if (data.list[8].weather[0].main === "Snow") {
       weather2.src = "./assets/13d.png";
     } else if (
@@ -478,23 +478,23 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }else{
     if (data.list[8].weather[0].description === "clear sky") {
-      weather2.src = "./assets/01n.png";
+      weather2.src = "./assets/01nn.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
-      weather2.src = "./assets/02n.png";
+      weather2.src = "./assets/02nn.png";
     } else if (data.list[8].weather[0].description === "scattered clouds") {
-      weather2.src = "./assets/03d.png";
+      weather2.src = "./assets/03dd.png";
     } else if (
       data.list[8].weather[0].description === "broken clouds" ||
       data.list[8].weather[0].description === "overcast clouds"
     ) {
-      weather2.src = "./assets/04d.png";
+      weather2.src = "./assets/04dd.png";
     } else if (data.list[8].weather[0].main === "Thunderstorm") {
-      weather2.src = "./assets/11d.png";
+      weather2.src = "./assets/11dd.png";
     } else if (
       data.list[8].weather[0].main === "Drizzle" ||
       data.list[8].weather[0].main === "Rain"
     ) {
-      weather2.src = "./assets/09d.png";
+      weather2.src = "./assets/09dd.png";
     } else if (data.list[8].weather[0].main === "Snow") {
       weather2.src = "./assets/13d.png";
     } else if (
@@ -514,23 +514,23 @@ async function weather5DayAPI(latitude, longitude) {
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[16].weather[0].description === "clear sky") {
-      weather3.src = "./assets/01d.png";
+      weather3.src = "./assets/01dd.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
-      weather3.src = "./assets/02d.png";
+      weather3.src = "./assets/02dd.png";
     } else if (data.list[16].weather[0].description === "scattered clouds") {
-      weather3.src = "./assets/03d.png";
+      weather3.src = "./assets/03dd.png";
     } else if (
       data.list[16].weather[0].description === "broken clouds" ||
       data.list[16].weather[0].description === "overcast clouds"
     ) {
-      weather3.src = "./assets/04d.png";
+      weather3.src = "./assets/04dd.png";
     } else if (data.list[16].weather[0].main === "Thunderstorm") {
-      weather3.src = "./assets/11d.png";
+      weather3.src = "./assets/11dd.png";
     } else if (
       data.list[16].weather[0].main === "Drizzle" ||
       data.list[16].weather[0].main === "Rain"
     ) {
-      weather3.src = "./assets/09d.png";
+      weather3.src = "./assets/09dd.png";
     } else if (data.list[16].weather[0].main === "Snow") {
       weather3.src = "./assets/13d.png";
     } else if (
@@ -548,23 +548,23 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }else{
     if (data.list[16].weather[0].description === "clear sky") {
-      weather3.src = "./assets/01n.png";
+      weather3.src = "./assets/01nn.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
-      weather3.src = "./assets/02n.png";
+      weather3.src = "./assets/02nn.png";
     } else if (data.list[16].weather[0].description === "scattered clouds") {
-      weather3.src = "./assets/03d.png";
+      weather3.src = "./assets/03dd.png";
     } else if (
       data.list[16].weather[0].description === "broken clouds" ||
       data.list[16].weather[0].description === "overcast clouds"
     ) {
-      weather3.src = "./assets/04d.png";
+      weather3.src = "./assets/04dd.png";
     } else if (data.list[16].weather[0].main === "Thunderstorm") {
-      weather3.src = "./assets/11d.png";
+      weather3.src = "./assets/11dd.png";
     } else if (
       data.list[16].weather[0].main === "Drizzle" ||
       data.list[16].weather[0].main === "Rain"
     ) {
-      weather3.src = "./assets/09d.png";
+      weather3.src = "./assets/09dd.png";
     } else if (data.list[16].weather[0].main === "Snow") {
       weather3.src = "./assets/13d.png";
     } else if (
@@ -584,23 +584,23 @@ async function weather5DayAPI(latitude, longitude) {
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[24].weather[0].description === "clear sky") {
-      weather4.src = "./assets/01d.png";
+      weather4.src = "./assets/01dd.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
-      weather4.src = "./assets/02d.png";
+      weather4.src = "./assets/02dd.png";
     } else if (data.list[24].weather[0].description === "scattered clouds") {
-      weather4.src = "./assets/03d.png";
+      weather4.src = "./assets/03dd.png";
     } else if (
       data.list[24].weather[0].description === "broken clouds" ||
       data.list[24].weather[0].description === "overcast clouds"
     ) {
-      weather4.src = "./assets/04d.png";
+      weather4.src = "./assets/04dd.png";
     } else if (data.list[24].weather[0].main === "Thunderstorm") {
-      weather4.src = "./assets/11d.png";
+      weather4.src = "./assets/11dd.png";
     } else if (
       data.list[24].weather[0].main === "Drizzle" ||
       data.list[24].weather[0].main === "Rain"
     ) {
-      weather4.src = "./assets/09d.png";
+      weather4.src = "./assets/09dd.png";
     } else if (data.list[24].weather[0].main === "Snow") {
       weather4.src = "./assets/13d.png";
     } else if (
@@ -618,23 +618,23 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }else{
     if (data.list[24].weather[0].description === "clear sky") {
-      weather4.src = "./assets/01n.png";
+      weather4.src = "./assets/01nn.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
-      weather4.src = "./assets/02n.png";
+      weather4.src = "./assets/02nn.png";
     } else if (data.list[24].weather[0].description === "scattered clouds") {
-      weather4.src = "./assets/03d.png";
+      weather4.src = "./assets/03dd.png";
     } else if (
       data.list[24].weather[0].description === "broken clouds" ||
       data.list[24].weather[0].description === "overcast clouds"
     ) {
-      weather4.src = "./assets/04d.png";
+      weather4.src = "./assets/04dd.png";
     } else if (data.list[24].weather[0].main === "Thunderstorm") {
-      weather4.src = "./assets/11d.png";
+      weather4.src = "./assets/11dd.png";
     } else if (
       data.list[24].weather[0].main === "Drizzle" ||
       data.list[24].weather[0].main === "Rain"
     ) {
-      weather4.src = "./assets/09d.png";
+      weather4.src = "./assets/09dd.png";
     } else if (data.list[24].weather[0].main === "Snow") {
       weather4.src = "./assets/13d.png";
     } else if (
@@ -654,23 +654,23 @@ async function weather5DayAPI(latitude, longitude) {
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[32].weather[0].description === "clear sky") {
-      weather5.src = "./assets/01d.png";
+      weather5.src = "./assets/01dd.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
-      weather5.src = "./assets/02d.png";
+      weather5.src = "./assets/02dd.png";
     } else if (data.list[32].weather[0].description === "scattered clouds") {
-      weather5.src = "./assets/03d.png";
+      weather5.src = "./assets/03dd.png";
     } else if (
       data.list[32].weather[0].description === "broken clouds" ||
       data.list[32].weather[0].description === "overcast clouds"
     ) {
-      weather5.src = "./assets/04d.png";
+      weather5.src = "./assets/04dd.png";
     } else if (data.list[32].weather[0].main === "Thunderstorm") {
-      weather5.src = "./assets/11d.png";
+      weather5.src = "./assets/11dd.png";
     } else if (
       data.list[32].weather[0].main === "Drizzle" ||
       data.list[32].weather[0].main === "Rain"
     ) {
-      weather5.src = "./assets/09d.png";
+      weather5.src = "./assets/09dd.png";
     } else if (data.list[32].weather[0].main === "Snow") {
       weather5.src = "./assets/13d.png";
     } else if (
@@ -688,23 +688,23 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }else{
     if (data.list[32].weather[0].description === "clear sky") {
-      weather5.src = "./assets/01n.png";
+      weather5.src = "./assets/01nn.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
-      weather5.src = "./assets/02n.png";
+      weather5.src = "./assets/02nn.png";
     } else if (data.list[32].weather[0].description === "scattered clouds") {
-      weather5.src = "./assets/03d.png";
+      weather5.src = "./assets/03dd.png";
     } else if (
       data.list[32].weather[0].description === "broken clouds" ||
       data.list[32].weather[0].description === "overcast clouds"
     ) {
-      weather5.src = "./assets/04d.png";
+      weather5.src = "./assets/04dd.png";
     } else if (data.list[32].weather[0].main === "Thunderstorm") {
-      weather5.src = "./assets/11d.png";
+      weather5.src = "./assets/11dd.png";
     } else if (
       data.list[32].weather[0].main === "Drizzle" ||
       data.list[32].weather[0].main === "Rain"
     ) {
-      weather5.src = "./assets/09d.png";
+      weather5.src = "./assets/09dd.png";
     } else if (data.list[32].weather[0].main === "Snow") {
       weather5.src = "./assets/13d.png";
     } else if (
@@ -850,23 +850,23 @@ async function currentSearchAPI(latitude, longitude) {
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.weather[0].description === "clear sky") {
-      currentIcon.src = "./assets/01d.png";
+      currentIcon.src = "./assets/01dd.png";
     } else if (data.weather[0].description === "few clouds") {
-      currentIcon.src = "./assets/02d.png";
+      currentIcon.src = "./assets/02dd.png";
     } else if (data.weather[0].description === "scattered clouds") {
-      currentIcon.src = "./assets/03d.png";
+      currentIcon.src = "./assets/03dd.png";
     } else if (
       data.weather[0].description === "broken clouds" ||
       data.weather[0].description === "overcast clouds"
     ) {
-      currentIcon.src = "./assets/04d.png";
+      currentIcon.src = "./assets/04dd.png";
     } else if (data.weather[0].main === "Thunderstorm") {
-      currentIcon.src = "./assets/11d.png";
+      currentIcon.src = "./assets/11dd.png";
     } else if (
       data.weather[0].main === "Drizzle" ||
       data.weather[0].main === "Rain"
     ) {
-      currentIcon.src = "./assets/09d.png";
+      currentIcon.src = "./assets/09dd.png";
     } else if (data.weather[0].main === "Snow") {
       currentIcon.src = "./assets/13d.png";
     } else if (
@@ -884,23 +884,23 @@ async function currentSearchAPI(latitude, longitude) {
     }
   }else{
     if (data.weather[0].description === "clear sky") {
-      currentIcon.src = "./assets/01n.png";
+      currentIcon.src = "./assets/01nn.png";
     } else if (data.weather[0].description === "few clouds") {
-      currentIcon.src = "./assets/02n.png";
+      currentIcon.src = "./assets/02nn.png";
     } else if (data.weather[0].description === "scattered clouds") {
-      currentIcon.src = "./assets/03d.png";
+      currentIcon.src = "./assets/03dd.png";
     } else if (
       data.weather[0].description === "broken clouds" ||
       data.weather[0].description === "overcast clouds"
     ) {
-      currentIcon.src = "./assets/04d.png";
+      currentIcon.src = "./assets/04dd.png";
     } else if (data.weather[0].main === "Thunderstorm") {
-      currentIcon.src = "./assets/11d.png";
+      currentIcon.src = "./assets/11dd.png";
     } else if (
       data.weather[0].main === "Drizzle" ||
       data.weather[0].main === "Rain"
     ) {
-      currentIcon.src = "./assets/09d.png";
+      currentIcon.src = "./assets/09dd.png";
     } else if (data.weather[0].main === "Snow") {
       currentIcon.src = "./assets/13d.png";
     } else if (
@@ -927,23 +927,23 @@ async function forecastSearchAPI(latitude, longitude){
   // weather start
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[0].weather[0].description === "clear sky") {
-      weather1.src = "./assets/01d.png";
+      weather1.src = "./assets/01dd.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
-      weather1.src = "./assets/02d.png";
+      weather1.src = "./assets/02dd.png";
     } else if (data.list[0].weather[0].description === "scattered clouds") {
-      weather1.src = "./assets/03d.png";
+      weather1.src = "./assets/03dd.png";
     } else if (
       data.list[0].weather[0].description === "broken clouds" ||
       data.list[0].weather[0].description === "overcast clouds"
     ) {
-      weather1.src = "./assets/04d.png";
+      weather1.src = "./assets/04dd.png";
     } else if (data.list[0].weather[0].main === "Thunderstorm") {
-      weather1.src = "./assets/11d.png";
+      weather1.src = "./assets/11dd.png";
     } else if (
       data.list[0].weather[0].main === "Drizzle" ||
       data.list[0].weather[0].main === "Rain"
     ) {
-      weather1.src = "./assets/09d.png";
+      weather1.src = "./assets/09dd.png";
     } else if (data.list[0].weather[0].main === "Snow") {
       weather1.src = "./assets/13d.png";
     } else if (
@@ -961,23 +961,23 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }else{
     if (data.list[0].weather[0].description === "clear sky") {
-      weather1.src = "./assets/01n.png";
+      weather1.src = "./assets/01nn.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
-      weather1.src = "./assets/02n.png";
+      weather1.src = "./assets/02nn.png";
     } else if (data.list[0].weather[0].description === "scattered clouds") {
-      weather1.src = "./assets/03d.png";
+      weather1.src = "./assets/03dd.png";
     } else if (
       data.list[0].weather[0].description === "broken clouds" ||
       data.list[0].weather[0].description === "overcast clouds"
     ) {
-      weather1.src = "./assets/04d.png";
+      weather1.src = "./assets/04dd.png";
     } else if (data.list[0].weather[0].main === "Thunderstorm") {
-      weather1.src = "./assets/11d.png";
+      weather1.src = "./assets/11dd.png";
     } else if (
       data.list[0].weather[0].main === "Drizzle" ||
       data.list[0].weather[0].main === "Rain"
     ) {
-      weather1.src = "./assets/09d.png";
+      weather1.src = "./assets/09dd.png";
     } else if (data.list[0].weather[0].main === "Snow") {
       weather1.src = "./assets/13d.png";
     } else if (
@@ -997,23 +997,23 @@ async function forecastSearchAPI(latitude, longitude){
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[8].weather[0].description === "clear sky") {
-      weather2.src = "./assets/01d.png";
+      weather2.src = "./assets/01dd.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
-      weather2.src = "./assets/02d.png";
+      weather2.src = "./assets/02dd.png";
     } else if (data.list[8].weather[0].description === "scattered clouds") {
-      weather2.src = "./assets/03d.png";
+      weather2.src = "./assets/03dd.png";
     } else if (
       data.list[8].weather[0].description === "broken clouds" ||
       data.list[8].weather[0].description === "overcast clouds"
     ) {
-      weather2.src = "./assets/04d.png";
+      weather2.src = "./assets/04dd.png";
     } else if (data.list[8].weather[0].main === "Thunderstorm") {
-      weather2.src = "./assets/11d.png";
+      weather2.src = "./assets/11dd.png";
     } else if (
       data.list[8].weather[0].main === "Drizzle" ||
       data.list[8].weather[0].main === "Rain"
     ) {
-      weather2.src = "./assets/09d.png";
+      weather2.src = "./assets/09dd.png";
     } else if (data.list[8].weather[0].main === "Snow") {
       weather2.src = "./assets/13d.png";
     } else if (
@@ -1031,23 +1031,23 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }else{
     if (data.list[8].weather[0].description === "clear sky") {
-      weather2.src = "./assets/01n.png";
+      weather2.src = "./assets/01nn.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
-      weather2.src = "./assets/02n.png";
+      weather2.src = "./assets/02nn.png";
     } else if (data.list[8].weather[0].description === "scattered clouds") {
-      weather2.src = "./assets/03d.png";
+      weather2.src = "./assets/03dd.png";
     } else if (
       data.list[8].weather[0].description === "broken clouds" ||
       data.list[8].weather[0].description === "overcast clouds"
     ) {
-      weather2.src = "./assets/04d.png";
+      weather2.src = "./assets/04dd.png";
     } else if (data.list[8].weather[0].main === "Thunderstorm") {
-      weather2.src = "./assets/11d.png";
+      weather2.src = "./assets/11dd.png";
     } else if (
       data.list[8].weather[0].main === "Drizzle" ||
       data.list[8].weather[0].main === "Rain"
     ) {
-      weather2.src = "./assets/09d.png";
+      weather2.src = "./assets/09dd.png";
     } else if (data.list[8].weather[0].main === "Snow") {
       weather2.src = "./assets/13d.png";
     } else if (
@@ -1067,23 +1067,23 @@ async function forecastSearchAPI(latitude, longitude){
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[16].weather[0].description === "clear sky") {
-      weather3.src = "./assets/01d.png";
+      weather3.src = "./assets/01dd.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
-      weather3.src = "./assets/02d.png";
+      weather3.src = "./assets/02dd.png";
     } else if (data.list[16].weather[0].description === "scattered clouds") {
-      weather3.src = "./assets/03d.png";
+      weather3.src = "./assets/03dd.png";
     } else if (
       data.list[16].weather[0].description === "broken clouds" ||
       data.list[16].weather[0].description === "overcast clouds"
     ) {
-      weather3.src = "./assets/04d.png";
+      weather3.src = "./assets/04dd.png";
     } else if (data.list[16].weather[0].main === "Thunderstorm") {
-      weather3.src = "./assets/11d.png";
+      weather3.src = "./assets/11dd.png";
     } else if (
       data.list[16].weather[0].main === "Drizzle" ||
       data.list[16].weather[0].main === "Rain"
     ) {
-      weather3.src = "./assets/09d.png";
+      weather3.src = "./assets/09dd.png";
     } else if (data.list[16].weather[0].main === "Snow") {
       weather3.src = "./assets/13d.png";
     } else if (
@@ -1101,23 +1101,23 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }else{
     if (data.list[16].weather[0].description === "clear sky") {
-      weather3.src = "./assets/01n.png";
+      weather3.src = "./assets/01nn.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
-      weather3.src = "./assets/02n.png";
+      weather3.src = "./assets/02nn.png";
     } else if (data.list[16].weather[0].description === "scattered clouds") {
-      weather3.src = "./assets/03d.png";
+      weather3.src = "./assets/03dd.png";
     } else if (
       data.list[16].weather[0].description === "broken clouds" ||
       data.list[16].weather[0].description === "overcast clouds"
     ) {
-      weather3.src = "./assets/04d.png";
+      weather3.src = "./assets/04dd.png";
     } else if (data.list[16].weather[0].main === "Thunderstorm") {
-      weather3.src = "./assets/11d.png";
+      weather3.src = "./assets/11dd.png";
     } else if (
       data.list[16].weather[0].main === "Drizzle" ||
       data.list[16].weather[0].main === "Rain"
     ) {
-      weather3.src = "./assets/09d.png";
+      weather3.src = "./assets/09dd.png";
     } else if (data.list[16].weather[0].main === "Snow") {
       weather3.src = "./assets/13d.png";
     } else if (
@@ -1137,23 +1137,23 @@ async function forecastSearchAPI(latitude, longitude){
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[24].weather[0].description === "clear sky") {
-      weather4.src = "./assets/01d.png";
+      weather4.src = "./assets/01dd.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
-      weather4.src = "./assets/02d.png";
+      weather4.src = "./assets/02dd.png";
     } else if (data.list[24].weather[0].description === "scattered clouds") {
-      weather4.src = "./assets/03d.png";
+      weather4.src = "./assets/03dd.png";
     } else if (
       data.list[24].weather[0].description === "broken clouds" ||
       data.list[24].weather[0].description === "overcast clouds"
     ) {
-      weather4.src = "./assets/04d.png";
+      weather4.src = "./assets/04dd.png";
     } else if (data.list[24].weather[0].main === "Thunderstorm") {
-      weather4.src = "./assets/11d.png";
+      weather4.src = "./assets/11dd.png";
     } else if (
       data.list[24].weather[0].main === "Drizzle" ||
       data.list[24].weather[0].main === "Rain"
     ) {
-      weather4.src = "./assets/09d.png";
+      weather4.src = "./assets/09dd.png";
     } else if (data.list[24].weather[0].main === "Snow") {
       weather4.src = "./assets/13d.png";
     } else if (
@@ -1171,23 +1171,23 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }else{
     if (data.list[24].weather[0].description === "clear sky") {
-      weather4.src = "./assets/01n.png";
+      weather4.src = "./assets/01nn.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
-      weather4.src = "./assets/02n.png";
+      weather4.src = "./assets/02nn.png";
     } else if (data.list[24].weather[0].description === "scattered clouds") {
-      weather4.src = "./assets/03d.png";
+      weather4.src = "./assets/03dd.png";
     } else if (
       data.list[24].weather[0].description === "broken clouds" ||
       data.list[24].weather[0].description === "overcast clouds"
     ) {
-      weather4.src = "./assets/04d.png";
+      weather4.src = "./assets/04dd.png";
     } else if (data.list[24].weather[0].main === "Thunderstorm") {
-      weather4.src = "./assets/11d.png";
+      weather4.src = "./assets/11dd.png";
     } else if (
       data.list[24].weather[0].main === "Drizzle" ||
       data.list[24].weather[0].main === "Rain"
     ) {
-      weather4.src = "./assets/09d.png";
+      weather4.src = "./assets/09dd.png";
     } else if (data.list[24].weather[0].main === "Snow") {
       weather4.src = "./assets/13d.png";
     } else if (
@@ -1207,23 +1207,23 @@ async function forecastSearchAPI(latitude, longitude){
 
   if(t.getHours() >= 7 && t.getHours() <= 18){
     if (data.list[32].weather[0].description === "clear sky") {
-      weather5.src = "./assets/01d.png";
+      weather5.src = "./assets/01dd.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
-      weather5.src = "./assets/02d.png";
+      weather5.src = "./assets/02dd.png";
     } else if (data.list[32].weather[0].description === "scattered clouds") {
-      weather5.src = "./assets/03d.png";
+      weather5.src = "./assets/03dd.png";
     } else if (
       data.list[32].weather[0].description === "broken clouds" ||
       data.list[32].weather[0].description === "overcast clouds"
     ) {
-      weather5.src = "./assets/04d.png";
+      weather5.src = "./assets/04dd.png";
     } else if (data.list[32].weather[0].main === "Thunderstorm") {
-      weather5.src = "./assets/11d.png";
+      weather5.src = "./assets/11dd.png";
     } else if (
       data.list[32].weather[0].main === "Drizzle" ||
       data.list[32].weather[0].main === "Rain"
     ) {
-      weather5.src = "./assets/09d.png";
+      weather5.src = "./assets/09dd.png";
     } else if (data.list[32].weather[0].main === "Snow") {
       weather5.src = "./assets/13d.png";
     } else if (
@@ -1241,23 +1241,23 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }else{
     if (data.list[32].weather[0].description === "clear sky") {
-      weather5.src = "./assets/01n.png";
+      weather5.src = "./assets/01nn.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
-      weather5.src = "./assets/02n.png";
+      weather5.src = "./assets/02nn.png";
     } else if (data.list[32].weather[0].description === "scattered clouds") {
-      weather5.src = "./assets/03d.png";
+      weather5.src = "./assets/03dd.png";
     } else if (
       data.list[32].weather[0].description === "broken clouds" ||
       data.list[32].weather[0].description === "overcast clouds"
     ) {
-      weather5.src = "./assets/04d.png";
+      weather5.src = "./assets/04dd.png";
     } else if (data.list[32].weather[0].main === "Thunderstorm") {
-      weather5.src = "./assets/11d.png";
+      weather5.src = "./assets/11dd.png";
     } else if (
       data.list[32].weather[0].main === "Drizzle" ||
       data.list[32].weather[0].main === "Rain"
     ) {
-      weather5.src = "./assets/09d.png";
+      weather5.src = "./assets/09dd.png";
     } else if (data.list[32].weather[0].main === "Snow") {
       weather5.src = "./assets/13d.png";
     } else if (
