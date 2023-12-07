@@ -45,9 +45,7 @@ let day5High = document.getElementById("day5High");
 
 
 searchBtn.addEventListener("click", function (e) {
-  currentSearchAPI(userInput.value);
   locationName(userInput.value);
-  forecastSearchAPI(userInput.value);
   console.log(userInput.value);
   userInput.value = "";
   highTemp1 = 0;
@@ -276,9 +274,9 @@ async function weatherAPI(latitude, longitude) {
   const promise = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   );
-
   const data = await promise.json();
 
+  console.log(data.name);
   currentTemperature.textContent = Math.round(data.main.temp) + "°";
   currentWeather.textContent = data.weather[0].description;
   currentHigh.textContent = Math.round(data.main.temp_max) + "°";
@@ -836,9 +834,9 @@ async function weather5DayAPI(latitude, longitude) {
 
 // search code
 
-async function currentSearchAPI(search) {
+async function currentSearchAPI(latitude, longitude) {
   const promise = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}&units=imperial`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   );
   const data = await promise.json();
 
@@ -920,8 +918,8 @@ async function currentSearchAPI(search) {
   }
 }
 
-async function forecastSearchAPI(search){
-  const promise = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${search}&appid=${apiKey}&units=imperial`);
+async function forecastSearchAPI(latitude, longitude){
+  const promise = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`);
 
   const data = await promise.json();
 
@@ -1375,6 +1373,9 @@ async function locationName(input) {
   const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`);
   
   const data = await promise.json();
+
+  currentSearchAPI(data[0].lat, data[0].lon);
+  forecastSearchAPI(data[0].lat, data[0].lon);
 
   if(data[0].state === 'Alabama'){
     location.textContent = data[0].name.toUpperCase() + ', AL'; 
