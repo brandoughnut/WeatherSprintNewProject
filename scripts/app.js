@@ -5,6 +5,7 @@ let searchBtn = document.getElementById("searchBtn");
 let switchBG = document.getElementById("switchBG");
 let switchBox = document.getElementById("switchBox");
 let favoriteBtn = document.getElementById("favoriteBtn");
+let favoriteBtnColor = document.getElementById("favoriteBtnColor");
 
 // current forecast
 let location = document.getElementById("location");
@@ -44,10 +45,29 @@ let day3High = document.getElementById("day3High");
 let day4High = document.getElementById("day4High");
 let day5High = document.getElementById("day5High");
 
+let favorites = [];
+
+console.log(favorites);
+
+function addToFavorite(currentLocation) {
+  if(favorites.includes(currentLocation)){
+    favorites.splice(currentLocation, 1);
+    favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png";
+    favoriteBtnColor.className = "BtnFavorite";
+  }else{
+    favorites.push(currentLocation);
+    favoriteBtn.src = "./assets/favorited.png";
+    favoriteBtnColor.className = "BtnFavorite2";
+  }
+}
+
+function removeFavorite(){
+  favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png";
+}
 
 searchBtn.addEventListener("click", function (e) {
   locationName(userInput.value);
-  console.log(userInput.value);
+  console.log("User search: "+userInput.value);
   userInput.value = "";
   highTemp1 = 0;
   lowTemp1;
@@ -260,8 +280,8 @@ navigator.geolocation.getCurrentPosition(success, errorFunc);
 function success(position) {
   lon = position.coords.longitude;
   lat = position.coords.latitude;
-  console.log(lat);
-  console.log(lon);
+  console.log("Current lat: "+lat);
+  console.log("Current lon: "+lon);
   weatherAPI(lat, lon);
   weather5DayAPI(lat, lon);
 }
@@ -276,8 +296,12 @@ async function weatherAPI(latitude, longitude) {
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   );
   const data = await promise.json();
+  
+  favoriteBtn.addEventListener("click", function(e) {
+    addToFavorite(data.name);
+  });
 
-  console.log(data.name);
+  console.log("Current location: "+data.name);
   currentTemperature.textContent = Math.round(data.main.temp) + "°";
   currentWeather.textContent = data.weather[0].description;
   currentHigh.textContent = Math.round(data.main.temp_max) + "°";
@@ -736,8 +760,8 @@ async function weather5DayAPI(latitude, longitude) {
       lowTemp1 = high;
     }
   }
-  console.log(highTemp1);
-  console.log(lowTemp1);
+  // console.log(highTemp1);
+  // console.log(lowTemp1);
 
   for(let i = 8; i<16; i++){
     // console.log(data.list[i].main.temp_max);
@@ -751,8 +775,8 @@ async function weather5DayAPI(latitude, longitude) {
       lowTemp2 = high;
     }
   }
-  console.log(highTemp2);
-  console.log(lowTemp2);
+  // console.log(highTemp2);
+  // console.log(lowTemp2);
 
   for(let i = 16; i<24; i++){
     // console.log(data.list[i].main.temp_max);
@@ -766,8 +790,8 @@ async function weather5DayAPI(latitude, longitude) {
       lowTemp3 = high;
     }
   }
-  console.log(highTemp3);
-  console.log(lowTemp3);
+  // console.log(highTemp3);
+  // console.log(lowTemp3);
 
   for(let i = 24; i<32; i++){
     // console.log(data.list[i].main.temp_max);
@@ -781,8 +805,8 @@ async function weather5DayAPI(latitude, longitude) {
       lowTemp4 = high;
     }
   }
-  console.log(highTemp4);
-  console.log(lowTemp4);
+  // console.log(highTemp4);
+  // console.log(lowTemp4);
 
   for(let i = 32; i<40; i++){
     // console.log(data.list[i].main.temp_max);
@@ -796,8 +820,8 @@ async function weather5DayAPI(latitude, longitude) {
       lowTemp5 = high;
     }
   }
-  console.log(highTemp5);
-  console.log(lowTemp5);
+  // console.log(highTemp5);
+  // console.log(lowTemp5);
 
   day1Low.textContent = Math.round(lowTemp1)+'°';
   day1High.textContent = Math.round(highTemp1)+'°';
@@ -834,7 +858,6 @@ async function weather5DayAPI(latitude, longitude) {
 // end of on load code
 
 // search code
-
 async function currentSearchAPI(latitude, longitude) {
   const promise = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
@@ -1289,8 +1312,8 @@ async function forecastSearchAPI(latitude, longitude){
       lowTemp1 = high;
     }
   }
-  console.log(highTemp1);
-  console.log(lowTemp1);
+  // console.log(highTemp1);
+  // console.log(lowTemp1);
 
   for(let i = 8; i<16; i++){
     // console.log(data.list[i].main.temp_max);
@@ -1304,8 +1327,8 @@ async function forecastSearchAPI(latitude, longitude){
       lowTemp2 = high;
     }
   }
-  console.log(highTemp2);
-  console.log(lowTemp2);
+  // console.log(highTemp2);
+  // console.log(lowTemp2);
 
   for(let i = 16; i<24; i++){
     // console.log(data.list[i].main.temp_max);
@@ -1319,8 +1342,8 @@ async function forecastSearchAPI(latitude, longitude){
       lowTemp3 = high;
     }
   }
-  console.log(highTemp3);
-  console.log(lowTemp3);
+  // console.log(highTemp3);
+  // console.log(lowTemp3);
 
   for(let i = 24; i<32; i++){
     // console.log(data.list[i].main.temp_max);
@@ -1334,8 +1357,8 @@ async function forecastSearchAPI(latitude, longitude){
       lowTemp4 = high;
     }
   }
-  console.log(highTemp4);
-  console.log(lowTemp4);
+  // console.log(highTemp4);
+  // console.log(lowTemp4);
 
   for(let i = 32; i<40; i++){
     // console.log(data.list[i].main.temp_max);
@@ -1349,8 +1372,8 @@ async function forecastSearchAPI(latitude, longitude){
       lowTemp5 = high;
     }
   }
-  console.log(highTemp5);
-  console.log(lowTemp5);
+  // console.log(highTemp5);
+  // console.log(lowTemp5);
 
   day1Low.textContent = Math.round(lowTemp1)+'°';
   day1High.textContent = Math.round(highTemp1)+'°';
@@ -1375,6 +1398,13 @@ async function locationName(input) {
   
   const data = await promise.json();
 
+  favoriteBtn.addEventListener("click", function(e) {
+    addToFavorite(data[0].name);
+  });
+
+  console.log("Searched city: "+data[0].name);
+  console.log("Searched lat: "+data[0].lat);
+  console.log("Search lon: "+data[0].lon);
   currentSearchAPI(data[0].lat, data[0].lon);
   forecastSearchAPI(data[0].lat, data[0].lon);
 
@@ -1486,13 +1516,3 @@ async function locationName(input) {
 }
 
 // end of search code
-
-// favoriting start
-let nameArray = [];
-
-if(localStorage.getItem("names")){
-  nameArray = JSON.parse(localStorage.getItem("names"));
-}
-
-
-// favoriting end

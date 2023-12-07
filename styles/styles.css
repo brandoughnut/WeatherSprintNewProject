@@ -56,6 +56,24 @@
     margin-right: 8.783%;
 }
 
+.BtnFavorite {
+    background-color: #fff9c8;
+    height: 61px;
+    width: 74.86px;
+    border-color: black;
+    border-radius: 20px;
+    opacity: 95%;
+}
+
+.BtnFavorite2 {
+    background-color: #FFD541; 
+    height: 61px; 
+    width: 74.86px; 
+    border-color: black; 
+    border-radius: 20px; 
+    opacity: 95%;
+}
+
 .fiveDayBox {
     background-color: rgba(200, 245, 255, 0.9);
     border-radius: 30px;
