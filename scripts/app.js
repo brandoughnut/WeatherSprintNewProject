@@ -4,6 +4,7 @@ let userInput = document.getElementById("userInput");
 let searchBtn = document.getElementById("searchBtn");
 let switchBG = document.getElementById("switchBG");
 let switchBox = document.getElementById("switchBox");
+let favoriteBtn = document.getElementById("favoriteBtn");
 
 // current forecast
 let location = document.getElementById("location");
@@ -1486,3 +1487,12 @@ async function locationName(input) {
 
 // end of search code
 
+// favoriting start
+let nameArray = [];
+
+if(localStorage.getItem("names")){
+  nameArray = JSON.parse(localStorage.getItem("names"));
+}
+
+
+// favoriting end
