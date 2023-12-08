@@ -1,7 +1,5 @@
 import { apiKey } from "./apikey.js";
 
-export {savedFavorites}
-
 let userInput = document.getElementById("userInput");
 let searchBtn = document.getElementById("searchBtn");
 let switchBG = document.getElementById("switchBG");
@@ -12,6 +10,7 @@ let favorites = document.getElementById("favorites");
 let changeBG = document.getElementById("changeBG");
 // let favoritesBoxes = document.getElementById("favoritesBoxes");
 let injectFavorite = document.getElementById("injectFavorite");
+let global = document.getElementById("global");
 
 // current forecast
 let location = document.getElementById("location");
@@ -56,6 +55,9 @@ let favoriteCity;
 
 savedFavorites = JSON.parse(localStorage.getItem("favorited")) || [];
 
+let counter = savedFavorites.length;
+console.log(counter);
+
 console.log(savedFavorites);
 
 
@@ -69,14 +71,17 @@ if(favoriteBtnColor){
         savedFavorites.splice(locationIndex, 1);
         favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
         favoriteBtnColor.className = "BtnFavorite";
+        counter--;
     } else {
         savedFavorites.push(favoriteCity);
         favoriteBtn.src = "./assets/favorited.png"
         favoriteBtnColor.className = "BtnFavorite2";
+        counter++;
     }
     console.log(savedFavorites);
   
     console.log(favoriteCity);
+    console.log(counter);
   
     localStorage.setItem("favorited", JSON.stringify(savedFavorites));
   });
@@ -1603,14 +1608,30 @@ async function locationName(input) {
 // end of search code
 
 // creating elements
-function CreatingElements() {
+
+
+async function CreatingElements(cityName) {
+
+  const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`)
+  const data = await promise.json();
+    
+  let latitude = data[0].lat;
+  let longitude = data[0].lon;
+  const promise2 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`)
+  const data2 = await promise2.json();
+
 let mainDiv = document.createElement("div");
 mainDiv.className = "col-3 d-flex justify-content-center";
 mainDiv.style.marginBottom = "4%";
 
 let cardDiv = document.createElement("div");
 cardDiv.id = "favoritesBoxes";
-cardDiv.className = "card fiveDayBox";
+
+if(t.getHours() >= 7 && t.getHours() <= 18){
+  cardDiv.className = "card fiveDayBox";
+}else{
+  cardDiv.className = "card favoritesDayBox";
+}
 cardDiv.style.width = "325px";
 cardDiv.style.height = "348px";
 
@@ -1623,7 +1644,113 @@ locationParagraph.style.fontSize = "30px";
 locationParagraph.style.marginTop = "4%";
 locationParagraph.style.marginLeft = "3%";
 locationParagraph.style.marginRight = "20%";
-locationParagraph.textContent = "SAN JOSE, CA";
+locationParagraph.style.height = "30px";
+
+if (data[0].state === "Alabama") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", AL";
+} else if (data[0].state === "Alaska") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", AK";
+} else if (data[0].state === "Arizona") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", AZ";
+} else if (data[0].state === "Arkansas") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", AR";
+} else if (data[0].state === "California") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", CA";
+} else if (data[0].state === "Colorado") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", CO";
+} else if (data[0].state === "Conneticut") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", CT";
+} else if (data[0].state === "District of Columbia") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", DC";
+} else if (data[0].state === "Delaware") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", DE";
+} else if (data[0].state === "Florida") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", FL";
+} else if (data[0].state === "Georgia") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", GA";
+} else if (data[0].state === "Hawaii") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", HI";
+} else if (data[0].state === "Idaho") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", ID";
+} else if (data[0].state === "Illinois") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", IL";
+} else if (data[0].state === "Indiana") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", IN";
+} else if (data[0].state === "Iowa") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", IA";
+} else if (data[0].state === "Kansas") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", KS";
+} else if (data[0].state === "Kentucky") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", KY";
+} else if (data[0].state === "Louisiana") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", LA";
+} else if (data[0].state === "Maine") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", ME";
+} else if (data[0].state === "Maryland") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MD";
+} else if (data[0].state === "Massachusetts") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MA";
+} else if (data[0].state === "Michigan") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MI";
+} else if (data[0].state === "Minnesota") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MN";
+} else if (data[0].state === "Mississippi") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MS";
+} else if (data[0].state === "Missouri") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MO";
+} else if (data[0].state === "Montana") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", MT";
+} else if (data[0].state === "Nebraska") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NE";
+} else if (data[0].state === "Nevada") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NV";
+} else if (data[0].state === "New Hampshire") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NH";
+} else if (data[0].state === "New Jersey") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NJ";
+} else if (data[0].state === "New Mexico") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NM";
+} else if (data[0].state === "New York") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NY";
+} else if (data[0].state === "North Carolina") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", NC";
+} else if (data[0].state === "North Dakota") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", ND";
+} else if (data[0].state === "Ohio") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", OH";
+} else if (data[0].state === "Oklahoma") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", OK";
+} else if (data[0].state === "Oregon") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", OR";
+} else if (data[0].state === "Pennsylvania") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", PA";
+} else if (data[0].state === "Rhode Island") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", RI";
+} else if (data[0].state === "South Carolina") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", SC";
+} else if (data[0].state === "South Dakota") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", SD";
+} else if (data[0].state === "Tennessee") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", TN";
+} else if (data[0].state === "Texas") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", TX";
+} else if (data[0].state === "Utah") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", UT";
+} else if (data[0].state === "Vermont") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", VT";
+} else if (data[0].state === "Virginia") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", VA";
+} else if (data[0].state === "Washington") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", WA";
+} else if (data[0].state === "West Virginia") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", WV";
+} else if (data[0].state === "Wisconsin") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", WI";
+} else if (data[0].state === "Wyoming") {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", WY";
+} else {
+  locationParagraph.textContent = data[0].name.toUpperCase() + ", " + data[0].country;
+}
 
 let deleteImage = document.createElement("img");
 deleteImage.style.position = "absolute";
@@ -1644,14 +1771,85 @@ leftColumnDiv.className = "col-6 d-flex justify-content-start";
 leftColumnDiv.style.height = "170px";
 
 let imageLeftColumn = document.createElement("img");
-imageLeftColumn.src = "../assets/01nn.png";
+
+if (t.getHours() >= 7 && t.getHours() <= 18) {
+  if (data.weather[0].description === "clear sky") {
+    imageLeftColumn.src = "../assets/01dd.png";
+  } else if (data2.weather[0].description === "few clouds") {
+    imageLeftColumn.src = "../assets/02dd.png";
+  } else if (data2.weather[0].description === "scattered clouds") {
+    imageLeftColumn.src = "../assets/03dd.png";
+  } else if (
+    data2.weather[0].description === "broken clouds" ||
+    data2.weather[0].description === "overcast clouds"
+  ) {
+    imageLeftColumn.src = "../assets/04dd.png";
+  } else if (data2.weather[0].main === "Thunderstorm") {
+    imageLeftColumn.src = "../assets/11dd.png";
+  } else if (
+    data2.weather[0].main === "Drizzle" ||
+    data2.weather[0].main === "Rain"
+  ) {
+    imageLeftColumn.src = "../assets/09dd.png";
+  } else if (data2.weather[0].main === "Snow") {
+    imageLeftColumn.src = "../assets/13d.png";
+  } else if (
+    data2.weather[0].main === "Mist" ||
+    data2.weather[0].main === "Smoke" ||
+    data2.weather[0].main === "Haze" ||
+    data2.weather[0].main === "Dust" ||
+    data2.weather[0].main === "Fog" ||
+    data2.weather[0].main === "Sand" ||
+    data2.weather[0].main === "Ash" ||
+    data2.weather[0].main === "Squall" ||
+    data2.weather[0].main === "Tornado"
+  ) {
+    imageLeftColumn.src = "../assets/50d.png";
+  }
+} else {
+  if (data2.weather[0].description === "clear sky") {
+    imageLeftColumn.src = "../assets/01nn.png";
+  } else if (data2.weather[0].description === "few clouds") {
+    imageLeftColumn.src = "../assets/02nn.png";
+  } else if (data2.weather[0].description === "scattered clouds") {
+    imageLeftColumn.src = "../assets/03dd.png";
+  } else if (
+    data2.weather[0].description === "broken clouds" ||
+    data2.weather[0].description === "overcast clouds"
+  ) {
+    imageLeftColumn.src = "../assets/04dd.png";
+  } else if (data2.weather[0].main === "Thunderstorm") {
+    imageLeftColumn.src = "../assets/11dd.png";
+  } else if (
+    data2.weather[0].main === "Drizzle" ||
+    data2.weather[0].main === "Rain"
+  ) {
+    imageLeftColumn.src = "../assets/09dd.png";
+  } else if (data2.weather[0].main === "Snow") {
+    imageLeftColumn.src = "../assets/13d.png";
+  } else if (
+    data2.weather[0].main === "Mist" ||
+    data2.weather[0].main === "Smoke" ||
+    data2.weather[0].main === "Haze" ||
+    data2.weather[0].main === "Dust" ||
+    data2.weather[0].main === "Fog" ||
+    data2.weather[0].main === "Sand" ||
+    data2.weather[0].main === "Ash" ||
+    data2.weather[0].main === "Squall" ||
+    data2.weather[0].main === "Tornado"
+  ) {
+    imageLeftColumn.src = "../assets/50d.png";
+  }
+}
+
 imageLeftColumn.alt = "favorite weather icon";
 
 let rightColumnDiv = document.createElement("div");
 rightColumnDiv.className = "col-6 currentTempFont g-0";
 rightColumnDiv.style.fontSize = "60px";
 rightColumnDiv.style.marginTop = "18%";
-rightColumnDiv.textContent = "42°";
+rightColumnDiv.style.paddingLeft = "3%";
+rightColumnDiv.textContent = Math.round(data2.main.temp)+"°";
 
 mainDiv.appendChild(cardDiv);
 cardDiv.appendChild(cardBodyDiv);
@@ -1678,7 +1876,7 @@ let lowTemperatureDiv = document.createElement("div");
 lowTemperatureDiv.className = "row font3 lh-1";
 lowTemperatureDiv.style.fontSize = "30px";
 lowTemperatureDiv.style.marginLeft = "38%";
-lowTemperatureDiv.textContent = "45°";
+lowTemperatureDiv.textContent = Math.round(data2.main.temp_min)+"°";
 
 let middleColumnDiv = document.createElement("div");
 middleColumnDiv.className = "col";
@@ -1693,15 +1891,15 @@ rightColumnHighDiv.className = "col";
 let highRowDiv = document.createElement("div");
 highRowDiv.className = "row d-flex justify-content-end font1";
 highRowDiv.style.fontSize = "25px";
-highRowDiv.style.marginRight = "16%";
+highRowDiv.style.marginRight = "20%";
 highRowDiv.textContent = "HIGH:";
 
 let highTemperatureDiv = document.createElement("div");
 highTemperatureDiv.id = "day1High";
 highTemperatureDiv.className = "row d-flex justify-content-end font3 lh-1";
 highTemperatureDiv.style.fontSize = "30px";
-highTemperatureDiv.style.marginRight = "25%";
-highTemperatureDiv.textContent = "68°";
+highTemperatureDiv.style.marginRight = "30%";
+highTemperatureDiv.textContent = Math.round(data2.main.temp_max)+"°";
 
 secondRowDiv.appendChild(leftColumnLowDiv);
 leftColumnLowDiv.appendChild(lowRowDiv);
@@ -1720,5 +1918,6 @@ injectFavorite.appendChild(mainDiv);
 }
 // creating elements end
 
-CreatingElements();
-
+for(let i = 0; i<savedFavorites.length; i++){
+  CreatingElements(savedFavorites[i]);
+}
