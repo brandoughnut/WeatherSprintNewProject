@@ -150,7 +150,14 @@ if(changeBG){
 }
 }
 
-
+function formatTime(dateTime, timezone){
+  const options = {
+    hour: '2-digit',
+    timeZone: 'UTC',
+    hour12: false
+  };
+  return new Intl.DateTimeFormat('en-US', options).format(new Date((dateTime * 1000) + (timezone * 1000)));
+}
 
 
 
@@ -378,6 +385,8 @@ async function weatherAPI(latitude, longitude) {
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   );
   const data = await promise.json();
+
+  console.log(formatTime(data.dt, data.timezone));
   
   favoriteCity = data.name;
 
@@ -397,7 +406,7 @@ async function weatherAPI(latitude, longitude) {
   currentFeel.textContent = Math.round(data.main.feels_like) + "°";
   currentHumidity.textContent = Math.round(data.main.humidity) + "%";
 
-  if (t.getHours() >= 7 && t.getHours() <= 18) {
+  if (parseInt(formatTime(data.dt, data.timezone)) >= 7 && parseInt(formatTime(data.dt, data.timezone)) <= 18) {
     if (data.weather[0].description === "clear sky") {
       currentIcon.src = "./assets/01dd.png";
     } else if (data.weather[0].description === "few clouds") {
@@ -949,6 +958,8 @@ async function currentSearchAPI(latitude, longitude) {
   );
   const data = await promise.json();
 
+  console.log(parseInt(formatTime(data.dt, data.timezone)));
+
   currentTemperature.textContent = Math.round(data.main.temp) + "°";
   currentWeather.textContent = data.weather[0].description;
   currentHigh.textContent = Math.round(data.main.temp_max) + "°";
@@ -956,7 +967,7 @@ async function currentSearchAPI(latitude, longitude) {
   currentFeel.textContent = Math.round(data.main.feels_like) + "°";
   currentHumidity.textContent = Math.round(data.main.humidity) + "%";
 
-  if (t.getHours() >= 7 && t.getHours() <= 18) {
+  if (parseInt(formatTime(data.dt, data.timezone)) >= 7 && parseInt(formatTime(data.dt, data.timezone)) <= 18) {
     if (data.weather[0].description === "clear sky") {
       currentIcon.src = "./assets/01dd.png";
     } else if (data.weather[0].description === "few clouds") {
@@ -1792,7 +1803,7 @@ async function CreatingElements(cityName) {
 
   let imageLeftColumn = document.createElement("img");
 
-if (t.getHours() >= 7 && t.getHours() <= 18) {
+if (parseInt(formatTime(data2.dt, data2.timezone)) >= 7 && parseInt(formatTime(data2.dt, data2.timezone)) <= 18) {
   if (data2.weather[0].description === "clear sky") {
     imageLeftColumn.src = "../assets/01dd.png";
   } else if (data2.weather[0].description === "few clouds") {
