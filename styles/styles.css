@@ -80,6 +80,12 @@
     border: none;
 }
 
+.favoritesDayBox {
+    background-color: rgba(208, 200, 255, 0.9);
+    border-radius: 30px;
+    border: none;
+}
+
 .locationHeader {
     font-family: RoadRage;
     font-size: 100px;

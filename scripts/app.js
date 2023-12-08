@@ -10,6 +10,7 @@ let favoriteBtn = document.getElementById("favoriteBtn");
 let favoriteBtnColor = document.getElementById("favoriteBtnColor");
 let favorites = document.getElementById("favorites");
 let changeBG = document.getElementById("changeBG");
+let favoritesBoxes = document.getElementById("favoritesBoxes");
 
 // current forecast
 let location = document.getElementById("location");
@@ -135,9 +136,11 @@ if(changeBG){
   if(t.getHours() >= 7 && t.getHours() <= 18){
   changeBG.className = "mainBG";
   favorites.className = "locationHeader";
+  favoritesBoxes.className = "card fiveDayBox";
 }else{
   changeBG.className = "nightBG";
   favorites.className = "locationHeaderNight"
+  favoritesBoxes.className = "card favoritesDayBox";
 }
 }
 
@@ -196,7 +199,7 @@ if (d.getDate() === 1 || d.getDate() === 21 || d.getDate() === 31) {
 }
 // current date end
 }
-console.log(w.getDay());
+
 function dayName() {
   // 5 day forecast days start
   if (w.getDay() + 1 > 6) {
