@@ -1,5 +1,7 @@
 import { apiKey } from "./apikey.js";
 
+export {savedFavorites}
+
 let userInput = document.getElementById("userInput");
 let searchBtn = document.getElementById("searchBtn");
 let switchBG = document.getElementById("switchBG");
@@ -7,6 +9,7 @@ let switchBox = document.getElementById("switchBox");
 let favoriteBtn = document.getElementById("favoriteBtn");
 let favoriteBtnColor = document.getElementById("favoriteBtnColor");
 let favorites = document.getElementById("favorites");
+let changeBG = document.getElementById("changeBG");
 
 // current forecast
 let location = document.getElementById("location");
@@ -52,28 +55,34 @@ let favoriteCity;
 savedFavorites = JSON.parse(localStorage.getItem("favorited")) || [];
 
 console.log(savedFavorites);
-favoriteBtnColor.addEventListener("click", function () {
 
-  let locationIndex = savedFavorites.findIndex(function(loc) {
-      return loc === favoriteCity;
+
+if(favoriteBtnColor){
+  favoriteBtnColor.addEventListener("click", function () {
+
+    let locationIndex = savedFavorites.findIndex(function(loc) {
+        return loc === favoriteCity;
+    });
+    if (locationIndex !== -1) {
+        savedFavorites.splice(locationIndex, 1);
+        favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
+        favoriteBtnColor.className = "BtnFavorite";
+    } else {
+        savedFavorites.push(favoriteCity);
+        favoriteBtn.src = "./assets/favorited.png"
+        favoriteBtnColor.className = "BtnFavorite2";
+    }
+    console.log(savedFavorites);
+  
+    console.log(favoriteCity);
+  
+    localStorage.setItem("favorited", JSON.stringify(savedFavorites));
   });
-  if (locationIndex !== -1) {
-      savedFavorites.splice(locationIndex, 1);
-      favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
-      favoriteBtnColor.className = "BtnFavorite";
-  } else {
-      savedFavorites.push(favoriteCity);
-      favoriteBtn.src = "./assets/favorited.png"
-      favoriteBtnColor.className = "BtnFavorite2";
-  }
-  console.log(savedFavorites);
 
-  console.log(favoriteCity);
+}
 
-  localStorage.setItem("favorited", JSON.stringify(savedFavorites));
-});
-
-searchBtn.addEventListener("click", function (e) {
+if(searchBtn){
+  searchBtn.addEventListener("click", function (e) {
   locationName(userInput.value);
   console.log("User search: " + userInput.value);
   userInput.value = "";
@@ -88,6 +97,8 @@ searchBtn.addEventListener("click", function (e) {
   highTemp5 = 0;
   lowTemp5;
 });
+}
+
 
 
 // on load code
@@ -108,6 +119,7 @@ let lowTemp5;
 
 // current time
 const t = new Date();
+if(day1){
 if (t.getHours() >= 7 && t.getHours() <= 18) {
   switchBG.className = "mainBG";
   switchBox.className = "currentLocationBox row";
@@ -117,6 +129,19 @@ if (t.getHours() >= 7 && t.getHours() <= 18) {
   switchBox.className = "currentLocationNightBox row";
   location.className = "locationHeaderNight";
 }
+}
+
+if(changeBG){
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+  changeBG.className = "mainBG";
+  favorites.className = "locationHeader";
+}else{
+  changeBG.className = "nightBG";
+  favorites.className = "locationHeaderNight"
+}
+}
+
+
 
 // current weekday
 const days = [
@@ -152,9 +177,11 @@ let month = months[m.getMonth()];
 // current day
 const d = new Date();
 
+if(day1){
 currentTime();
 dayName();
 dateNumber();
+}
 
 function currentTime(){
 // current date start
@@ -169,17 +196,17 @@ if (d.getDate() === 1 || d.getDate() === 21 || d.getDate() === 31) {
 }
 // current date end
 }
-
+console.log(w.getDay());
 function dayName() {
   // 5 day forecast days start
   if (w.getDay() + 1 > 6) {
-    day1.textContent = days[w.getDay() - 7];
+    day1.textContent = days[w.getDay() - 6];
   } else {
     day1.textContent = days[w.getDay() + 1];
   }
 
   if (w.getDay() + 2 > 6) {
-    day2.textContent = days[w.getDay() - 6];
+    day2.textContent = days[w.getDay() - 5];
   } else {
     day2.textContent = days[w.getDay() + 2];
   }
@@ -322,8 +349,11 @@ function success(position) {
   lat = position.coords.latitude;
   console.log("Current lat: " + lat);
   console.log("Current lon: " + lon);
+  if(day1){
   weatherAPI(lat, lon);
   weather5DayAPI(lat, lon);
+  }
+  
 }
 
 function errorFunc(error) {
