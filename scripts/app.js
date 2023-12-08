@@ -1617,160 +1617,157 @@ async function CreatingElements(cityName) {
     
   let latitude = data[0].lat;
   let longitude = data[0].lon;
+
   const promise2 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`)
   const data2 = await promise2.json();
 
-let mainDiv = document.createElement("div");
-mainDiv.className = "col-3 d-flex justify-content-center";
-mainDiv.style.marginBottom = "4%";
+  let mainDiv = document.createElement("div");
+  mainDiv.className = "col-3 d-flex justify-content-center";
+  mainDiv.style.marginBottom = "4%";
 
-let cardDiv = document.createElement("div");
-cardDiv.id = "favoritesBoxes";
+  let cardDiv = document.createElement("div");
+  cardDiv.id = "favoritesBoxes";
 
-if(t.getHours() >= 7 && t.getHours() <= 18){
-  cardDiv.className = "card fiveDayBox";
-}else{
-  cardDiv.className = "card favoritesDayBox";
-}
-cardDiv.style.width = "325px";
-cardDiv.style.height = "348px";
+  if(t.getHours() >= 7 && t.getHours() <= 18){
+    cardDiv.className = "card fiveDayBox";
+  }else{
+    cardDiv.className = "card favoritesDayBox";
+  }
+  cardDiv.style.width = "325px";
+  cardDiv.style.height = "348px";
 
-let cardBodyDiv = document.createElement("div");
-cardBodyDiv.className = "card-body";
+  let cardBodyDiv = document.createElement("div");
+  cardBodyDiv.className = "card-body";
 
-let locationParagraph = document.createElement("p");
-locationParagraph.className = "font1 lh-1";
-locationParagraph.style.fontSize = "30px";
-locationParagraph.style.marginTop = "4%";
-locationParagraph.style.marginLeft = "3%";
-locationParagraph.style.marginRight = "20%";
-locationParagraph.style.height = "30px";
+  let locationParagraph = document.createElement("p");
+  locationParagraph.className = "font1 lh-1";
+  locationParagraph.style.fontSize = "30px";
+  locationParagraph.style.marginTop = "4%";
+  locationParagraph.style.marginLeft = "3%";
+  locationParagraph.style.marginRight = "20%";
+  locationParagraph.style.height = "30px";
 
-if (data[0].state === "Alabama") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", AL";
-} else if (data[0].state === "Alaska") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", AK";
-} else if (data[0].state === "Arizona") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", AZ";
-} else if (data[0].state === "Arkansas") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", AR";
-} else if (data[0].state === "California") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", CA";
-} else if (data[0].state === "Colorado") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", CO";
-} else if (data[0].state === "Conneticut") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", CT";
-} else if (data[0].state === "District of Columbia") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", DC";
-} else if (data[0].state === "Delaware") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", DE";
-} else if (data[0].state === "Florida") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", FL";
-} else if (data[0].state === "Georgia") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", GA";
-} else if (data[0].state === "Hawaii") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", HI";
-} else if (data[0].state === "Idaho") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", ID";
-} else if (data[0].state === "Illinois") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", IL";
-} else if (data[0].state === "Indiana") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", IN";
-} else if (data[0].state === "Iowa") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", IA";
-} else if (data[0].state === "Kansas") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", KS";
-} else if (data[0].state === "Kentucky") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", KY";
-} else if (data[0].state === "Louisiana") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", LA";
-} else if (data[0].state === "Maine") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", ME";
-} else if (data[0].state === "Maryland") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MD";
-} else if (data[0].state === "Massachusetts") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MA";
-} else if (data[0].state === "Michigan") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MI";
-} else if (data[0].state === "Minnesota") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MN";
-} else if (data[0].state === "Mississippi") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MS";
-} else if (data[0].state === "Missouri") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MO";
-} else if (data[0].state === "Montana") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", MT";
-} else if (data[0].state === "Nebraska") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NE";
-} else if (data[0].state === "Nevada") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NV";
-} else if (data[0].state === "New Hampshire") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NH";
-} else if (data[0].state === "New Jersey") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NJ";
-} else if (data[0].state === "New Mexico") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NM";
-} else if (data[0].state === "New York") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NY";
-} else if (data[0].state === "North Carolina") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", NC";
-} else if (data[0].state === "North Dakota") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", ND";
-} else if (data[0].state === "Ohio") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", OH";
-} else if (data[0].state === "Oklahoma") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", OK";
-} else if (data[0].state === "Oregon") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", OR";
-} else if (data[0].state === "Pennsylvania") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", PA";
-} else if (data[0].state === "Rhode Island") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", RI";
-} else if (data[0].state === "South Carolina") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", SC";
-} else if (data[0].state === "South Dakota") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", SD";
-} else if (data[0].state === "Tennessee") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", TN";
-} else if (data[0].state === "Texas") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", TX";
-} else if (data[0].state === "Utah") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", UT";
-} else if (data[0].state === "Vermont") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", VT";
-} else if (data[0].state === "Virginia") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", VA";
-} else if (data[0].state === "Washington") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", WA";
-} else if (data[0].state === "West Virginia") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", WV";
-} else if (data[0].state === "Wisconsin") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", WI";
-} else if (data[0].state === "Wyoming") {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", WY";
-} else {
-  locationParagraph.textContent = data[0].name.toUpperCase() + ", " + data[0].country;
-}
+  if (data[0].state === "Alabama") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", AL";
+  } else if (data[0].state === "Alaska") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", AK";
+  } else if (data[0].state === "Arizona") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", AZ";
+  } else if (data[0].state === "Arkansas") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", AR";
+  } else if (data[0].state === "California") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", CA";
+  } else if (data[0].state === "Colorado") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", CO";
+  } else if (data[0].state === "Conneticut") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", CT";
+  } else if (data[0].state === "District of Columbia") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", DC";
+  } else if (data[0].state === "Delaware") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", DE";
+  } else if (data[0].state === "Florida") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", FL";
+  } else if (data[0].state === "Georgia") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", GA";
+  } else if (data[0].state === "Hawaii") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", HI";
+  } else if (data[0].state === "Idaho") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", ID";
+  } else if (data[0].state === "Illinois") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", IL";
+  } else if (data[0].state === "Indiana") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", IN";
+  } else if (data[0].state === "Iowa") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", IA";
+  } else if (data[0].state === "Kansas") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", KS";
+  } else if (data[0].state === "Kentucky") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", KY";
+  } else if (data[0].state === "Louisiana") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", LA";
+  } else if (data[0].state === "Maine") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", ME";
+  } else if (data[0].state === "Maryland") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MD";
+  } else if (data[0].state === "Massachusetts") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MA";
+  } else if (data[0].state === "Michigan") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MI";
+  } else if (data[0].state === "Minnesota") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MN";
+  } else if (data[0].state === "Mississippi") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MS";
+  } else if (data[0].state === "Missouri") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MO";
+  } else if (data[0].state === "Montana") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", MT";
+  } else if (data[0].state === "Nebraska") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NE";
+  } else if (data[0].state === "Nevada") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NV";
+  } else if (data[0].state === "New Hampshire") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NH";
+  } else if (data[0].state === "New Jersey") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NJ";
+  } else if (data[0].state === "New Mexico") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NM";
+  } else if (data[0].state === "New York") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NY";
+  } else if (data[0].state === "North Carolina") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", NC";
+  } else if (data[0].state === "North Dakota") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", ND";
+  } else if (data[0].state === "Ohio") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", OH";
+  } else if (data[0].state === "Oklahoma") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", OK";
+  } else if (data[0].state === "Oregon") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", OR";
+  } else if (data[0].state === "Pennsylvania") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", PA";
+  } else if (data[0].state === "Rhode Island") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", RI";
+  } else if (data[0].state === "South Carolina") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", SC";
+  } else if (data[0].state === "South Dakota") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", SD";
+  } else if (data[0].state === "Tennessee") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", TN";
+  } else if (data[0].state === "Texas") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", TX";
+  } else if (data[0].state === "Utah") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", UT";
+  } else if (data[0].state === "Vermont") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", VT";
+  } else if (data[0].state === "Virginia") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", VA";
+  } else if (data[0].state === "Washington") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", WA";
+  } else if (data[0].state === "West Virginia") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", WV";
+  } else if (data[0].state === "Wisconsin") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", WI";
+  } else if (data[0].state === "Wyoming") {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", WY";
+  } else {
+    locationParagraph.textContent = data[0].name.toUpperCase() + ", " + data[0].country;
+  }
 
-let deleteImage = document.createElement("img");
-deleteImage.style.position = "absolute";
-deleteImage.style.top = "18px";
-deleteImage.style.right = "14px";
-deleteImage.src = "../assets/delete.png";
-deleteImage.alt = "delete button";
+  let deleteImage = document.createElement("img");
+  deleteImage.style.position = "absolute";
+  deleteImage.style.top = "18px";
+  deleteImage.style.right = "14px";
+  deleteImage.src = "../assets/delete.png";
+  deleteImage.alt = "delete button";
 
-deleteImage.addEventListener("click", function(e) {
+  let firstRowDiv = document.createElement("div");
+  firstRowDiv.className = "row";
 
-})
+  let leftColumnDiv = document.createElement("div");
+  leftColumnDiv.className = "col-6 d-flex justify-content-start";
+  leftColumnDiv.style.height = "170px";
 
-let firstRowDiv = document.createElement("div");
-firstRowDiv.className = "row";
-
-let leftColumnDiv = document.createElement("div");
-leftColumnDiv.className = "col-6 d-flex justify-content-start";
-leftColumnDiv.style.height = "170px";
-
-let imageLeftColumn = document.createElement("img");
+  let imageLeftColumn = document.createElement("img");
 
 if (t.getHours() >= 7 && t.getHours() <= 18) {
   if (data.weather[0].description === "clear sky") {
@@ -1842,75 +1839,75 @@ if (t.getHours() >= 7 && t.getHours() <= 18) {
   }
 }
 
-imageLeftColumn.alt = "favorite weather icon";
+  imageLeftColumn.alt = "favorite weather icon";
 
-let rightColumnDiv = document.createElement("div");
-rightColumnDiv.className = "col-6 currentTempFont g-0";
-rightColumnDiv.style.fontSize = "60px";
-rightColumnDiv.style.marginTop = "18%";
-rightColumnDiv.style.paddingLeft = "3%";
-rightColumnDiv.textContent = Math.round(data2.main.temp)+"°";
+  let rightColumnDiv = document.createElement("div");
+  rightColumnDiv.className = "col-6 currentTempFont g-0";
+  rightColumnDiv.style.fontSize = "60px";
+  rightColumnDiv.style.marginTop = "18%";
+  rightColumnDiv.style.paddingLeft = "3%";
+  rightColumnDiv.textContent = Math.round(data2.main.temp)+"°";
 
-mainDiv.appendChild(cardDiv);
-cardDiv.appendChild(cardBodyDiv);
-cardBodyDiv.appendChild(locationParagraph);
-cardBodyDiv.appendChild(deleteImage);
-cardBodyDiv.appendChild(firstRowDiv);
-firstRowDiv.appendChild(leftColumnDiv);
-leftColumnDiv.appendChild(imageLeftColumn);
-firstRowDiv.appendChild(rightColumnDiv);
+  mainDiv.appendChild(cardDiv);
+  cardDiv.appendChild(cardBodyDiv);
+  cardBodyDiv.appendChild(locationParagraph);
+  cardBodyDiv.appendChild(deleteImage);
+  cardBodyDiv.appendChild(firstRowDiv);
+  firstRowDiv.appendChild(leftColumnDiv);
+  leftColumnDiv.appendChild(imageLeftColumn);
+  firstRowDiv.appendChild(rightColumnDiv);
 
-let secondRowDiv = document.createElement("div");
-secondRowDiv.className = "row";
+  let secondRowDiv = document.createElement("div");
+  secondRowDiv.className = "row";
 
-let leftColumnLowDiv = document.createElement("div");
-leftColumnLowDiv.className = "col";
+  let leftColumnLowDiv = document.createElement("div");
+  leftColumnLowDiv.className = "col";
 
-let lowRowDiv = document.createElement("div");
-lowRowDiv.className = "row font1";
-lowRowDiv.style.fontSize = "25px";
-lowRowDiv.style.marginLeft = "40%";
-lowRowDiv.textContent = "LOW:";
+  let lowRowDiv = document.createElement("div");
+  lowRowDiv.className = "row font1";
+  lowRowDiv.style.fontSize = "25px";
+  lowRowDiv.style.marginLeft = "40%";
+  lowRowDiv.textContent = "LOW:";
 
-let lowTemperatureDiv = document.createElement("div");
-lowTemperatureDiv.className = "row font3 lh-1";
-lowTemperatureDiv.style.fontSize = "30px";
-lowTemperatureDiv.style.marginLeft = "38%";
-lowTemperatureDiv.textContent = Math.round(data2.main.temp_min)+"°";
+  let lowTemperatureDiv = document.createElement("div");
+  lowTemperatureDiv.className = "row font3 lh-1";
+  lowTemperatureDiv.style.fontSize = "30px";
+  lowTemperatureDiv.style.marginLeft = "38%";
+  lowTemperatureDiv.textContent = Math.round(data2.main.temp_min)+"°";
 
-let middleColumnDiv = document.createElement("div");
-middleColumnDiv.className = "col";
+  let middleColumnDiv = document.createElement("div");
+  middleColumnDiv.className = "col";
 
-let temperatureDiv = document.createElement("div");
-temperatureDiv.className = "temperature";
-temperatureDiv.style.marginTop = "47%";
+  let temperatureDiv = document.createElement("div");
+  temperatureDiv.className = "temperature";
+  temperatureDiv.style.marginTop = "47%";
 
-let rightColumnHighDiv = document.createElement("div");
-rightColumnHighDiv.className = "col";
+  let rightColumnHighDiv = document.createElement("div");
+  rightColumnHighDiv.className = "col";
 
-let highRowDiv = document.createElement("div");
-highRowDiv.className = "row d-flex justify-content-end font1";
-highRowDiv.style.fontSize = "25px";
-highRowDiv.style.marginRight = "20%";
-highRowDiv.textContent = "HIGH:";
+  let highRowDiv = document.createElement("div");
+  highRowDiv.className = "row d-flex justify-content-end font1";
+  highRowDiv.style.fontSize = "25px";
+  highRowDiv.style.marginRight = "20%";
+  highRowDiv.textContent = "HIGH:";
 
-let highTemperatureDiv = document.createElement("div");
-highTemperatureDiv.id = "day1High";
-highTemperatureDiv.className = "row d-flex justify-content-end font3 lh-1";
-highTemperatureDiv.style.fontSize = "30px";
-highTemperatureDiv.style.marginRight = "30%";
-highTemperatureDiv.textContent = Math.round(data2.main.temp_max)+"°";
+  let highTemperatureDiv = document.createElement("div");
+  highTemperatureDiv.id = "day1High";
+  highTemperatureDiv.className = "row d-flex justify-content-end font3 lh-1";
+  highTemperatureDiv.style.fontSize = "30px";
+  highTemperatureDiv.style.marginRight = "30%";
+  highTemperatureDiv.textContent = Math.round(data2.main.temp_max)+"°";
 
-secondRowDiv.appendChild(leftColumnLowDiv);
-leftColumnLowDiv.appendChild(lowRowDiv);
-leftColumnLowDiv.appendChild(lowTemperatureDiv);
-secondRowDiv.appendChild(middleColumnDiv);
-middleColumnDiv.appendChild(temperatureDiv);
-secondRowDiv.appendChild(rightColumnHighDiv);
-rightColumnHighDiv.appendChild(highRowDiv);
-rightColumnHighDiv.appendChild(highTemperatureDiv);
+  secondRowDiv.appendChild(leftColumnLowDiv);
+  leftColumnLowDiv.appendChild(lowRowDiv);
+  leftColumnLowDiv.appendChild(lowTemperatureDiv);
+  secondRowDiv.appendChild(middleColumnDiv);
+  middleColumnDiv.appendChild(temperatureDiv);
+  secondRowDiv.appendChild(rightColumnHighDiv);
+  rightColumnHighDiv.appendChild(highRowDiv);
+  rightColumnHighDiv.appendChild(highTemperatureDiv);
 
-cardBodyDiv.appendChild(secondRowDiv);
+  cardBodyDiv.appendChild(secondRowDiv);
 
 if(favorites){
 injectFavorite.appendChild(mainDiv);
@@ -1920,4 +1917,6 @@ injectFavorite.appendChild(mainDiv);
 
 for(let i = 0; i<savedFavorites.length; i++){
   CreatingElements(savedFavorites[i]);
+
+  
 }
