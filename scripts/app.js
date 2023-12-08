@@ -10,7 +10,8 @@ let favoriteBtn = document.getElementById("favoriteBtn");
 let favoriteBtnColor = document.getElementById("favoriteBtnColor");
 let favorites = document.getElementById("favorites");
 let changeBG = document.getElementById("changeBG");
-let favoritesBoxes = document.getElementById("favoritesBoxes");
+// let favoritesBoxes = document.getElementById("favoritesBoxes");
+let injectFavorite = document.getElementById("injectFavorite");
 
 // current forecast
 let location = document.getElementById("location");
@@ -136,11 +137,11 @@ if(changeBG){
   if(t.getHours() >= 7 && t.getHours() <= 18){
   changeBG.className = "mainBG";
   favorites.className = "locationHeader";
-  favoritesBoxes.className = "card fiveDayBox";
+  // favoritesBoxes.className = "card fiveDayBox";
 }else{
   changeBG.className = "nightBG";
   favorites.className = "locationHeaderNight"
-  favoritesBoxes.className = "card favoritesDayBox";
+  // favoritesBoxes.className = "card favoritesDayBox";
 }
 }
 
@@ -1600,3 +1601,123 @@ async function locationName(input) {
 }
 
 // end of search code
+
+// creating elements
+function CreatingElements() {
+let mainDiv = document.createElement("div");
+mainDiv.className = "col-3 d-flex justify-content-center";
+mainDiv.style.marginBottom = "4%";
+
+let cardDiv = document.createElement("div");
+cardDiv.id = "favoritesBoxes";
+cardDiv.className = "card fiveDayBox";
+cardDiv.style.width = "325px";
+cardDiv.style.height = "348px";
+
+let cardBodyDiv = document.createElement("div");
+cardBodyDiv.className = "card-body";
+
+let locationParagraph = document.createElement("p");
+locationParagraph.className = "font1 lh-1";
+locationParagraph.style.fontSize = "30px";
+locationParagraph.style.marginTop = "4%";
+locationParagraph.style.marginLeft = "3%";
+locationParagraph.style.marginRight = "20%";
+locationParagraph.textContent = "SAN JOSE, CA";
+
+let deleteImage = document.createElement("img");
+deleteImage.style.position = "absolute";
+deleteImage.style.top = "18px";
+deleteImage.style.right = "14px";
+deleteImage.src = "../assets/delete.png";
+deleteImage.alt = "";
+
+deleteImage.addEventListener("click", function(e) {
+  
+})
+
+let firstRowDiv = document.createElement("div");
+firstRowDiv.className = "row";
+
+let leftColumnDiv = document.createElement("div");
+leftColumnDiv.className = "col-6 d-flex justify-content-start";
+leftColumnDiv.style.height = "170px";
+
+let imageLeftColumn = document.createElement("img");
+imageLeftColumn.src = "../assets/01nn.png";
+imageLeftColumn.alt = "";
+
+let rightColumnDiv = document.createElement("div");
+rightColumnDiv.className = "col-6 currentTempFont";
+rightColumnDiv.style.fontSize = "60px";
+rightColumnDiv.style.marginTop = "18%";
+rightColumnDiv.textContent = "42°";
+
+mainDiv.appendChild(cardDiv);
+cardDiv.appendChild(cardBodyDiv);
+cardBodyDiv.appendChild(locationParagraph);
+cardBodyDiv.appendChild(deleteImage);
+cardBodyDiv.appendChild(firstRowDiv);
+firstRowDiv.appendChild(leftColumnDiv);
+leftColumnDiv.appendChild(imageLeftColumn);
+firstRowDiv.appendChild(rightColumnDiv);
+
+let secondRowDiv = document.createElement("div");
+secondRowDiv.className = "row";
+
+let leftColumnLowDiv = document.createElement("div");
+leftColumnLowDiv.className = "col";
+
+let lowRowDiv = document.createElement("div");
+lowRowDiv.className = "row font1";
+lowRowDiv.style.fontSize = "25px";
+lowRowDiv.style.marginLeft = "40%";
+lowRowDiv.textContent = "LOW:";
+
+let lowTemperatureDiv = document.createElement("div");
+lowTemperatureDiv.className = "row font3 lh-1";
+lowTemperatureDiv.style.fontSize = "30px";
+lowTemperatureDiv.style.marginLeft = "38%";
+lowTemperatureDiv.textContent = "45°";
+
+let middleColumnDiv = document.createElement("div");
+middleColumnDiv.className = "col";
+
+let temperatureDiv = document.createElement("div");
+temperatureDiv.className = "temperature";
+temperatureDiv.style.marginTop = "47%";
+
+let rightColumnHighDiv = document.createElement("div");
+rightColumnHighDiv.className = "col";
+
+let highRowDiv = document.createElement("div");
+highRowDiv.className = "row d-flex justify-content-end font1";
+highRowDiv.style.fontSize = "25px";
+highRowDiv.style.marginRight = "16%";
+highRowDiv.textContent = "HIGH:";
+
+let highTemperatureDiv = document.createElement("div");
+highTemperatureDiv.id = "day1High";
+highTemperatureDiv.className = "row d-flex justify-content-end font3 lh-1";
+highTemperatureDiv.style.fontSize = "30px";
+highTemperatureDiv.style.marginRight = "25%";
+highTemperatureDiv.textContent = "68°";
+
+secondRowDiv.appendChild(leftColumnLowDiv);
+leftColumnLowDiv.appendChild(lowRowDiv);
+leftColumnLowDiv.appendChild(lowTemperatureDiv);
+secondRowDiv.appendChild(middleColumnDiv);
+middleColumnDiv.appendChild(temperatureDiv);
+secondRowDiv.appendChild(rightColumnHighDiv);
+rightColumnHighDiv.appendChild(highRowDiv);
+rightColumnHighDiv.appendChild(highTemperatureDiv);
+
+cardBodyDiv.appendChild(secondRowDiv);
+
+if(favorites){
+injectFavorite.appendChild(mainDiv);
+}
+}
+// creating elements end
+
+CreatingElements();
