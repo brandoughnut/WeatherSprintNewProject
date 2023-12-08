@@ -1760,6 +1760,9 @@ async function CreatingElements(cityName) {
   deleteImage.src = "../assets/delete.png";
   deleteImage.alt = "delete button";
 
+  deleteImage.setAttribute("id", "removeBtn");
+
+
   let firstRowDiv = document.createElement("div");
   firstRowDiv.className = "row";
 
