@@ -6,6 +6,7 @@ let switchBG = document.getElementById("switchBG");
 let switchBox = document.getElementById("switchBox");
 let favoriteBtn = document.getElementById("favoriteBtn");
 let favoriteBtnColor = document.getElementById("favoriteBtnColor");
+let favorites = document.getElementById("favorites");
 
 // current forecast
 let location = document.getElementById("location");
@@ -45,29 +46,36 @@ let day3High = document.getElementById("day3High");
 let day4High = document.getElementById("day4High");
 let day5High = document.getElementById("day5High");
 
-let favorites = [];
+let savedFavorites = [];
+let favoriteCity;
 
-console.log(favorites);
+savedFavorites = JSON.parse(localStorage.getItem("favorited")) || [];
 
-function addToFavorite(currentLocation) {
-  if(favorites.includes(currentLocation)){
-    favorites.splice(currentLocation, 1);
-    favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png";
-    favoriteBtnColor.className = "BtnFavorite";
-  }else{
-    favorites.push(currentLocation);
-    favoriteBtn.src = "./assets/favorited.png";
-    favoriteBtnColor.className = "BtnFavorite2";
+console.log(savedFavorites);
+favoriteBtnColor.addEventListener("click", function () {
+
+  let locationIndex = savedFavorites.findIndex(function(loc) {
+      return loc === favoriteCity;
+  });
+  if (locationIndex !== -1) {
+      savedFavorites.splice(locationIndex, 1);
+      favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
+      favoriteBtnColor.className = "BtnFavorite";
+  } else {
+      savedFavorites.push(favoriteCity);
+      favoriteBtn.src = "./assets/favorited.png"
+      favoriteBtnColor.className = "BtnFavorite2";
   }
-}
+  console.log(savedFavorites);
 
-function removeFavorite(){
-  favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png";
-}
+  console.log(favoriteCity);
+
+  localStorage.setItem("favorited", JSON.stringify(savedFavorites));
+});
 
 searchBtn.addEventListener("click", function (e) {
   locationName(userInput.value);
-  console.log("User search: "+userInput.value);
+  console.log("User search: " + userInput.value);
   userInput.value = "";
   highTemp1 = 0;
   lowTemp1;
@@ -80,6 +88,7 @@ searchBtn.addEventListener("click", function (e) {
   highTemp5 = 0;
   lowTemp5;
 });
+
 
 // on load code
 
@@ -99,14 +108,14 @@ let lowTemp5;
 
 // current time
 const t = new Date();
-if(t.getHours() >= 7 && t.getHours() <= 18){
+if (t.getHours() >= 7 && t.getHours() <= 18) {
   switchBG.className = "mainBG";
   switchBox.className = "currentLocationBox row";
   location.className = "locationHeader";
-}else{
+} else {
   switchBG.className = "nightBG";
-  switchBox.className = "currentLocationNightBox row"
-  location.className = "locationHeaderNight"
+  switchBox.className = "currentLocationNightBox row";
+  location.className = "locationHeaderNight";
 }
 
 // current weekday
@@ -140,176 +149,212 @@ const months = [
 const m = new Date();
 let month = months[m.getMonth()];
 
-// current day start
+// current day
 const d = new Date();
-d.getDate();
 
-if(d.getDate() === 1 || d.getDate() === 21 || d.getDate() === 31){
-  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'st';
-}else if(d.getDate() === 2 || d.getDate() === 22){
-  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'nd';
-}else if(d.getDate() === 3 || d.getDate() === 23){
-  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'rd';
-}else{
-  currentDate.textContent = weekDay + ', ' + month + ' ' + d.getDate()+'th';
+currentTime();
+dayName();
+dateNumber();
+
+function currentTime(){
+// current date start
+if (d.getDate() === 1 || d.getDate() === 21 || d.getDate() === 31) {
+  currentDate.textContent = weekDay + ", " + month + " " + d.getDate() + "st";
+} else if (d.getDate() === 2 || d.getDate() === 22) {
+  currentDate.textContent = weekDay + ", " + month + " " + d.getDate() + "nd";
+} else if (d.getDate() === 3 || d.getDate() === 23) {
+  currentDate.textContent = weekDay + ", " + month + " " + d.getDate() + "rd";
+} else {
+  currentDate.textContent = weekDay + ", " + month + " " + d.getDate() + "th";
 }
-// current day end
-
-// 5 day forecast days start
-if(w.getDay()+1 > 6) {
-  day1.textContent = days[w.getDay()-7];
-}else{
-  day1.textContent = days[w.getDay()+1];
-}
-
-if(w.getDay()+2 > 6){
-  day2.textContent = days[w.getDay()-6];
-}else{
-  day2.textContent = days[w.getDay()+2];
+// current date end
 }
 
-if(w.getDay()+3 > 6){
-  day3.textContent = days[w.getDay()-4];
-}else{
-  day3.textContent = days[w.getDay()+3];
+function dayName() {
+  // 5 day forecast days start
+  if (w.getDay() + 1 > 6) {
+    day1.textContent = days[w.getDay() - 7];
+  } else {
+    day1.textContent = days[w.getDay() + 1];
+  }
+
+  if (w.getDay() + 2 > 6) {
+    day2.textContent = days[w.getDay() - 6];
+  } else {
+    day2.textContent = days[w.getDay() + 2];
+  }
+
+  if (w.getDay() + 3 > 6) {
+    day3.textContent = days[w.getDay() - 4];
+  } else {
+    day3.textContent = days[w.getDay() + 3];
+  }
+
+  if (w.getDay() + 4 > 6) {
+    day4.textContent = days[w.getDay() - 3];
+  } else {
+    day4.textContent = days[w.getDay() + 4];
+  }
+
+  if (w.getDay() + 5 > 6) {
+    day5.textContent = days[w.getDay() - 2];
+  } else {
+    day5.textContent = days[w.getDay() + 5];
+  }
+  // 5 day forecast days end
 }
 
-if(w.getDay()+4 > 6){
-  day4.textContent = days[w.getDay()-3];
-}else{
-  day4.textContent = days[w.getDay()+4];
-}
-
-if(w.getDay()+5 > 6){
-  day5.textContent = days[w.getDay()-2];
-
-}else{
-  day5.textContent = days[w.getDay()+5];
-}
-// 5 day forecast days end
-
+function dateNumber(){
 // 5 day forecast date start
-if(d.getDate()+1 > 31) {
-  date1.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30)+'th';
-  if(m.getMonth()+1 > 12){
-    date1.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30)+'th';
+if (d.getDate() + 1 > 31) {
+  date1.textContent =
+    months[m.getMonth() + 1] + " " + (d.getDate() - 30) + "th";
+  if (m.getMonth() + 1 > 12) {
+    date1.textContent =
+      months[m.getMonth() - 11] + " " + (d.getDate() - 30) + "th";
   }
-}else{
-  if(d.getDate()+1 === 1 || d.getDate()+1 === 21 || d.getDate()+1 === 31){
-    date1.textContent = month + ' '+(d.getDate()+1)+'st';
-  }else if(d.getDate()+1 === 2 || d.getDate()+1 === 22){
-    date1.textContent = month + ' '+(d.getDate()+1)+'nd';
-  }else if(d.getDate()+1 === 3 || d.getDate()+1 === 23){
-    date1.textContent = month + ' '+(d.getDate()+1)+'rd';
-  }else{
-    date1.textContent = month + ' '+(d.getDate()+1)+'th';
-  }
-}
-
-if(d.getDate()+2 > 31) {
-  date2.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
-  if(m.getMonth()+1 > 12){
-    date2.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
-  }
-}else{
-  if(d.getDate()+2 === 1 || d.getDate()+2 === 21 || d.getDate()+2 === 31){
-    date2.textContent = month + ' '+(d.getDate()+2)+'st';
-  }else if(d.getDate()+2 === 2 || d.getDate()+2 === 22){
-    date2.textContent = month + ' '+(d.getDate()+2)+'nd';
-  }else if(d.getDate()+2 === 3 || d.getDate()+2 === 23){
-    date2.textContent = month + ' '+(d.getDate()+2)+'rd';
-  }else{
-    date2.textContent = month + ' '+(d.getDate()+2)+'th';
+} else {
+  if (
+    d.getDate() + 1 === 1 ||
+    d.getDate() + 1 === 21 ||
+    d.getDate() + 1 === 31
+  ) {
+    date1.textContent = month + " " + (d.getDate() + 1) + "st";
+  } else if (d.getDate() + 1 === 2 || d.getDate() + 1 === 22) {
+    date1.textContent = month + " " + (d.getDate() + 1) + "nd";
+  } else if (d.getDate() + 1 === 3 || d.getDate() + 1 === 23) {
+    date1.textContent = month + " " + (d.getDate() + 1) + "rd";
+  } else {
+    date1.textContent = month + " " + (d.getDate() + 1) + "th";
   }
 }
 
-if(d.getDate()+3 > 31) {
-  date3.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
-  if(m.getMonth()+1 > 12){
-    date3.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
+if (d.getDate() + 2 > 31) {
+  date2.textContent = months[m.getMonth() + 1] + " " + (d.getDate() - 30);
+  if (m.getMonth() + 1 > 12) {
+    date2.textContent = months[m.getMonth() - 11] + " " + (d.getDate() - 30);
   }
-}else{
-  if(d.getDate()+3 === 1 || d.getDate()+3 === 21 || d.getDate()+3 === 31){
-    date3.textContent = month + ' '+(d.getDate()+3)+'st';
-  }else if(d.getDate()+3 === 2 || d.getDate()+3 === 22){
-    date3.textContent = month + ' '+(d.getDate()+3)+'nd';
-  }else if(d.getDate()+3 === 3 || d.getDate()+3 === 23){
-    date3.textContent = month + ' '+(d.getDate()+3)+'rd';
-  }else{
-    date3.textContent = month + ' '+(d.getDate()+3)+'th';
-  }
-}
-
-if(d.getDate()+4 > 31) {
-  date4.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
-  if(m.getMonth()+1 > 12){
-    date4.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
-  }
-}else{
-  if(d.getDate()+4 === 1 || d.getDate()+4 === 21 || d.getDate()+4 === 31){
-    date4.textContent = month + ' '+(d.getDate()+4)+'st';
-  }else if(d.getDate()+4 === 2 || d.getDate()+4 === 22){
-    date4.textContent = month + ' '+(d.getDate()+4)+'nd';
-  }else if(d.getDate()+4 === 3 || d.getDate()+4 === 23){
-    date4.textContent = month + ' '+(d.getDate()+4)+'rd';
-  }else{
-    date4.textContent = month + ' '+(d.getDate()+4)+'th';
+} else {
+  if (
+    d.getDate() + 2 === 1 ||
+    d.getDate() + 2 === 21 ||
+    d.getDate() + 2 === 31
+  ) {
+    date2.textContent = month + " " + (d.getDate() + 2) + "st";
+  } else if (d.getDate() + 2 === 2 || d.getDate() + 2 === 22) {
+    date2.textContent = month + " " + (d.getDate() + 2) + "nd";
+  } else if (d.getDate() + 2 === 3 || d.getDate() + 2 === 23) {
+    date2.textContent = month + " " + (d.getDate() + 2) + "rd";
+  } else {
+    date2.textContent = month + " " + (d.getDate() + 2) + "th";
   }
 }
 
-if(d.getDate()+5 > 31) {
-  date5.textContent = months[m.getMonth()+1] + ' '+(d.getDate()-30);
-  if(m.getMonth()+1 > 12){
-    date5.textContent = months[m.getMonth()-11] + ' '+(d.getDate()-30);
+if (d.getDate() + 3 > 31) {
+  date3.textContent = months[m.getMonth() + 1] + " " + (d.getDate() - 30);
+  if (m.getMonth() + 1 > 12) {
+    date3.textContent = months[m.getMonth() - 11] + " " + (d.getDate() - 30);
   }
-}else{
-  if(d.getDate()+5 === 1 || d.getDate()+5 === 21 || d.getDate()+5 === 31){
-    date5.textContent = month + ' '+(d.getDate()+5)+'st';
-  }else if(d.getDate()+5 === 2 || d.getDate()+5 === 22){
-    date5.textContent = month + ' '+(d.getDate()+5)+'nd';
-  }else if(d.getDate()+5 === 3 || d.getDate()+5 === 23){
-    date5.textContent = month + ' '+(d.getDate()+5)+'rd';
-  }else{
-    date5.textContent = month + ' '+(d.getDate()+5)+'th';
+} else {
+  if (
+    d.getDate() + 3 === 1 ||
+    d.getDate() + 3 === 21 ||
+    d.getDate() + 3 === 31
+  ) {
+    date3.textContent = month + " " + (d.getDate() + 3) + "st";
+  } else if (d.getDate() + 3 === 2 || d.getDate() + 3 === 22) {
+    date3.textContent = month + " " + (d.getDate() + 3) + "nd";
+  } else if (d.getDate() + 3 === 3 || d.getDate() + 3 === 23) {
+    date3.textContent = month + " " + (d.getDate() + 3) + "rd";
+  } else {
+    date3.textContent = month + " " + (d.getDate() + 3) + "th";
+  }
+}
+
+if (d.getDate() + 4 > 31) {
+  date4.textContent = months[m.getMonth() + 1] + " " + (d.getDate() - 30);
+  if (m.getMonth() + 1 > 12) {
+    date4.textContent = months[m.getMonth() - 11] + " " + (d.getDate() - 30);
+  }
+} else {
+  if (
+    d.getDate() + 4 === 1 ||
+    d.getDate() + 4 === 21 ||
+    d.getDate() + 4 === 31
+  ) {
+    date4.textContent = month + " " + (d.getDate() + 4) + "st";
+  } else if (d.getDate() + 4 === 2 || d.getDate() + 4 === 22) {
+    date4.textContent = month + " " + (d.getDate() + 4) + "nd";
+  } else if (d.getDate() + 4 === 3 || d.getDate() + 4 === 23) {
+    date4.textContent = month + " " + (d.getDate() + 4) + "rd";
+  } else {
+    date4.textContent = month + " " + (d.getDate() + 4) + "th";
+  }
+}
+
+if (d.getDate() + 5 > 31) {
+  date5.textContent = months[m.getMonth() + 1] + " " + (d.getDate() - 30);
+  if (m.getMonth() + 1 > 12) {
+    date5.textContent = months[m.getMonth() - 11] + " " + (d.getDate() - 30);
+  }
+} else {
+  if (
+    d.getDate() + 5 === 1 ||
+    d.getDate() + 5 === 21 ||
+    d.getDate() + 5 === 31
+  ) {
+    date5.textContent = month + " " + (d.getDate() + 5) + "st";
+  } else if (d.getDate() + 5 === 2 || d.getDate() + 5 === 22) {
+    date5.textContent = month + " " + (d.getDate() + 5) + "nd";
+  } else if (d.getDate() + 5 === 3 || d.getDate() + 5 === 23) {
+    date5.textContent = month + " " + (d.getDate() + 5) + "rd";
+  } else {
+    date5.textContent = month + " " + (d.getDate() + 5) + "th";
   }
 }
 // 5 day forecast date end
+}
 
 navigator.geolocation.getCurrentPosition(success, errorFunc);
 
 function success(position) {
   lon = position.coords.longitude;
   lat = position.coords.latitude;
-  console.log("Current lat: "+lat);
-  console.log("Current lon: "+lon);
+  console.log("Current lat: " + lat);
+  console.log("Current lon: " + lon);
   weatherAPI(lat, lon);
   weather5DayAPI(lat, lon);
 }
 
 function errorFunc(error) {
-  alert('Please turn on your location');
+  alert("Please turn on your location");
 }
 
 async function weatherAPI(latitude, longitude) {
-
   const promise = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   );
   const data = await promise.json();
   
-  favoriteBtn.addEventListener("click", function(e) {
-    addToFavorite(data.name);
-  });
+  favoriteCity = data.name;
 
-  console.log("Current location: "+data.name);
+  if(savedFavorites.includes(favoriteCity)){
+    favoriteBtn.src = "./assets/favorited.png"
+    favoriteBtnColor.className = "BtnFavorite2";
+  }else{
+    favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
+    favoriteBtnColor.className = "BtnFavorite";
+  }
+
+  console.log("Current location: " + data.name);
   currentTemperature.textContent = Math.round(data.main.temp) + "°";
   currentWeather.textContent = data.weather[0].description;
   currentHigh.textContent = Math.round(data.main.temp_max) + "°";
   currentLow.textContent = Math.round(data.main.temp_min) + "°";
   currentFeel.textContent = Math.round(data.main.feels_like) + "°";
   currentHumidity.textContent = Math.round(data.main.humidity) + "%";
-  
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.weather[0].description === "clear sky") {
       currentIcon.src = "./assets/01dd.png";
     } else if (data.weather[0].description === "few clouds") {
@@ -343,7 +388,7 @@ async function weatherAPI(latitude, longitude) {
     ) {
       currentIcon.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.weather[0].description === "clear sky") {
       currentIcon.src = "./assets/01nn.png";
     } else if (data.weather[0].description === "few clouds") {
@@ -396,7 +441,7 @@ async function weather5DayAPI(latitude, longitude) {
   const data = await promise.json();
 
   // weather start
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[0].weather[0].description === "clear sky") {
       weather1.src = "./assets/01dd.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
@@ -430,7 +475,7 @@ async function weather5DayAPI(latitude, longitude) {
     ) {
       weather1.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[0].weather[0].description === "clear sky") {
       weather1.src = "./assets/01nn.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
@@ -466,7 +511,7 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[8].weather[0].description === "clear sky") {
       weather2.src = "./assets/01dd.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
@@ -500,7 +545,7 @@ async function weather5DayAPI(latitude, longitude) {
     ) {
       weather2.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[8].weather[0].description === "clear sky") {
       weather2.src = "./assets/01nn.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
@@ -536,7 +581,7 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[16].weather[0].description === "clear sky") {
       weather3.src = "./assets/01dd.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
@@ -570,7 +615,7 @@ async function weather5DayAPI(latitude, longitude) {
     ) {
       weather3.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[16].weather[0].description === "clear sky") {
       weather3.src = "./assets/01nn.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
@@ -606,7 +651,7 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[24].weather[0].description === "clear sky") {
       weather4.src = "./assets/01dd.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
@@ -640,7 +685,7 @@ async function weather5DayAPI(latitude, longitude) {
     ) {
       weather4.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[24].weather[0].description === "clear sky") {
       weather4.src = "./assets/01nn.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
@@ -676,7 +721,7 @@ async function weather5DayAPI(latitude, longitude) {
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[32].weather[0].description === "clear sky") {
       weather5.src = "./assets/01dd.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
@@ -710,7 +755,7 @@ async function weather5DayAPI(latitude, longitude) {
     ) {
       weather5.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[32].weather[0].description === "clear sky") {
       weather5.src = "./assets/01nn.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
@@ -748,98 +793,96 @@ async function weather5DayAPI(latitude, longitude) {
   // weather end
 
   // 5 day forecast high and low start
-  for(let i = 0; i<8; i++){
+  for (let i = 0; i < 8; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp1){
+    if (high >= highTemp1) {
       highTemp1 = high;
     }
 
-    if(high <= lowTemp1 || lowTemp1 === undefined){
+    if (high <= lowTemp1 || lowTemp1 === undefined) {
       lowTemp1 = high;
     }
   }
   // console.log(highTemp1);
   // console.log(lowTemp1);
 
-  for(let i = 8; i<16; i++){
+  for (let i = 8; i < 16; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp2){
+    if (high >= highTemp2) {
       highTemp2 = high;
     }
 
-    if(high <= lowTemp2 || lowTemp2 === undefined){
+    if (high <= lowTemp2 || lowTemp2 === undefined) {
       lowTemp2 = high;
     }
   }
   // console.log(highTemp2);
   // console.log(lowTemp2);
 
-  for(let i = 16; i<24; i++){
+  for (let i = 16; i < 24; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp3){
+    if (high >= highTemp3) {
       highTemp3 = high;
     }
 
-    if(high <= lowTemp3 || lowTemp3 === undefined){
+    if (high <= lowTemp3 || lowTemp3 === undefined) {
       lowTemp3 = high;
     }
   }
   // console.log(highTemp3);
   // console.log(lowTemp3);
 
-  for(let i = 24; i<32; i++){
+  for (let i = 24; i < 32; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp4){
+    if (high >= highTemp4) {
       highTemp4 = high;
     }
 
-    if(high <= lowTemp4 || lowTemp4 === undefined){
+    if (high <= lowTemp4 || lowTemp4 === undefined) {
       lowTemp4 = high;
     }
   }
   // console.log(highTemp4);
   // console.log(lowTemp4);
 
-  for(let i = 32; i<40; i++){
+  for (let i = 32; i < 40; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp5){
+    if (high >= highTemp5) {
       highTemp5 = high;
     }
 
-    if(high <= lowTemp5 || lowTemp5 === undefined){
+    if (high <= lowTemp5 || lowTemp5 === undefined) {
       lowTemp5 = high;
     }
   }
   // console.log(highTemp5);
   // console.log(lowTemp5);
 
-  day1Low.textContent = Math.round(lowTemp1)+'°';
-  day1High.textContent = Math.round(highTemp1)+'°';
+  day1Low.textContent = Math.round(lowTemp1) + "°";
+  day1High.textContent = Math.round(highTemp1) + "°";
 
-  day2Low.textContent = Math.round(lowTemp2)+'°';
-  day2High.textContent = Math.round(highTemp2)+'°';
+  day2Low.textContent = Math.round(lowTemp2) + "°";
+  day2High.textContent = Math.round(highTemp2) + "°";
 
-  day3Low.textContent = Math.round(lowTemp3)+'°';
-  day3High.textContent = Math.round(highTemp3)+'°';
-  
-  day4Low.textContent = Math.round(lowTemp4)+'°';
-  day4High.textContent = Math.round(highTemp4)+'°';
+  day3Low.textContent = Math.round(lowTemp3) + "°";
+  day3High.textContent = Math.round(highTemp3) + "°";
 
-  day5Low.textContent = Math.round(lowTemp5)+'°';
-  day5High.textContent = Math.round(highTemp5)+'°';
+  day4Low.textContent = Math.round(lowTemp4) + "°";
+  day4High.textContent = Math.round(highTemp4) + "°";
+
+  day5Low.textContent = Math.round(lowTemp5) + "°";
+  day5High.textContent = Math.round(highTemp5) + "°";
   // 5 day forecast high and low end
-
-  
 
   // console.log(data.list[0].main.temp_min);
   // console.log(data.list[0].main.temp_max);
@@ -852,9 +895,8 @@ async function weather5DayAPI(latitude, longitude) {
 
   // console.log(data.list[3].main.temp_min);
   // console.log(data.list[3].main.temp_max);
-
 }
-  
+
 // end of on load code
 
 // search code
@@ -871,7 +913,7 @@ async function currentSearchAPI(latitude, longitude) {
   currentFeel.textContent = Math.round(data.main.feels_like) + "°";
   currentHumidity.textContent = Math.round(data.main.humidity) + "%";
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.weather[0].description === "clear sky") {
       currentIcon.src = "./assets/01dd.png";
     } else if (data.weather[0].description === "few clouds") {
@@ -905,7 +947,7 @@ async function currentSearchAPI(latitude, longitude) {
     ) {
       currentIcon.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.weather[0].description === "clear sky") {
       currentIcon.src = "./assets/01nn.png";
     } else if (data.weather[0].description === "few clouds") {
@@ -942,13 +984,15 @@ async function currentSearchAPI(latitude, longitude) {
   }
 }
 
-async function forecastSearchAPI(latitude, longitude){
-  const promise = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`);
+async function forecastSearchAPI(latitude, longitude) {
+  const promise = await fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
+  );
 
   const data = await promise.json();
 
   // weather start
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[0].weather[0].description === "clear sky") {
       weather1.src = "./assets/01dd.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
@@ -982,7 +1026,7 @@ async function forecastSearchAPI(latitude, longitude){
     ) {
       weather1.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[0].weather[0].description === "clear sky") {
       weather1.src = "./assets/01nn.png";
     } else if (data.list[0].weather[0].description === "few clouds") {
@@ -1018,7 +1062,7 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[8].weather[0].description === "clear sky") {
       weather2.src = "./assets/01dd.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
@@ -1052,7 +1096,7 @@ async function forecastSearchAPI(latitude, longitude){
     ) {
       weather2.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[8].weather[0].description === "clear sky") {
       weather2.src = "./assets/01nn.png";
     } else if (data.list[8].weather[0].description === "few clouds") {
@@ -1088,7 +1132,7 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[16].weather[0].description === "clear sky") {
       weather3.src = "./assets/01dd.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
@@ -1122,7 +1166,7 @@ async function forecastSearchAPI(latitude, longitude){
     ) {
       weather3.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[16].weather[0].description === "clear sky") {
       weather3.src = "./assets/01nn.png";
     } else if (data.list[16].weather[0].description === "few clouds") {
@@ -1158,7 +1202,7 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[24].weather[0].description === "clear sky") {
       weather4.src = "./assets/01dd.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
@@ -1192,7 +1236,7 @@ async function forecastSearchAPI(latitude, longitude){
     ) {
       weather4.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[24].weather[0].description === "clear sky") {
       weather4.src = "./assets/01nn.png";
     } else if (data.list[24].weather[0].description === "few clouds") {
@@ -1228,7 +1272,7 @@ async function forecastSearchAPI(latitude, longitude){
     }
   }
 
-  if(t.getHours() >= 7 && t.getHours() <= 18){
+  if (t.getHours() >= 7 && t.getHours() <= 18) {
     if (data.list[32].weather[0].description === "clear sky") {
       weather5.src = "./assets/01dd.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
@@ -1262,7 +1306,7 @@ async function forecastSearchAPI(latitude, longitude){
     ) {
       weather5.src = "./assets/50d.png";
     }
-  }else{
+  } else {
     if (data.list[32].weather[0].description === "clear sky") {
       weather5.src = "./assets/01nn.png";
     } else if (data.list[32].weather[0].description === "few clouds") {
@@ -1300,218 +1344,225 @@ async function forecastSearchAPI(latitude, longitude){
   // weather end
 
   // 5 day forecast high and low start
-  for(let i = 0; i<8; i++){
+  for (let i = 0; i < 8; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp1){
+    if (high >= highTemp1) {
       highTemp1 = high;
     }
 
-    if(high <= lowTemp1 || lowTemp1 === undefined){
+    if (high <= lowTemp1 || lowTemp1 === undefined) {
       lowTemp1 = high;
     }
   }
   // console.log(highTemp1);
   // console.log(lowTemp1);
 
-  for(let i = 8; i<16; i++){
+  for (let i = 8; i < 16; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp2){
+    if (high >= highTemp2) {
       highTemp2 = high;
     }
 
-    if(high <= lowTemp2 || lowTemp2 === undefined){
+    if (high <= lowTemp2 || lowTemp2 === undefined) {
       lowTemp2 = high;
     }
   }
   // console.log(highTemp2);
   // console.log(lowTemp2);
 
-  for(let i = 16; i<24; i++){
+  for (let i = 16; i < 24; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp3){
+    if (high >= highTemp3) {
       highTemp3 = high;
     }
 
-    if(high <= lowTemp3 || lowTemp3 === undefined){
+    if (high <= lowTemp3 || lowTemp3 === undefined) {
       lowTemp3 = high;
     }
   }
   // console.log(highTemp3);
   // console.log(lowTemp3);
 
-  for(let i = 24; i<32; i++){
+  for (let i = 24; i < 32; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp4){
+    if (high >= highTemp4) {
       highTemp4 = high;
     }
 
-    if(high <= lowTemp4 || lowTemp4 === undefined){
+    if (high <= lowTemp4 || lowTemp4 === undefined) {
       lowTemp4 = high;
     }
   }
   // console.log(highTemp4);
   // console.log(lowTemp4);
 
-  for(let i = 32; i<40; i++){
+  for (let i = 32; i < 40; i++) {
     // console.log(data.list[i].main.temp_max);
     let high = data.list[i].main.temp_max;
 
-    if(high >= highTemp5){
+    if (high >= highTemp5) {
       highTemp5 = high;
     }
 
-    if(high <= lowTemp5 || lowTemp5 === undefined){
+    if (high <= lowTemp5 || lowTemp5 === undefined) {
       lowTemp5 = high;
     }
   }
   // console.log(highTemp5);
   // console.log(lowTemp5);
 
-  day1Low.textContent = Math.round(lowTemp1)+'°';
-  day1High.textContent = Math.round(highTemp1)+'°';
+  day1Low.textContent = Math.round(lowTemp1) + "°";
+  day1High.textContent = Math.round(highTemp1) + "°";
 
-  day2Low.textContent = Math.round(lowTemp2)+'°';
-  day2High.textContent = Math.round(highTemp2)+'°';
+  day2Low.textContent = Math.round(lowTemp2) + "°";
+  day2High.textContent = Math.round(highTemp2) + "°";
 
-  day3Low.textContent = Math.round(lowTemp3)+'°';
-  day3High.textContent = Math.round(highTemp3)+'°';
-  
-  day4Low.textContent = Math.round(lowTemp4)+'°';
-  day4High.textContent = Math.round(highTemp4)+'°';
+  day3Low.textContent = Math.round(lowTemp3) + "°";
+  day3High.textContent = Math.round(highTemp3) + "°";
 
-  day5Low.textContent = Math.round(lowTemp5)+'°';
-  day5High.textContent = Math.round(highTemp5)+'°';
+  day4Low.textContent = Math.round(lowTemp4) + "°";
+  day4High.textContent = Math.round(highTemp4) + "°";
+
+  day5Low.textContent = Math.round(lowTemp5) + "°";
+  day5High.textContent = Math.round(highTemp5) + "°";
   // 5 day forecast high and low end
-
 }
 
 async function locationName(input) {
-  const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`);
-  
+  const promise = await fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`
+  );
+
   const data = await promise.json();
 
-  favoriteBtn.addEventListener("click", function(e) {
-    addToFavorite(data[0].name);
-  });
+  favoriteCity=data[0].name
 
-  console.log("Searched city: "+data[0].name);
-  console.log("Searched lat: "+data[0].lat);
-  console.log("Search lon: "+data[0].lon);
+  if(savedFavorites.includes(favoriteCity)){
+    favoriteBtn.src = "./assets/favorited.png"
+    favoriteBtnColor.className = "BtnFavorite2";
+  }else{
+    favoriteBtn.src = "./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
+    favoriteBtnColor.className = "BtnFavorite";
+  }
+
+  console.log("Searched city: " + data[0].name);
+  console.log("Searched lat: " + data[0].lat);
+  console.log("Search lon: " + data[0].lon);
   currentSearchAPI(data[0].lat, data[0].lon);
   forecastSearchAPI(data[0].lat, data[0].lon);
 
-  if(data[0].state === 'Alabama'){
-    location.textContent = data[0].name.toUpperCase() + ', AL'; 
-  }else if(data[0].state === 'Alaska'){
-    location.textContent = data[0].name.toUpperCase() + ', AK'; 
-  }else if(data[0].state === 'Arizona'){
-    location.textContent = data[0].name.toUpperCase() + ', AZ'; 
-  }else if(data[0].state === 'Arkansas'){
-    location.textContent = data[0].name.toUpperCase() + ', AR'; 
-  }else if(data[0].state === 'California'){
-    location.textContent = data[0].name.toUpperCase() + ', CA'; 
-  }else if(data[0].state === 'Colorado'){
-    location.textContent = data[0].name.toUpperCase() + ', CO'; 
-  }else if(data[0].state === 'Conneticut'){
-    location.textContent = data[0].name.toUpperCase() + ', CT'; 
-  }else if(data[0].state === 'District of Columbia'){
-    location.textContent = data[0].name.toUpperCase() + ', DC'; 
-  }else if(data[0].state === 'Delaware'){
-    location.textContent = data[0].name.toUpperCase() + ', DE'; 
-  }else if(data[0].state === 'Florida'){
-    location.textContent = data[0].name.toUpperCase() + ', FL'; 
-  }else if(data[0].state === 'Georgia'){
-    location.textContent = data[0].name.toUpperCase() + ', GA'; 
-  }else if(data[0].state === 'Hawaii'){
-    location.textContent = data[0].name.toUpperCase() + ', HI'; 
-  }else if(data[0].state === 'Idaho'){
-    location.textContent = data[0].name.toUpperCase() + ', ID'; 
-  }else if(data[0].state === 'Illinois'){
-    location.textContent = data[0].name.toUpperCase() + ', IL'; 
-  }else if(data[0].state === 'Indiana'){
-    location.textContent = data[0].name.toUpperCase() + ', IN'; 
-  }else if(data[0].state === 'Iowa'){
-    location.textContent = data[0].name.toUpperCase() + ', IA'; 
-  }else if(data[0].state === 'Kansas'){
-    location.textContent = data[0].name.toUpperCase() + ', KS'; 
-  }else if(data[0].state === 'Kentucky'){
-    location.textContent = data[0].name.toUpperCase() + ', KY'; 
-  }else if(data[0].state === 'Louisiana'){
-    location.textContent = data[0].name.toUpperCase() + ', LA'; 
-  }else if(data[0].state === 'Maine'){
-    location.textContent = data[0].name.toUpperCase() + ', ME'; 
-  }else if(data[0].state === 'Maryland'){
-    location.textContent = data[0].name.toUpperCase() + ', MD'; 
-  }else if(data[0].state === 'Massachusetts'){
-    location.textContent = data[0].name.toUpperCase() + ', MA'; 
-  }else if(data[0].state === 'Michigan'){
-    location.textContent = data[0].name.toUpperCase() + ', MI'; 
-  }else if(data[0].state === 'Minnesota'){
-    location.textContent = data[0].name.toUpperCase() + ', MN'; 
-  }else if(data[0].state === 'Mississippi'){
-    location.textContent = data[0].name.toUpperCase() + ', MS'; 
-  }else if(data[0].state === 'Missouri'){
-    location.textContent = data[0].name.toUpperCase() + ', MO'; 
-  }else if(data[0].state === 'Montana'){
-    location.textContent = data[0].name.toUpperCase() + ', MT'; 
-  }else if(data[0].state === 'Nebraska'){
-    location.textContent = data[0].name.toUpperCase() + ', NE'; 
-  }else if(data[0].state === 'Nevada'){
-    location.textContent = data[0].name.toUpperCase() + ', NV'; 
-  }else if(data[0].state === 'New Hampshire'){
-    location.textContent = data[0].name.toUpperCase() + ', NH'; 
-  }else if(data[0].state === 'New Jersey'){
-    location.textContent = data[0].name.toUpperCase() + ', NJ'; 
-  }else if(data[0].state === 'New Mexico'){
-    location.textContent = data[0].name.toUpperCase() + ', NM'; 
-  }else if(data[0].state === 'New York'){
-    location.textContent = data[0].name.toUpperCase() + ', NY'; 
-  }else if(data[0].state === 'North Carolina'){
-    location.textContent = data[0].name.toUpperCase() + ', NC'; 
-  }else if(data[0].state === 'North Dakota'){
-    location.textContent = data[0].name.toUpperCase() + ', ND'; 
-  }else if(data[0].state === 'Ohio'){
-    location.textContent = data[0].name.toUpperCase() + ', OH'; 
-  }else if(data[0].state === 'Oklahoma'){
-    location.textContent = data[0].name.toUpperCase() + ', OK'; 
-  }else if(data[0].state === 'Oregon'){
-    location.textContent = data[0].name.toUpperCase() + ', OR'; 
-  }else if(data[0].state === 'Pennsylvania'){
-    location.textContent = data[0].name.toUpperCase() + ', PA'; 
-  }else if(data[0].state === 'Rhode Island'){
-    location.textContent = data[0].name.toUpperCase() + ', RI'; 
-  }else if(data[0].state === 'South Carolina'){
-    location.textContent = data[0].name.toUpperCase() + ', SC'; 
-  }else if(data[0].state === 'South Dakota'){
-    location.textContent = data[0].name.toUpperCase() + ', SD'; 
-  }else if(data[0].state === 'Tennessee'){
-    location.textContent = data[0].name.toUpperCase() + ', TN'; 
-  }else if(data[0].state === 'Texas'){
-    location.textContent = data[0].name.toUpperCase() + ', TX'; 
-  }else if(data[0].state === 'Utah'){
-    location.textContent = data[0].name.toUpperCase() + ', UT'; 
-  }else if(data[0].state === 'Vermont'){
-    location.textContent = data[0].name.toUpperCase() + ', VT'; 
-  }else if(data[0].state === 'Virginia'){
-    location.textContent = data[0].name.toUpperCase() + ', VA'; 
-  }else if(data[0].state === 'Washington'){
-    location.textContent = data[0].name.toUpperCase() + ', WA'; 
-  }else if(data[0].state === 'West Virginia'){
-    location.textContent = data[0].name.toUpperCase() + ', WV'; 
-  }else if(data[0].state === 'Wisconsin'){
-    location.textContent = data[0].name.toUpperCase() + ', WI'; 
-  }else if(data[0].state === 'Wyoming'){
-    location.textContent = data[0].name.toUpperCase() + ', WY'; 
-  }else{
-    location.textContent = data[0].name.toUpperCase() + ', ' + data[0].country;
+  if (data[0].state === "Alabama") {
+    location.textContent = data[0].name.toUpperCase() + ", AL";
+  } else if (data[0].state === "Alaska") {
+    location.textContent = data[0].name.toUpperCase() + ", AK";
+  } else if (data[0].state === "Arizona") {
+    location.textContent = data[0].name.toUpperCase() + ", AZ";
+  } else if (data[0].state === "Arkansas") {
+    location.textContent = data[0].name.toUpperCase() + ", AR";
+  } else if (data[0].state === "California") {
+    location.textContent = data[0].name.toUpperCase() + ", CA";
+  } else if (data[0].state === "Colorado") {
+    location.textContent = data[0].name.toUpperCase() + ", CO";
+  } else if (data[0].state === "Conneticut") {
+    location.textContent = data[0].name.toUpperCase() + ", CT";
+  } else if (data[0].state === "District of Columbia") {
+    location.textContent = data[0].name.toUpperCase() + ", DC";
+  } else if (data[0].state === "Delaware") {
+    location.textContent = data[0].name.toUpperCase() + ", DE";
+  } else if (data[0].state === "Florida") {
+    location.textContent = data[0].name.toUpperCase() + ", FL";
+  } else if (data[0].state === "Georgia") {
+    location.textContent = data[0].name.toUpperCase() + ", GA";
+  } else if (data[0].state === "Hawaii") {
+    location.textContent = data[0].name.toUpperCase() + ", HI";
+  } else if (data[0].state === "Idaho") {
+    location.textContent = data[0].name.toUpperCase() + ", ID";
+  } else if (data[0].state === "Illinois") {
+    location.textContent = data[0].name.toUpperCase() + ", IL";
+  } else if (data[0].state === "Indiana") {
+    location.textContent = data[0].name.toUpperCase() + ", IN";
+  } else if (data[0].state === "Iowa") {
+    location.textContent = data[0].name.toUpperCase() + ", IA";
+  } else if (data[0].state === "Kansas") {
+    location.textContent = data[0].name.toUpperCase() + ", KS";
+  } else if (data[0].state === "Kentucky") {
+    location.textContent = data[0].name.toUpperCase() + ", KY";
+  } else if (data[0].state === "Louisiana") {
+    location.textContent = data[0].name.toUpperCase() + ", LA";
+  } else if (data[0].state === "Maine") {
+    location.textContent = data[0].name.toUpperCase() + ", ME";
+  } else if (data[0].state === "Maryland") {
+    location.textContent = data[0].name.toUpperCase() + ", MD";
+  } else if (data[0].state === "Massachusetts") {
+    location.textContent = data[0].name.toUpperCase() + ", MA";
+  } else if (data[0].state === "Michigan") {
+    location.textContent = data[0].name.toUpperCase() + ", MI";
+  } else if (data[0].state === "Minnesota") {
+    location.textContent = data[0].name.toUpperCase() + ", MN";
+  } else if (data[0].state === "Mississippi") {
+    location.textContent = data[0].name.toUpperCase() + ", MS";
+  } else if (data[0].state === "Missouri") {
+    location.textContent = data[0].name.toUpperCase() + ", MO";
+  } else if (data[0].state === "Montana") {
+    location.textContent = data[0].name.toUpperCase() + ", MT";
+  } else if (data[0].state === "Nebraska") {
+    location.textContent = data[0].name.toUpperCase() + ", NE";
+  } else if (data[0].state === "Nevada") {
+    location.textContent = data[0].name.toUpperCase() + ", NV";
+  } else if (data[0].state === "New Hampshire") {
+    location.textContent = data[0].name.toUpperCase() + ", NH";
+  } else if (data[0].state === "New Jersey") {
+    location.textContent = data[0].name.toUpperCase() + ", NJ";
+  } else if (data[0].state === "New Mexico") {
+    location.textContent = data[0].name.toUpperCase() + ", NM";
+  } else if (data[0].state === "New York") {
+    location.textContent = data[0].name.toUpperCase() + ", NY";
+  } else if (data[0].state === "North Carolina") {
+    location.textContent = data[0].name.toUpperCase() + ", NC";
+  } else if (data[0].state === "North Dakota") {
+    location.textContent = data[0].name.toUpperCase() + ", ND";
+  } else if (data[0].state === "Ohio") {
+    location.textContent = data[0].name.toUpperCase() + ", OH";
+  } else if (data[0].state === "Oklahoma") {
+    location.textContent = data[0].name.toUpperCase() + ", OK";
+  } else if (data[0].state === "Oregon") {
+    location.textContent = data[0].name.toUpperCase() + ", OR";
+  } else if (data[0].state === "Pennsylvania") {
+    location.textContent = data[0].name.toUpperCase() + ", PA";
+  } else if (data[0].state === "Rhode Island") {
+    location.textContent = data[0].name.toUpperCase() + ", RI";
+  } else if (data[0].state === "South Carolina") {
+    location.textContent = data[0].name.toUpperCase() + ", SC";
+  } else if (data[0].state === "South Dakota") {
+    location.textContent = data[0].name.toUpperCase() + ", SD";
+  } else if (data[0].state === "Tennessee") {
+    location.textContent = data[0].name.toUpperCase() + ", TN";
+  } else if (data[0].state === "Texas") {
+    location.textContent = data[0].name.toUpperCase() + ", TX";
+  } else if (data[0].state === "Utah") {
+    location.textContent = data[0].name.toUpperCase() + ", UT";
+  } else if (data[0].state === "Vermont") {
+    location.textContent = data[0].name.toUpperCase() + ", VT";
+  } else if (data[0].state === "Virginia") {
+    location.textContent = data[0].name.toUpperCase() + ", VA";
+  } else if (data[0].state === "Washington") {
+    location.textContent = data[0].name.toUpperCase() + ", WA";
+  } else if (data[0].state === "West Virginia") {
+    location.textContent = data[0].name.toUpperCase() + ", WV";
+  } else if (data[0].state === "Wisconsin") {
+    location.textContent = data[0].name.toUpperCase() + ", WI";
+  } else if (data[0].state === "Wyoming") {
+    location.textContent = data[0].name.toUpperCase() + ", WY";
+  } else {
+    location.textContent = data[0].name.toUpperCase() + ", " + data[0].country;
   }
 }
 
