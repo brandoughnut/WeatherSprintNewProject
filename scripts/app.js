@@ -1,5 +1,6 @@
 import { apiKey } from "./apikey.js";
 
+
 let userInput = document.getElementById("userInput");
 let searchBtn = document.getElementById("searchBtn");
 let switchBG = document.getElementById("switchBG");
@@ -90,6 +91,7 @@ if(favoriteBtnColor){
 
 if(searchBtn){
   searchBtn.addEventListener("click", function (e) {
+  e.preventDefault();
   locationName(userInput.value);
   console.log("User search: " + userInput.value);
   userInput.value = "";
@@ -1497,7 +1499,8 @@ async function locationName(input) {
 
   const data = await promise.json();
 
-  favoriteCity=data[0].name;
+    favoriteCity=data[0].name;
+
 
   if(savedFavorites.includes(favoriteCity)){
     favoriteBtn.src = "./assets/favorited.png"
@@ -1618,6 +1621,10 @@ async function locationName(input) {
   } else {
     location.textContent = data[0].name.toUpperCase() + ", " + data[0].country;
   }
+
+    
+
+  
 }
 
 // end of search code

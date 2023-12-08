@@ -20,12 +20,12 @@
       style="margin-right: 5%; margin-top: 38px"
     >
       <li class="nav-item">
-        <button
-          id="favoriteBtnColor"
-          type="button"
-          class="BtnFavorite"
-        >
-          <img id="favoriteBtn" src="./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png" alt="heart icon" />
+        <button id="favoriteBtnColor" type="button" class="BtnFavorite">
+          <img
+            id="favoriteBtn"
+            src="./assets/1e124fac-ffe5-4d0b-af1b-4990f9090e40.png"
+            alt="heart icon"
+          />
         </button>
       </li>
       <li class="nav-item">
@@ -33,59 +33,66 @@
           class="input-group flex-nowrap"
           style="width: 592px; height: 61px; margin-left: 19.14px; opacity: 95%"
         >
-          <input
-            id="userInput"
-            type="text"
-            class="form-control navFont"
-            placeholder="Enter a City"
-            aria-label="Username"
-            aria-describedby="addon-wrapping"
-            style="
-              border-color: black;
-              border-radius: 20px;
-              border-top-right-radius: 0px;
-              border-bottom-right-radius: 0px;
-              font-size: 25px;
-              color: black;
-              padding-left: 4%;
-            "
-          />
-          <button
-            type="submit"
-            class="input-group-text"
-            id="searchBtn"
-            style="
-              background-color: #fff9c8;
-              border-color: black;
-              border-radius: 20px;
-              border-top-left-radius: 0px;
-              border-bottom-left-radius: 0px;
-            "
-            ><img
-              src="./assets/c515d535-16c2-49dd-b098-c900e5e66a06.png"
-              alt="Search button"
-          /></button>
+          <form style="width: 592px; margin-left: 19.14px; opacity: 95%">
+            <input
+              id="userInput"
+              type="text"
+              class="form-control navFont"
+              placeholder="Enter a City"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+              style="
+                border-color: black;
+                border-radius: 20px;
+                font-size: 25px;
+                color: black;
+                padding-left: 4%;
+                height: 61px;
+              "
+            />
+            <button
+              type="submit"
+              class="input-group-text"
+              id="searchBtn"
+              style="
+                background-color: #fff9c8;
+                border-color: black;
+                border-radius: 20px;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                position: absolute;
+                top: 0.1px;
+                right: 0.1px;
+                height: 61px;
+              "
+            >
+              <img
+                src="./assets/c515d535-16c2-49dd-b098-c900e5e66a06.png"
+                alt="Search button"
+              />
+            </button>
+          </form>
         </div>
       </li>
       <li class="nav-item navFont">
         <a class="" href="./pages/favorite.html">
-        <button
-          type="button"
-          class="btn noHover"
-          style="
-            background-color: #fff9c8;
-            width: 213px;
-            height: 61px;
-            border-color: black;
-            border-radius: 20px;
-            margin-left: 22.63px;
-            font-size: 25px;
-            opacity: 95%;
-          "
-        >
-          Favorites
-        </button>
-      </a>
+          <button
+            type="button"
+            class="btn noHover"
+            style="
+              background-color: #fff9c8;
+              width: 213px;
+              height: 61px;
+              border-color: black;
+              border-radius: 20px;
+              margin-left: 22.63px;
+              font-size: 25px;
+              opacity: 95%;
+            "
+          >
+            Favorites
+          </button>
+        </a>
       </li>
     </ul>
 
@@ -93,7 +100,11 @@
 
     <!-- current Location start -->
 
-    <div id="location" class="locationHeader" style="margin-left: 11.5%; height: 130px">
+    <div
+      id="location"
+      class="locationHeader"
+      style="margin-left: 11.5%; height: 130px"
+    >
       CURRENT LOCATION
     </div>
 
@@ -101,7 +112,10 @@
 
     <!-- weather forecast start -->
 
-    <div id="global" class="container-fluid d-inline-flex justify-content-center">
+    <div
+      id="global"
+      class="container-fluid d-inline-flex justify-content-center"
+    >
       <div id="switchBox" class="row currentLocationBox">
         <div class="col-5">
           <div
@@ -110,22 +124,33 @@
           >
             TODAY
           </div>
-          <div id="currentDate" class="row font1 lh-1" style="font-size: 35px; margin-left: 11%">
+          <div
+            id="currentDate"
+            class="row font1 lh-1"
+            style="font-size: 35px; margin-left: 11%"
+          >
             Monday, November 27th
           </div>
           <div class="row">
             <div class="col d-flex justify-content-center">
-              <img id="currentIcon" src="./assets/02dd.png" alt="current weather icon" style="height: 30%; position: absolute; top: 29%;" />
+              <img
+                id="currentIcon"
+                src="./assets/02dd.png"
+                alt="current weather icon"
+                style="height: 30%; position: absolute; top: 29%"
+              />
             </div>
             <div class="col">
               <div
-                id="currentTemperature" class="row currentTempFont lh-1"
+                id="currentTemperature"
+                class="row currentTempFont lh-1"
                 style="font-size: 100px; margin-top: 12%; margin-left: 0.5%"
               >
                 62°
               </div>
               <div
-                id="currentWeather" class="row font1"
+                id="currentWeather"
+                class="row font1"
                 style="font-size: 25px; margin-top: 17px; margin-left: 0.5%"
               >
                 overcast clouds
@@ -150,7 +175,11 @@
               >
                 Max. Temperature
               </div>
-              <div id="currentHigh" class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div
+                id="currentHigh"
+                class="row font2"
+                style="font-size: 40px; margin-top: 2.8%"
+              >
                 69°
               </div>
             </div>
@@ -168,7 +197,11 @@
               >
                 Min. Temperature
               </div>
-              <div id="currentLow" class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div
+                id="currentLow"
+                class="row font2"
+                style="font-size: 40px; margin-top: 2.8%"
+              >
                 44°
               </div>
             </div>
@@ -181,7 +214,11 @@
               <div class="row font1" style="font-size: 30px; margin-top: 63px">
                 Feels Like
               </div>
-              <div id="currentFeel" class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div
+                id="currentFeel"
+                class="row font2"
+                style="font-size: 40px; margin-top: 2.8%"
+              >
                 60°
               </div>
             </div>
@@ -192,7 +229,11 @@
               <div class="row font1" style="font-size: 30px; margin-top: 63px">
                 Humidity
               </div>
-              <div id="currentHumidity" class="row font2" style="font-size: 40px; margin-top: 2.8%">
+              <div
+                id="currentHumidity"
+                class="row font2"
+                style="font-size: 40px; margin-top: 2.8%"
+              >
                 54%
               </div>
             </div>
@@ -214,21 +255,32 @@
           >
             <div class="card-body">
               <div
-                id="day1" class="row font1 d-flex justify-content-center"
+                id="day1"
+                class="row font1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 Tuesday
               </div>
               <div
-                id="date1" class="row font1 lh-1 d-flex justify-content-center"
+                id="date1"
+                class="row font1 lh-1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 November 28th
               </div>
-              <div class="row d-flex justify-content-center" style="height: 40%;">
+              <div
+                class="row d-flex justify-content-center"
+                style="height: 40%"
+              >
                 <img
                   id="weather1"
-                  style="height: 155px; width: auto; opacity: 0.8; position: absolute; bottom: 27%;"
+                  style="
+                    height: 155px;
+                    width: auto;
+                    opacity: 0.8;
+                    position: absolute;
+                    bottom: 27%;
+                  "
                   src="./assets/01dd.png"
                   alt="day 1 weather icon"
                 />
@@ -278,21 +330,32 @@
           >
             <div class="card-body">
               <div
-                id="day2" class="row font1 d-flex justify-content-center"
+                id="day2"
+                class="row font1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 Wednesday
               </div>
               <div
-                id="date2" class="row font1 lh-1 d-flex justify-content-center"
+                id="date2"
+                class="row font1 lh-1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 November 29th
               </div>
-              <div class="row d-flex justify-content-center" style="height: 40%;">
+              <div
+                class="row d-flex justify-content-center"
+                style="height: 40%"
+              >
                 <img
                   id="weather2"
-                  style="height: 155px; width: auto; opacity: 0.8; position: absolute; bottom: 27%;"
+                  style="
+                    height: 155px;
+                    width: auto;
+                    opacity: 0.8;
+                    position: absolute;
+                    bottom: 27%;
+                  "
                   src="./assets/02dd.png"
                   alt="day 2 weather icon"
                 />
@@ -342,21 +405,32 @@
           >
             <div class="card-body">
               <div
-                id="day3" class="row font1 d-flex justify-content-center"
+                id="day3"
+                class="row font1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 Thursday
               </div>
               <div
-                id="date3" class="row font1 lh-1 d-flex justify-content-center"
+                id="date3"
+                class="row font1 lh-1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 November 30th
               </div>
-              <div class="row d-flex justify-content-center" style="height: 40%;">
+              <div
+                class="row d-flex justify-content-center"
+                style="height: 40%"
+              >
                 <img
                   id="weather3"
-                  style="height: 155px; width: auto; opacity: 0.8; position: absolute; bottom: 27%;"
+                  style="
+                    height: 155px;
+                    width: auto;
+                    opacity: 0.8;
+                    position: absolute;
+                    bottom: 27%;
+                  "
                   src="./assets/03dd.png"
                   alt="day 3 weather icon"
                 />
@@ -406,21 +480,32 @@
           >
             <div class="card-body">
               <div
-                id="day4" class="row font1 d-flex justify-content-center"
+                id="day4"
+                class="row font1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 Friday
               </div>
               <div
-                id="date4" class="row font1 lh-1 d-flex justify-content-center"
+                id="date4"
+                class="row font1 lh-1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 December 1st
               </div>
-              <div class="row d-flex justify-content-center" style="height: 40%;">
+              <div
+                class="row d-flex justify-content-center"
+                style="height: 40%"
+              >
                 <img
                   id="weather4"
-                  style="height: 155px; width: auto; opacity: 0.8; position: absolute; bottom: 27%;"
+                  style="
+                    height: 155px;
+                    width: auto;
+                    opacity: 0.8;
+                    position: absolute;
+                    bottom: 27%;
+                  "
                   src="./assets/04dd.png"
                   alt="day 4 weather icon"
                 />
@@ -470,21 +555,32 @@
           >
             <div class="card-body">
               <div
-                id="day5" class="row font1 d-flex justify-content-center"
+                id="day5"
+                class="row font1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 Saturday
               </div>
               <div
-                id="date5" class="row font1 lh-1 d-flex justify-content-center"
+                id="date5"
+                class="row font1 lh-1 d-flex justify-content-center"
                 style="font-size: 25px"
               >
                 December 2nd
               </div>
-              <div class="row d-flex justify-content-center" style="height: 40%;">
+              <div
+                class="row d-flex justify-content-center"
+                style="height: 40%"
+              >
                 <img
                   id="weather5"
-                  style="height: 155px; width: auto; opacity: 0.8; position: absolute; bottom: 27%;"
+                  style="
+                    height: 155px;
+                    width: auto;
+                    opacity: 0.8;
+                    position: absolute;
+                    bottom: 27%;
+                  "
                   src="./assets/50d.png"
                   alt="day 5 weather icon"
                 />
