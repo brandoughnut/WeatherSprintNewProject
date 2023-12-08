@@ -365,6 +365,8 @@ function success(position) {
   
 }
 
+FavoriteLoad();
+
 function errorFunc(error) {
   alert("Please turn on your location");
 }
@@ -1482,7 +1484,7 @@ async function locationName(input) {
 
   const data = await promise.json();
 
-  favoriteCity=data[0].name
+  favoriteCity=data[0].name;
 
   if(savedFavorites.includes(favoriteCity)){
     favoriteBtn.src = "./assets/favorited.png"
@@ -1760,7 +1762,17 @@ async function CreatingElements(cityName) {
   deleteImage.src = "../assets/delete.png";
   deleteImage.alt = "delete button";
 
-  deleteImage.setAttribute("id", "removeBtn");
+  deleteImage.addEventListener("click", function(e) {
+    let arrayIndex = savedFavorites.indexOf(data[0].name);
+    console.log(arrayIndex);
+    savedFavorites.splice(arrayIndex, 1)
+    
+    localStorage.setItem("favorited", JSON.stringify(savedFavorites));
+
+    injectFavorite.removeChild(mainDiv);
+    console.log(savedFavorites);
+
+  });
 
 
   let firstRowDiv = document.createElement("div");
@@ -1773,7 +1785,7 @@ async function CreatingElements(cityName) {
   let imageLeftColumn = document.createElement("img");
 
 if (t.getHours() >= 7 && t.getHours() <= 18) {
-  if (data.weather[0].description === "clear sky") {
+  if (data2.weather[0].description === "clear sky") {
     imageLeftColumn.src = "../assets/01dd.png";
   } else if (data2.weather[0].description === "few clouds") {
     imageLeftColumn.src = "../assets/02dd.png";
@@ -1918,8 +1930,10 @@ injectFavorite.appendChild(mainDiv);
 }
 // creating elements end
 
-for(let i = 0; i<savedFavorites.length; i++){
-  CreatingElements(savedFavorites[i]);
-
+async function FavoriteLoad(){
+  for(let i = 0; i<savedFavorites.length; i++){
+    CreatingElements(savedFavorites[i]);
+    console.log(savedFavorites[i]);
   
+  }
 }
