@@ -152,6 +152,8 @@ if(changeBG){
 
 
 
+
+
 // current weekday
 const days = [
   "Sunday",
@@ -1759,6 +1761,7 @@ async function CreatingElements(cityName) {
   deleteImage.style.position = "absolute";
   deleteImage.style.top = "18px";
   deleteImage.style.right = "14px";
+  deleteImage.style.cursor = "pointer"
   deleteImage.src = "../assets/delete.png";
   deleteImage.alt = "delete button";
 
@@ -1777,6 +1780,11 @@ async function CreatingElements(cityName) {
 
   let firstRowDiv = document.createElement("div");
   firstRowDiv.className = "row";
+  firstRowDiv.style.cursor = "pointer";
+
+  firstRowDiv.addEventListener("click", function(e) {
+    window.location.replace("../index.html");
+  })
 
   let leftColumnDiv = document.createElement("div");
   leftColumnDiv.className = "col-6 d-flex justify-content-start";
@@ -1874,6 +1882,11 @@ if (t.getHours() >= 7 && t.getHours() <= 18) {
 
   let secondRowDiv = document.createElement("div");
   secondRowDiv.className = "row";
+  secondRowDiv.style.cursor = "pointer";
+
+  secondRowDiv.addEventListener("click", function(e) {
+    window.location.replace("../index.html");
+  })
 
   let leftColumnLowDiv = document.createElement("div");
   leftColumnLowDiv.className = "col";
