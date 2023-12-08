@@ -1630,10 +1630,10 @@ deleteImage.style.position = "absolute";
 deleteImage.style.top = "18px";
 deleteImage.style.right = "14px";
 deleteImage.src = "../assets/delete.png";
-deleteImage.alt = "";
+deleteImage.alt = "delete button";
 
 deleteImage.addEventListener("click", function(e) {
-  
+
 })
 
 let firstRowDiv = document.createElement("div");
@@ -1645,10 +1645,10 @@ leftColumnDiv.style.height = "170px";
 
 let imageLeftColumn = document.createElement("img");
 imageLeftColumn.src = "../assets/01nn.png";
-imageLeftColumn.alt = "";
+imageLeftColumn.alt = "favorite weather icon";
 
 let rightColumnDiv = document.createElement("div");
-rightColumnDiv.className = "col-6 currentTempFont";
+rightColumnDiv.className = "col-6 currentTempFont g-0";
 rightColumnDiv.style.fontSize = "60px";
 rightColumnDiv.style.marginTop = "18%";
 rightColumnDiv.textContent = "42°";
@@ -1721,3 +1721,4 @@ injectFavorite.appendChild(mainDiv);
 // creating elements end
 
 CreatingElements();
+
