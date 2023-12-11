@@ -1964,7 +1964,6 @@ injectFavorite.appendChild(mainDiv);
 async function FavoriteLoad(){
   for(let i = 0; i<savedFavorites.length; i++){
     CreatingElements(savedFavorites[i]);
-    console.log(savedFavorites[i]);
   
   }
 }
