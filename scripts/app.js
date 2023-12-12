@@ -9,7 +9,6 @@ let favoriteBtn = document.getElementById("favoriteBtn");
 let favoriteBtnColor = document.getElementById("favoriteBtnColor");
 let favorites = document.getElementById("favorites");
 let changeBG = document.getElementById("changeBG");
-// let favoritesBoxes = document.getElementById("favoritesBoxes");
 let injectFavorite = document.getElementById("injectFavorite");
 let global = document.getElementById("global");
 
@@ -144,11 +143,9 @@ if(changeBG){
   if(t.getHours() >= 7 && t.getHours() <= 18){
   changeBG.className = "mainBG";
   favorites.className = "locationHeader";
-  // favoritesBoxes.className = "card fiveDayBox";
 }else{
   changeBG.className = "nightBG";
   favorites.className = "locationHeaderNight"
-  // favoritesBoxes.className = "card favoritesDayBox";
 }
 }
 
